@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import '../lit-Elements/heading-element.js';
 
 @Component({
   selector: 'app-header',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+
+  public headerTitle = 'Sports';
 
   constructor() { }
 
