@@ -1,0 +1,58 @@
+[
+    {
+      "id": 1,
+      "name": "Selena",
+      "report": "+ve",
+      "bloodgroup": "A",
+      "age": "34"
+    },
+    {
+      "id": 2,
+      "name": "Pujara",
+      "report": "+ve",
+      "bloodgroup": "o+",
+      "age": "35"
+    },
+    {
+      "id": 3,
+      "name": "Sujay",
+      "report": "+ve",
+      "bloodgroup": "o",
+      "age": "36"
+    },
+    {
+      "id": 4,
+      "name": "Kiran",
+      "report": "+ve",
+      "bloodgroup": "c",
+      "age": "37"
+    },
+    {
+      "id": 5,
+      "name": "Amay",
+      "report": "+ve",
+      "bloodgroup": "A-",
+      "age": "38"
+    },
+    {
+      "id": 6,
+      "name": "Austria",
+      "report": "+ve",
+      "bloodgroup": "A",
+      "age": "34"
+    },
+    {
+      "id": 7,
+      "name": "Austria",
+      "report": "+ve",
+      "bloodgroup": "A",
+      "age": "34"
+    },
+    {
+      "id": 8,
+      "name": "Austria",
+      "report": "+ve",
+      "bloodgroup": "A",
+      "age": "34"
+    }
+  ]

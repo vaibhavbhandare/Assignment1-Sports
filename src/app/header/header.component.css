@@ -1,0 +1,18 @@
+
+
+.div1 {
+    background-color: lightseagreen;
+    display: inline-flex;
+    width: 100%;
+    /* display: grid;
+    grid-template-rows: 60px; */
+}
+
+.ui-button {
+    margin-left: 1031px; 
+}
+
+.button {
+    margin: 15px;  
+    padding: 6px;
+}
