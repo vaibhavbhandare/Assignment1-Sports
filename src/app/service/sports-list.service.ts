@@ -9,20 +9,29 @@ export class SportsListService {
 
   public status: any;
   public data = 'http://localhost:3000';
-  public login = 'http://localhost:3000';
+  // public login = 'http://localhost:3000';
 
   constructor(private http: HttpClient) { }
 
   getSportsList(): Observable<any> {
-    return this.http.get(this.data + 'data');
+    return this.http.get(`${this.data}/` + 'data');
+  }
+
+  postSportsList(value): Observable<any> {
+    return this.http.post(`${this.data}/` + 'data', value);
+  }
+
+
+  deleteSportsData(id): Observable<any> {
+    return this.http.delete(`${this.data}/` + 'data/' + id);
   }
 
   getLoginDetails(): Observable<any> {
-    return this.http.get(this.login + 'login');
+    return this.http.get(`${this.data}/` + 'login');
   }
 
-  postSportsData(value): Observable<any> {
-    return this.http.post(this.login + '/login', value);
+  postLoginData(value): Observable<any> {
+    return this.http.post(`${this.data}/` + 'login', value);
   }
 
 }

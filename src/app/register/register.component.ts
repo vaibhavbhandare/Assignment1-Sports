@@ -24,26 +24,13 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.registerForm = this.fb.group({
-    //   id: [0, [Validators.required]],
-    //   sportsTitle: ['Enter Sport Name', [Validators.required]],
-    //   category: ['Individual or Team Player', [Validators.required]],
-    //   descreption: ['Enter Descreption', [Validators.required]]
-    // });
 
   }
 
   onSubmit(value): void {
-    console.log(value);
-
-    const ab = { username: 'admin1', passward: 'admin1'};
-
-    this.sportsListService.postSportsData(value).subscribe(data => {
+    this.sportsListService.postLoginData(value).subscribe(data => {
       this.SportsData = data.json();
-      console.log(this.SportsData);
     });
-
   }
-
 
 }

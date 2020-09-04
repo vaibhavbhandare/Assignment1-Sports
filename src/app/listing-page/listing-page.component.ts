@@ -1,5 +1,6 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { SportsListService } from '../service/sports-list.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-listing-page',
@@ -12,10 +13,11 @@ export class ListingPageComponent implements OnInit, AfterViewInit {
   public loginData: Array<any> = [];
   public sportsData: Array<any> = [];
 
-  constructor(private sportsListService: SportsListService) {
+  constructor(private sportsListService: SportsListService,
+              private router: Router) {
      this.sportsListService.getSportsList().subscribe(data => {
       this.sportsData = data;
-      console.log(this.sportsData);
+      // console.log(this.sportsData);
     });
   }
 
@@ -35,8 +37,14 @@ export class ListingPageComponent implements OnInit, AfterViewInit {
 
   }
 
-  deleteSports(value): void {
+  deleteSports(id): void {
+    this.sportsListService.deleteSportsData(id).subscribe(getdata => {
+      this.sportsData = this.sportsData.filter(item => item.id !== id);
+    });
+  }
 
+  addNewSports(): void {
+     this.router.navigate(['/addsports']);
   }
 
 }

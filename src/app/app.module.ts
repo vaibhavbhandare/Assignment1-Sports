@@ -10,6 +10,7 @@ import {CommonModule} from '@angular/common';
 import {HttpClientModule} from '@angular/common/http';
 import { ListingPageComponent } from './listing-page/listing-page.component';
 import { RegisterComponent } from './register/register.component';
+import { AddSportsComponent } from './add-sports/add-sports.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,7 @@ import { RegisterComponent } from './register/register.component';
     HeaderComponent,
     FormComponent,
     ListingPageComponent,
-    RegisterComponent
+    RegisterComponent, AddSportsComponent
   ],
   imports: [
     BrowserModule,

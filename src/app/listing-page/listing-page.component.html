@@ -14,14 +14,19 @@
         </tr>
         <tr *ngFor="let item of sportsData">
             <td>{{item.id}}</td>
-            <td>{{item.sports}}</td>
+            <td>{{item.sportsTitle}}</td>
             <td>{{item.descreption}}</td>
-            <td>{{item.categories}}</td>
+            <td>{{item.category}}</td>
             <td>
                 <button type="button" class="button" (click)="viewSports(item.id)" >View</button>
                 <button type="button" class="button" (click)="updateSports(item.id)" disabled="disabled">Update</button>
-                <button type="button" class="button" (click)="deleteSports(item.id)" disabled="disabled">Delete</button>
+                <button type="button" class="button" (click)="deleteSports(item.id)" >Delete</button>
             </td>
         </tr>
     </table>
+    <div>
+        <div class="add">
+            <button type="button" class="add-button" (click)="addNewSports()">Add New Sport</button>
+        </div>
+    </div>
 </div>

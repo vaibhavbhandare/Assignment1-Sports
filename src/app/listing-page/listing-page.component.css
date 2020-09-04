@@ -32,3 +32,14 @@ tr:nth-child(even) {
     padding: 6px 15px;
     margin-right: 10px;
 }
+
+.add {
+    background-color: lightseagreen;
+    padding: 7px;
+    margin-top: 17px;
+}
+
+.add-button {
+    padding: 6px 15px;
+    margin-left: 646px;
+}
