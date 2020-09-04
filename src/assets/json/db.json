@@ -20,32 +20,26 @@
     {
       "id": "1",
       "sportsTitle": "wrestling and martial arts",
-      "descreption": "ABC",
+      "description": "ABC",
       "category": "Dual Sports"
     },
     {
       "id": "2",
       "sportsTitle": "Long Tennis",
-      "descreption": "xyz",
+      "description": "xyz",
       "category": "Dual Sports"
     },
     {
       "id": "3",
       "sportsTitle": "Bat-and-ball",
-      "descreption": "ABC",
-      "category": "Team Sports"
+      "category": "Team Sports",
+      "description": "ABCD"
     },
     {
       "id": "4",
       "sportsTitle": "Basketball",
-      "descreption": "xyz",
-      "category": "Team Sports"
-    },
-    {
-      "id": "5",
-      "sportsTitle": "Enter Sport Name",
-      "category": "Individual or Team Player",
-      "descreption": "Enter Descreption"
+      "category": "Team Sports",
+      "description": "xyzz"
     }
   ]
 }

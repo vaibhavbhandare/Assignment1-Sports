@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { SportsListService } from '../service/sports-list.service';
+import { SportsListService } from '../service/sports.service';
 
 @Component({
   selector: 'app-register',
@@ -17,8 +17,8 @@ export class RegisterComponent implements OnInit {
   ) {
 
     this.registerForm = this.fb.group({
-      username: ['Enter Name', [Validators.required]],
-      passward: ['Enter Passward', [Validators.required]]
+      username: ['Please Enter Name', [Validators.required]],
+      passward: ['Please Enter Passward', [Validators.required]]
     });
   }
 
@@ -27,8 +27,8 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(value): void {
-    this.sportsListService.postLoginData(value).subscribe(data => {
-      this.SportsData = data.json();
+    this.sportsListService.addLogin(value).subscribe(users => {
+      this.SportsData = users.json();
     });
   }
 

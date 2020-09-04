@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import '../lit-Elements/heading-element.js';
 import { Router } from '@angular/router';
-import { SportsListService } from '../service/sports-list.service.js';
+import { SportsListService } from '../service/sports.service.js';
 
 @Component({
   selector: 'app-header',

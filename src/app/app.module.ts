@@ -8,9 +8,9 @@ import { FormComponent } from './form/form.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {CommonModule} from '@angular/common';
 import {HttpClientModule} from '@angular/common/http';
-import { ListingPageComponent } from './listing-page/listing-page.component';
+import { ListingPageComponent } from './listing-page/list.component';
 import { RegisterComponent } from './register/register.component';
-import { AddSportsComponent } from './add-sports/add-sports.component';
+import { AddSportsComponent } from './add-sports/addsports.component';
 
 @NgModule({
   declarations: [
