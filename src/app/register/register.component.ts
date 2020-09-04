@@ -20,7 +20,6 @@ export class RegisterComponent implements OnInit {
       username: ['Enter Name', [Validators.required]],
       passward: ['Enter Passward', [Validators.required]]
     });
-
   }
 
   ngOnInit(): void {
