@@ -1,0 +1,27 @@
+<div class="list">
+    <table style="width:100%">
+        <caption>
+           <div>
+             <h2 class="heading">Sports Club</h2>
+           </div>
+        </caption>
+        <tr>
+            <th>Sr. No.</th>
+            <th>Sports Title</th>
+            <th>Descreption</th>
+            <th>Category</th>
+            <th>Actions</th>
+        </tr>
+        <tr *ngFor="let item of sportsData">
+            <td>{{item.id}}</td>
+            <td>{{item.sports}}</td>
+            <td>{{item.descreption}}</td>
+            <td>{{item.categories}}</td>
+            <td>
+                <button type="button" class="button" (click)="viewSports(item.id)" >View</button>
+                <button type="button" class="button" (click)="updateSports(item.id)" disabled="disabled">Update</button>
+                <button type="button" class="button" (click)="deleteSports(item.id)" disabled="disabled">Delete</button>
+            </td>
+        </tr>
+    </table>
+</div>

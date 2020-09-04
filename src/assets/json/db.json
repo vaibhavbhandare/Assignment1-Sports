@@ -1,58 +1,45 @@
-[
+{
+  "login": [
     {
-      "id": 1,
-      "name": "Selena",
-      "report": "+ve",
-      "bloodgroup": "A",
-      "age": "34"
+      "id": "1",
+      "username": "admin",
+      "passward": "admin"
     },
     {
-      "id": 2,
-      "name": "Pujara",
-      "report": "+ve",
-      "bloodgroup": "o+",
-      "age": "35"
+      "username": "admin1",
+      "passward": "admin1",
+      "id": "PWUs4OZ"
     },
     {
-      "id": 3,
-      "name": "Sujay",
-      "report": "+ve",
-      "bloodgroup": "o",
-      "age": "36"
+      "username": "vaibhav",
+      "passward": "vaibhav",
+      "id": "AdvMMrg"
+    }
+  ],
+  "data": [
+    {
+      "id": "1",
+      "sports": "wrestling and martial arts",
+      "descreption": "ABC",
+      "categories": "Dual Sports"
     },
     {
-      "id": 4,
-      "name": "Kiran",
-      "report": "+ve",
-      "bloodgroup": "c",
-      "age": "37"
+      "id": "2",
+      "sports": "Long Tennis",
+      "descreption": "xyz",
+      "categories": "Dual Sports"
     },
     {
-      "id": 5,
-      "name": "Amay",
-      "report": "+ve",
-      "bloodgroup": "A-",
-      "age": "38"
+      "id": "3",
+      "sports": "Bat-and-ball",
+      "descreption": "ABC",
+      "categories": "Team Sports"
     },
     {
-      "id": 6,
-      "name": "Austria",
-      "report": "+ve",
-      "bloodgroup": "A",
-      "age": "34"
-    },
-    {
-      "id": 7,
-      "name": "Austria",
-      "report": "+ve",
-      "bloodgroup": "A",
-      "age": "34"
-    },
-    {
-      "id": 8,
-      "name": "Austria",
-      "report": "+ve",
-      "bloodgroup": "A",
-      "age": "34"
+      "id": "4",
+      "sports": "Basketball",
+      "descreption": "xyz",
+      "categories": "Team Sports"
     }
   ]
+}

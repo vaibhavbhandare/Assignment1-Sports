@@ -1,0 +1,22 @@
+<div class="grid-container">
+    <div class="login">
+        Login
+    </div>
+    <div>
+        <form [formGroup]="loginForm" class="form">
+
+            <label for="">UserName :</label>
+            <input type="text" formControlName="name" id="name" autocomplete="off">
+
+
+            <label for="">Passward :</label>
+            <input type="text" formControlName="passward" id="passward" autocomplete="off">
+        </form>
+    </div>
+    <div class="div2">
+        <button type="button" class="button" (click)="onSubmit(loginForm.value)"
+            [disabled]="loginForm.invalid">Submit</button>
+        <button type="button" class="button" [routerLink]="['/list']">Home</button>
+    </div>
+</div>
+
