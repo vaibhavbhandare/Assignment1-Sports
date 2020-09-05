@@ -1,0 +1,42 @@
+<div class="grid-container">
+    <div class="login">
+        <p tabindex="0">Sign up</p>
+    </div>
+    <div>
+        <form [formGroup]="registerForm" class="form">
+            <label for="">UserName :</label>
+            <input
+              type="text"
+              formControlName="username"
+              name="username"
+              autocomplete="off"
+              aria-label="User Name"
+            >
+
+            <label for="">Password :</label>
+            <input
+             type="text"
+             formControlName="password"
+             name="password"
+             autocomplete="off"
+             aria-label="Password"
+            >
+        </form>
+    </div>
+    <div class="div2">
+        <button
+         type="button"
+         class="button"
+         (click)="onSubmit(registerForm.value)"
+         aria-label="Add User"
+        >Add User</button>
+        <button
+         type="button"
+         class="button"
+         [routerLink]="['/list']"
+         aria-label="Move Home Page"
+        >Home</button>
+    </div>
+</div>
+
+

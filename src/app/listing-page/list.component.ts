@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SportsListService } from '../service/sports.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-listing-page',
@@ -12,20 +12,28 @@ export class ListingPageComponent implements OnInit {
 
   public loginData: Array<any> = [];
   public sportsData: Array<any> = [];
+  public userLoginStatus = false;
 
-  constructor(private sportsListService: SportsListService,
-              private router: Router) {
-     this.sportsListService.getSports().subscribe(data => {
-     this.sportsData = data;
-    });
+  constructor(private sportsService: SportsListService,
+              private router: Router,
+              private activatedRoute: ActivatedRoute) {
+    this.sportsService.getSports().subscribe(data => {
+      this.sportsData = data;
+    },
+      (error) => {
+        console.log('Error In Fetch Sports API');
+      }
+    );
   }
 
   ngOnInit(): void {
-
-  }
-
-  viewSports(value): void {
-
+    this.activatedRoute.params.subscribe(param => {
+      this.userLoginStatus = param.term;
+    },
+      (error) => {
+        console.log('Error in Fetch Route Parameter');
+      }
+    );
   }
 
   updateSports(id): void {
@@ -33,13 +41,16 @@ export class ListingPageComponent implements OnInit {
   }
 
   deleteSports(id): void {
-    this.sportsListService.deleteSportsById(id).subscribe(getdata => {
+    this.sportsService.deleteSportsById(id).subscribe(getdata => {
       this.sportsData = this.sportsData.filter(sport => sport.id !== id);
-    });
+    },
+      (error) => {
+        console.log('Error In Delete Sport From API');
+      });
   }
 
-  addNewSports(): void {
-     this.router.navigate(['/addsports']);
+  addSports(): void {
+    this.router.navigate(['/addsports']);
   }
 
 }

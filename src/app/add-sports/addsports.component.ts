@@ -16,7 +16,7 @@ export class AddSportsComponent implements OnInit {
   public showUpdateForm: boolean;
 
   constructor(private fb: FormBuilder,
-              private sportsListService: SportsListService,
+              private sportsService: SportsListService,
               private router: Router,
               private activatedRoute: ActivatedRoute) {
 
@@ -39,17 +39,20 @@ export class AddSportsComponent implements OnInit {
   }
 
   getSports(): void {
-    this.sportsListService.getSports().subscribe(data => {
+    this.sportsService.getSports().subscribe(data => {
       this.sportsData = data;
+    },
+    (error) => {
+      console.log('Error in Fetching Sports Data');
     });
   }
 
   onSubmit(sport: any): void {
-    this.sportsListService.addSport(sport).subscribe(sports => {
+    this.sportsService.addSport(sport).subscribe(sports => {
       this.sportsData = sports;
       alert('Sport Added Successfully');
     });
-    this.router.navigate(['/list']);
+    this.router.navigate(['/list', { term: true}]);
   }
 
   isRegisterFormToUpdate(): void {
@@ -61,10 +64,14 @@ export class AddSportsComponent implements OnInit {
   }
 
   onUpdateSport(sport: any): void {
-     this.sportsListService.updateSport(sport).subscribe(sports => {
+     this.sportsService.updateSport(sport).subscribe(sports => {
         this.sportsData = sports;
         alert('Sport Updated Successfully');
      });
-     this.router.navigate(['/list']);
+     this.router.navigate(['/list', { term: true}]);
+  }
+
+  openList(): void {
+    this.router.navigate(['/list', { term: true}]);
   }
 }

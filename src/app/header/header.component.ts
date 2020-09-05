@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import '../lit-Elements/heading-element.js';
-import { Router } from '@angular/router';
-import { SportsListService } from '../service/sports.service.js';
+import { Router, ActivatedRoute } from '@angular/router';
+import { SportsListService } from '../service/sports.service';
 
 @Component({
   selector: 'app-header',
@@ -11,19 +11,30 @@ import { SportsListService } from '../service/sports.service.js';
 export class HeaderComponent implements OnInit {
 
   public headerTitle = 'Sports';
+  public userLoginStatus: boolean;
 
   constructor(private router: Router,
-              private sportsListService: SportsListService) { }
+              private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.activatedRoute.params.subscribe(param => {
+      this.userLoginStatus = param.term;
+    },
+      (error) => {
+        console.log('Error in Fetching Parameter of Login API');
+      }
+    );
   }
 
   login(): void {
     this.router.navigate(['/login']);
-
   }
 
   register(): void {
-    this.router.navigate(['/register']);
+    this.router.navigate(['/registermodule']);
+  }
+
+  logout(): void {
+    // this.router.navigate(['/registermodule']);
   }
 }

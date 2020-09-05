@@ -9,8 +9,11 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {CommonModule} from '@angular/common';
 import {HttpClientModule} from '@angular/common/http';
 import { ListingPageComponent } from './listing-page/list.component';
-import { RegisterComponent } from './register/register.component';
 import { AddSportsComponent } from './add-sports/addsports.component';
+import { AuthEffects } from './store/effects/auth.effects';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
+import { reducers } from './store/app.states';
 
 @NgModule({
   declarations: [
@@ -18,7 +21,7 @@ import { AddSportsComponent } from './add-sports/addsports.component';
     HeaderComponent,
     FormComponent,
     ListingPageComponent,
-    RegisterComponent, AddSportsComponent
+    AddSportsComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +29,9 @@ import { AddSportsComponent } from './add-sports/addsports.component';
     FormsModule,
     CommonModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    EffectsModule.forRoot([AuthEffects]),
+    StoreModule.forRoot(reducers, {}),
   ],
   providers: [],
   bootstrap: [AppComponent],

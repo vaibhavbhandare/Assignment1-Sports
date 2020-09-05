@@ -2,7 +2,10 @@
     <table style="width:100%">
         <caption>
            <div>
-             <h2 class="heading">Sports Club</h2>
+             <h2
+             class="heading"
+             tabindex="0"
+            >Sports Club</h2>
            </div>
         </caption>
         <tr>
@@ -18,15 +21,14 @@
             <td>{{item.description}}</td>
             <td>{{item.category}}</td>
             <td>
-                <button type="button" class="button" (click)="viewSports(item.id)" >View</button>
-                <button type="button" class="button" (click)="updateSports(item.id)">Update</button>
-                <button type="button" class="button" (click)="deleteSports(item.id)" >Delete</button>
+                <button type="button" [disabled]="!userLoginStatus" class="button" (click)="updateSports(item.id)">Update</button>
+                <button type="button" [disabled]="!userLoginStatus" class="button" (click)="deleteSports(item.id)" >Delete</button>
             </td>
         </tr>
     </table>
     <div>
         <div class="add">
-            <button type="button" class="add-button" (click)="addNewSports()">Add New Sport</button>
+            <button type="button" class="add-button" [disabled]="!userLoginStatus" (click)="addSports()">Add Sport</button>
         </div>
     </div>
 </div>

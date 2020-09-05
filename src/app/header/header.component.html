@@ -1,9 +1,29 @@
 <div class="div1">
     <div>
-        <title-element name="{{headerTitle}}"></title-element>
+        <title-element tabindex="0" name="{{headerTitle}}"></title-element>
     </div>
     <div class="ui-button">
-        <button type="button" class="button" (click)="login()">Log In</button>
-        <button type="button" class="button" (click)="register()">Register</button>
+        <button
+         type="button"
+         id="login-button"
+         class="header-button"
+         tabindex="0"
+         (click)="login()"
+         [disabled]="userLoginStatus"
+        >Log In</button>
+        <button
+         type="button"
+         id="register-button"
+         class="header-button"
+         tabindex="0"
+         (click)="register()"
+         [disabled]="userLoginStatus"
+        >Sign up</button>
+        <!-- <button
+         type="button"
+         class="button"
+         tabindex="0"
+         (click)="logout()"
+        >Logout</button> -->
     </div>
 </div>

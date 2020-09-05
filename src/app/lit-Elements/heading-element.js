@@ -12,7 +12,7 @@ class ElementThree extends LitElement {
     static get styles() {
         return css`
           h3 { color: ${mainColor};
-          margin: 19px;} 
+          margin: 19px;}
         `;
     }
 

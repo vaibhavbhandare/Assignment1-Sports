@@ -1,6 +1,6 @@
 <div class="grid-container" *ngIf="showUpdateForm == false">
     <div class="login">
-        Register
+        <p tabindex="0">Add Sport</p>
     </div>
     <div>
         <form [formGroup]="sportsForm" class="form">
@@ -20,7 +20,7 @@
     <div class="div2">
         <button type="button" class="button" (click)="onSubmit(sportsForm.value)"
             [disabled]="sportsForm.invalid">Submit</button>
-        <button type="button" class="button" [routerLink]="['/list']">Home</button>
+        <button type="button" class="button" (click)="openList()">Home</button>
     </div>
 </div>
 <div class="grid-container" *ngIf="showUpdateForm == true">
@@ -51,7 +51,7 @@
             <div class="div2">
                 <button type="button" class="button" (click)="onUpdateSport(sportsForm.value)"
                     [disabled]="sportsForm.invalid">Submit</button>
-                <button type="button" class="button" [routerLink]="['/list']">Home</button>
+                <button type="button" class="button" (click)="openList()">Home</button>
             </div>
         </ng-container>
     </ng-container>

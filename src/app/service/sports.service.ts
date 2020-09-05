@@ -36,4 +36,12 @@ export class SportsListService {
     return this.http.post(`${this.baseRefUrl}/` + 'login', userLogin);
   }
 
+  getToken(): string {
+    return localStorage.getItem('token');
+  }
+
+  logIn(username: string, password: string): Observable<any> {
+    const url = `${this.baseRefUrl}/` + 'login';
+    return this.http.post(url, {username, password});
+  }
 }

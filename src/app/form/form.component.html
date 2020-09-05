@@ -1,22 +1,30 @@
 <div class="grid-container">
     <div class="login">
-        Login
+        <p tabindex="0">Login</p>
     </div>
     <div>
         <form [formGroup]="loginForm" class="form">
-
             <label for="">UserName :</label>
-            <input type="text" formControlName="name" id="name" autocomplete="off">
+            <input type="text" formControlName="username" id="username" aria-label="Username" autocomplete="off">
 
-
-            <label for="">Passward :</label>
-            <input type="text" formControlName="passward" id="passward" autocomplete="off">
+            <label for="">Password :</label>
+            <input type="text" formControlName="password" aria-label="Password" id="password" autocomplete="off">
         </form>
     </div>
     <div class="div2">
-        <button type="button" class="button" (click)="onSubmit(loginForm.value)"
-            [disabled]="loginForm.invalid">Submit</button>
-        <button type="button" class="button" [routerLink]="['/list']">Home</button>
+        <button
+            type="button"
+            class="button"
+            (click)="onSubmit(loginForm.value)"
+            [disabled]="loginForm.invalid"
+            aria-label="Submit Login Form"
+        >Submit</button>
+        <button
+            type="button"
+            class="button"
+            [routerLink]="['/list']"
+            aria-label="Move Home Page"
+        >Home</button>
     </div>
 </div>
 
