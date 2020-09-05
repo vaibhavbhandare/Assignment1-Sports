@@ -9,7 +9,6 @@
          class="header-button"
          tabindex="0"
          (click)="login()"
-         [disabled]="userLoginStatus"
         >Log In</button>
         <button
          type="button"
@@ -17,13 +16,13 @@
          class="header-button"
          tabindex="0"
          (click)="register()"
-         [disabled]="userLoginStatus"
         >Sign up</button>
-        <!-- <button
+        <button
          type="button"
-         class="button"
+         id="logout-button"
+         class="header-button"
          tabindex="0"
          (click)="logout()"
-        >Logout</button> -->
+        >Logout</button>
     </div>
 </div>

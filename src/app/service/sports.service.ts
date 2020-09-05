@@ -20,7 +20,7 @@ export class SportsListService {
     return this.http.post(`${this.baseRefUrl}/` + 'data', sport);
   }
 
-  deleteSportsById(id): Observable<any> {
+  deleteSportsById(id: any): Observable<any> {
     return this.http.delete(`${this.baseRefUrl}/` + 'data/' + id);
   }
 
@@ -34,10 +34,6 @@ export class SportsListService {
 
   addLogin(userLogin: any): Observable<any> {
     return this.http.post(`${this.baseRefUrl}/` + 'login', userLogin);
-  }
-
-  getToken(): string {
-    return localStorage.getItem('token');
   }
 
   logIn(username: string, password: string): Observable<any> {

@@ -9,26 +9,6 @@
       "username": "admin1",
       "password": "admin1",
       "id": "PWUs4OZ"
-    },
-    {
-      "username": "v",
-      "password": "v",
-      "id": "f7LMoHJ"
-    },
-    {
-      "username": "Please Enter Name",
-      "password": "Please Enter Password",
-      "id": "kbOduOC"
-    },
-    {
-      "username": "Please Enter Name",
-      "password": "Please Enter Password",
-      "id": "igIvHT3"
-    },
-    {
-      "username": "v",
-      "password": "v",
-      "id": "O5AEcru"
     }
   ],
   "data": [
@@ -40,30 +20,18 @@
     },
     {
       "id": "2",
-      "sportsTitle": "Long Tennis",
-      "description": "xyz",
-      "category": "Dual Sports"
-    },
-    {
-      "id": "3",
-      "sportsTitle": "Bat-and-ball",
-      "category": "Team Sports",
-      "description": "ABCD"
-    },
-    {
-      "id": "4",
-      "sportsTitle": "Basketball",
-      "category": "Team Sports",
-      "description": "xyz"
-    },
-    {
-      "id": "5",
-      "sportsTitle": "Enter Sport Name vainbhav",
+      "sportsTitle": "Enter Sport Name",
       "category": "Individual or Team Player",
       "description": "Enter Description"
     },
     {
-      "id": "6",
+      "id": "3",
+      "sportsTitle": "Enter Sport Name",
+      "category": "Individual or Team Player",
+      "description": "hi"
+    },
+    {
+      "id": "4",
       "sportsTitle": "Enter Sport Name",
       "category": "Individual or Team Player",
       "description": "Enter Description"

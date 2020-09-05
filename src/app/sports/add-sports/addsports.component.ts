@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { SportsListService } from '../../service/sports.service';
 import { Router, ActivatedRoute } from '@angular/router';
-
+import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { AppState, selectAuthState } from '../../store/app.states';
+import { ListSports, AddSports, UpdateSports } from 'src/app/store/actions/auth.action';
 @Component({
   selector: 'app-add-sports',
   templateUrl: './addsports.component.html',
@@ -14,11 +17,13 @@ export class AddSportsComponent implements OnInit {
   public sportsData: Array<any>;
   public sportsId: number;
   public showUpdateForm: boolean;
+  getState: Observable<any>;
 
   constructor(private fb: FormBuilder,
               private sportsService: SportsListService,
               private router: Router,
-              private activatedRoute: ActivatedRoute) {
+              private activatedRoute: ActivatedRoute,
+              private store: Store<AppState>) {
 
     this.sportsForm = this.fb.group({
       id: [0, [Validators.required]],
@@ -31,6 +36,7 @@ export class AddSportsComponent implements OnInit {
       this.sportsId = param.id;
     });
 
+    this.getState = this.store.select(selectAuthState);
   }
 
   ngOnInit(): void {
@@ -39,19 +45,15 @@ export class AddSportsComponent implements OnInit {
   }
 
   getSports(): void {
-    this.sportsService.getSports().subscribe(data => {
-      this.sportsData = data;
-    },
-    (error) => {
-      console.log('Error in Fetching Sports Data');
+    this.store.dispatch(new ListSports());
+    this.store.subscribe(data => {
+      this.sportsData = data.sport.sports;
     });
   }
 
   onSubmit(sport: any): void {
-    this.sportsService.addSport(sport).subscribe(sports => {
-      this.sportsData = sports;
-      alert('Sport Added Successfully');
-    });
+    this.store.dispatch(new AddSports(sport));
+    this.store.dispatch(new ListSports());
     this.router.navigate(['/list', { term: true}]);
   }
 
@@ -64,11 +66,9 @@ export class AddSportsComponent implements OnInit {
   }
 
   onUpdateSport(sport: any): void {
-     this.sportsService.updateSport(sport).subscribe(sports => {
-        this.sportsData = sports;
-        alert('Sport Updated Successfully');
-     });
-     this.router.navigate(['/list', { term: true}]);
+    this.store.dispatch(new UpdateSports(sport));
+    this.store.dispatch(new ListSports());
+    this.router.navigate(['/list', { term: true}]);
   }
 
   openList(): void {

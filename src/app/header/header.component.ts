@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import '../lit-Elements/heading-element.js';
 import { Router, ActivatedRoute } from '@angular/router';
-import { SportsListService } from '../service/sports.service';
+import { Store } from '@ngrx/store';
+import { AppState } from '../store/app.states';
+import { LogOut } from '../store/actions/auth.action';
 
 @Component({
   selector: 'app-header',
@@ -14,7 +16,9 @@ export class HeaderComponent implements OnInit {
   public userLoginStatus: boolean;
 
   constructor(private router: Router,
-              private activatedRoute: ActivatedRoute) { }
+              private activatedRoute: ActivatedRoute,
+              private store: Store<AppState>) {
+  }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(param => {
@@ -35,6 +39,6 @@ export class HeaderComponent implements OnInit {
   }
 
   logout(): void {
-    // this.router.navigate(['/registermodule']);
+    this.store.dispatch(new LogOut());
   }
 }

@@ -15,6 +15,7 @@
         <button
             type="button"
             class="button"
+            tabindex="0"
             (click)="onSubmit(loginForm.value)"
             [disabled]="loginForm.invalid"
             aria-label="Submit Login Form"
@@ -22,6 +23,7 @@
         <button
             type="button"
             class="button"
+            tabindex="0"
             [routerLink]="['/list']"
             aria-label="Move Home Page"
         >Home</button>

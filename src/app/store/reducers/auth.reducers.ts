@@ -1,5 +1,14 @@
-import { User } from '../model/user';
-import { AuthActionTypes, All } from '../actions/auth.action';
+import { User, Sport } from '../model/user';
+import {
+  AuthActionTypes, All,
+  LIST_SPORTS, ADD_SPORTS,
+  UPDATE_SPORTS,
+  DELETE_SPORTS,
+  LIST_DATA_SUCCESS,
+  ADD_SPORTS_SUCCESS,
+  DELETE_SPORTS_SUCCESS,
+  UPDATE_SPORTS_SUCCESS
+} from '../actions/auth.action';
 
 export interface State {
   // is a user authenticated?
@@ -8,35 +17,111 @@ export interface State {
   user: User | null;
   // error message
   errorMessage: string | null;
+  sports: Sport[];
+  added: boolean | null;
+  updated: boolean | null;
+  deleted: boolean | null;
+  loaded: boolean | null;
 }
 
 export const initialState: State = {
-    isAuthenticated: false,
-    user: null,
-    errorMessage: null
+  isAuthenticated: false,
+  user: null,
+  errorMessage: null,
+  sports: [],
+  added: null,
+  updated: null,
+  loaded: null,
+  deleted: null
 };
 
 export function reducer(state = initialState, action: All): State {
-    switch (action.type) {
-      case AuthActionTypes.LOGIN_SUCCESS: {
-        return {
-          ...state,
-          isAuthenticated: true,
-          user: {
-            username: action.payload.username,
-            password: action.payload.password
-          },
-          errorMessage: 'Login Successfully'
-        };
-      }
-      case AuthActionTypes.LOGIN_FAILURE: {
-        return {
-          ...state,
-          errorMessage: 'Incorrect email and/or password.'
-        };
-      }
-      default: {
-        return state;
-      }
+  switch (action.type) {
+    case AuthActionTypes.LOGIN_SUCCESS: {
+      return {
+        ...state,
+        isAuthenticated: true,
+        user: {
+          username: action.payload.username,
+          password: action.payload.password
+        },
+        errorMessage: null
+      };
     }
+    case AuthActionTypes.LOGIN_FAILURE: {
+      return {
+        ...state,
+        errorMessage: 'Incorrect email and/or password.'
+      };
+    }
+    case AuthActionTypes.SIGNUP_SUCCESS: {
+      return {
+        ...state,
+        isAuthenticated: true,
+        user: {
+          username: action.payload.username
+        },
+        errorMessage: null
+      };
+    }
+    case AuthActionTypes.LOGOUT: {
+      return initialState;
+    }
+    case ADD_SPORTS: {
+      console.log('Add Sport', action);
+      return {
+        ...state
+      };
+    }
+    case LIST_SPORTS: {
+      console.log('list Sport', action, state);
+      return {
+        ...state
+      };
+    }
+    case DELETE_SPORTS: {
+      console.log('delete Sport', action);
+      return {
+        ...state
+      };
+    }
+    case UPDATE_SPORTS: {
+      console.log('update Sport', action);
+      return {
+        ...state
+      };
+    }
+    case LIST_DATA_SUCCESS: {
+      console.log('in data_load', action, state);
+      return {
+        ...state,
+        sports: [...action.payload],
+        errorMessage: null,
+        loaded: true
+      };
+    }
+    case ADD_SPORTS_SUCCESS: {
+      return {
+        ...state,
+        errorMessage: 'The Sport is added successfully!',
+        added: true
+      };
+    }
+    case DELETE_SPORTS_SUCCESS: {
+      return {
+        ...state
+      };
+    }
+    case UPDATE_SPORTS_SUCCESS: {
+      return {
+        ...state,
+        errorMessage: 'The Sport is updated successfully!',
+        added: true
+      };
+    }
+
+    default: {
+      return state;
+    }
+  }
 }

@@ -9,26 +9,26 @@
            </div>
         </caption>
         <tr>
-            <th>Sr. No.</th>
-            <th>Sports Title</th>
-            <th>Description</th>
-            <th>Category</th>
-            <th>Actions</th>
+            <th tabindex="0">Sr. No.</th>
+            <th tabindex="0">Sports Title</th>
+            <th tabindex="0">Description</th>
+            <th tabindex="0">Category</th>
+            <th tabindex="0">Actions</th>
         </tr>
         <tr *ngFor="let item of sportsData">
-            <td>{{item.id}}</td>
-            <td>{{item.sportsTitle}}</td>
-            <td>{{item.description}}</td>
-            <td>{{item.category}}</td>
-            <td>
-                <button type="button" [disabled]="!userLoginStatus" class="button" (click)="updateSports(item.id)">Update</button>
-                <button type="button" [disabled]="!userLoginStatus" class="button" (click)="deleteSports(item.id)" >Delete</button>
+            <td tabindex="0">{{item.id}}</td>
+            <td tabindex="0">{{item.sportsTitle}}</td>
+            <td tabindex="0">{{item.description}}</td>
+            <td tabindex="0">{{item.category}}</td>
+            <td tabindex="0">
+                <button type="button" aria-label="Update" [disabled]="!userLoginStatus" class="button" (click)="updateSports(item.id)">Update</button>
+                <button type="button" aria-label="Delete" [disabled]="!userLoginStatus" class="button" (click)="deleteSports(item.id)" >Delete</button>
             </td>
         </tr>
     </table>
     <div>
         <div class="add">
-            <button type="button" class="add-button" [disabled]="!userLoginStatus" (click)="addSports()">Add Sport</button>
+            <button type="button" aria-label="Add Sport" class="add-button" [disabled]="!userLoginStatus" (click)="addSports()">Add Sport</button>
         </div>
     </div>
 </div>
