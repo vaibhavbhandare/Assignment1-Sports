@@ -28,7 +28,7 @@ export class AuthEffects {
                 return this.sportsListService.logIn(payload.username, payload.password).pipe(
                     map((user) => {
                         console.log(user);
-                        return new LogInSuccess({ token: payload.username, email: payload.password });
+                        return new LogInSuccess({ username: payload.username, password: payload.password });
                     })).pipe(catchError((error) => {
                         console.log(error);
                         return of(new LogInFailure({ error: 'error' }));
@@ -40,12 +40,15 @@ export class AuthEffects {
         ofType(AuthActionTypes.LOGIN_SUCCESS),
         tap((user) => {
             localStorage.setItem('token', user.payload.username);
-            this.router.navigateByUrl('/list');
+            this.router.navigate(['/list', { term: true}]);
         })
     );
+
     @Effect({ dispatch: false })
     LogInFailure: Observable<any> = this.actions.pipe(
-        ofType(AuthActionTypes.LOGIN_FAILURE)
+        ofType(AuthActionTypes.LOGIN_FAILURE),
+        tap((user) => {
+        alert('Please Enter Valid User Name and Password');
+        })
     );
-
 }

@@ -22,10 +22,10 @@ export function reducer(state = initialState, action: All): State {
         return {
           ...state,
           isAuthenticated: true,
-        //   user: {
-        //     token: action.payload.token,
-        //     email: action.payload.email
-        //   },
+          user: {
+            username: action.payload.username,
+            password: action.payload.password
+          },
           errorMessage: 'Login Successfully'
         };
       }
