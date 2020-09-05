@@ -4,12 +4,12 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
-import { FormComponent } from './form/form.component';
+import { LoginComponent } from './login/login.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {CommonModule} from '@angular/common';
 import {HttpClientModule} from '@angular/common/http';
-import { ListingPageComponent } from './listing-page/list.component';
-import { AddSportsComponent } from './add-sports/addsports.component';
+import { SportsComponent } from './sports/sports.component';
+import { AddSportsComponent } from './sports/add-sports/addsports.component';
 import { AuthEffects } from './store/effects/auth.effects';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
@@ -19,8 +19,8 @@ import { reducers } from './store/app.states';
   declarations: [
     AppComponent,
     HeaderComponent,
-    FormComponent,
-    ListingPageComponent,
+    LoginComponent,
+    SportsComponent,
     AddSportsComponent
   ],
   imports: [

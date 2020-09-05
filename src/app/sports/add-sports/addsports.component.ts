@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { SportsListService } from '../service/sports.service';
+import { SportsListService } from '../../service/sports.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({

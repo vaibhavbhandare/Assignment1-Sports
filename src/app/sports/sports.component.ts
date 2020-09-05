@@ -4,11 +4,11 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-listing-page',
-  templateUrl: './list.component.html',
-  styleUrls: ['./list.component.css'],
+  templateUrl: './sports.component.html',
+  styleUrls: ['./sports.component.css'],
   providers: [SportsListService]
 })
-export class ListingPageComponent implements OnInit {
+export class SportsComponent implements OnInit {
 
   public loginData: Array<any> = [];
   public sportsData: Array<any> = [];

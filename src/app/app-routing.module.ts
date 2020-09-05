@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { FormComponent } from './form/form.component';
-import { ListingPageComponent } from './listing-page/list.component';
-import { AddSportsComponent } from './add-sports/addsports.component';
+import { LoginComponent } from './login/login.component';
+import { SportsComponent } from './sports/sports.component';
+import { AddSportsComponent } from './sports/add-sports/addsports.component';
 
 const routes: Routes = [
-  { path: 'login', component: FormComponent },
-  { path: 'list', component: ListingPageComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'list', component: SportsComponent },
   { path: 'addsports', component: AddSportsComponent },
   { path: 'addsports/:id', component: AddSportsComponent },
   { path: 'registermodule',

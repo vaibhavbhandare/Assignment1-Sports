@@ -8,10 +8,10 @@ import { LogIn } from '../store/actions/auth.action';
 
 @Component({
   selector: 'app-form',
-  templateUrl: './form.component.html',
-  styleUrls: ['./form.component.css']
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
 })
-export class FormComponent implements OnInit {
+export class LoginComponent implements OnInit {
 
   public loginForm;
   public isLogin: boolean;
