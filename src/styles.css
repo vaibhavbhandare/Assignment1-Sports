@@ -4,5 +4,23 @@
     margin: 10px auto;
 }
 
+.application-theme {
+    width: 100%;
+    margin: 10px auto;
+    background-color: black;
+    color: lightseagreen;
+}
 
+.darkTheme {
+    background-color: black;
+    display: inline-flex;
+    width: 100%;
+}
+
+.dark-heading {
+    background-color: black;
+    padding: 6px;
+    width: 97%;
+    color: white;
+}
 

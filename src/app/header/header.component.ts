@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import '../lit-Elements/heading-element.js';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
@@ -14,6 +14,9 @@ export class HeaderComponent implements OnInit {
 
   public headerTitle = 'Sports';
   public userLoginStatus: boolean;
+  public setDark = false;
+
+  @Output() mode = new EventEmitter<boolean>();
 
   constructor(private router: Router,
               private activatedRoute: ActivatedRoute,
@@ -40,5 +43,11 @@ export class HeaderComponent implements OnInit {
 
   logout(): void {
     this.store.dispatch(new LogOut());
+    this.router.navigate(['/login']);
+  }
+
+  changeTheme(): void {
+    this.setDark = !this.setDark;
+    this.mode.emit(this.setDark);
   }
 }

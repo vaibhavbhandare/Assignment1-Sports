@@ -4,8 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AppState, selectAuthState } from '../store/app.states';
 import { Observable } from 'rxjs';
-import { ListSports, DeleteSports, DeleteSportSuccess } from '../store/actions/auth.action';
-import { Sport } from '../store/model/user';
+import { ListSports, DeleteSports } from '../store/actions/auth.action';
 
 @Component({
   selector: 'app-listing-page',

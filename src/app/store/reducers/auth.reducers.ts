@@ -68,31 +68,26 @@ export function reducer(state = initialState, action: All): State {
       return initialState;
     }
     case ADD_SPORTS: {
-      console.log('Add Sport', action);
       return {
         ...state
       };
     }
     case LIST_SPORTS: {
-      console.log('list Sport', action, state);
       return {
         ...state
       };
     }
     case DELETE_SPORTS: {
-      console.log('delete Sport', action);
       return {
         ...state
       };
     }
     case UPDATE_SPORTS: {
-      console.log('update Sport', action);
       return {
         ...state
       };
     }
     case LIST_DATA_SUCCESS: {
-      console.log('in data_load', action, state);
       return {
         ...state,
         sports: [...action.payload],

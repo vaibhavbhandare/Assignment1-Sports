@@ -30,10 +30,8 @@ export class AuthEffects {
             map((action: LogIn) => action.payload)).pipe(switchMap(payload => {
                 return this.sportsListService.logIn(payload.username, payload.password).pipe(
                     map((user) => {
-                        console.log(user);
                         return new LogInSuccess({ username: payload.username, password: payload.password });
                     })).pipe(catchError((error) => {
-                        console.log(error);
                         return of(new LogInFailure({ error: 'error' }));
                     }));
             }));
@@ -60,7 +58,6 @@ export class AuthEffects {
         ofType(AuthActionTypes.LOGOUT),
         tap((user) => {
             window.alert('You are Logout Successfully');
-            this.router.navigate(['/list']);
         })
     );
 
@@ -71,13 +68,11 @@ export class AuthEffects {
         mergeMap(payload => {
             return this.sportsListService.addLogin(payload).pipe(
                 map((data) => {
-                    console.log('data from effects in add new user....', data);
                     if (data) {
                         window.alert('User Added Successfully');
                         return new SignUpSuccess(data);
                     }
                 })).pipe(catchError((error) => {
-                    console.log(error);
                     return of(new SignUpFailure({ error: 'error' }));
                 }));
         }));
@@ -99,7 +94,6 @@ export class AuthEffects {
         mergeMap(payload => {
             return this.sportsListService.addSport(payload).pipe(
                 map((data) => {
-                    console.log('data from effects in add sport....', data);
                     if (data) {
                         return new AddSportsSuccess(data);
                     }
@@ -113,7 +107,6 @@ export class AuthEffects {
         mergeMap(payload => {
             return this.sportsListService.deleteSportsById(payload).pipe(
                 map((data) => {
-                    console.log('data from effects in delete sport....', data);
                     if (data) {
                         window.alert('Sport Deleted Successfully');
                         return new DeleteSportSuccess();
@@ -128,7 +121,6 @@ export class AuthEffects {
         mergeMap(payload => {
             return this.sportsListService.updateSport(payload).pipe(
                 map((data) => {
-                    console.log('data from effects in add sport....', data);
                     if (data) {
                         window.alert('Sport Updated Successfully');
                         return new UpdateSportsSuccess(data);

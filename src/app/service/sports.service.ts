@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable} from 'rxjs';
 import { HttpClient} from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +9,7 @@ import { HttpClient} from '@angular/common/http';
 export class SportsListService {
 
   public status: any;
-  public baseRefUrl = 'http://localhost:3000';
+  public baseRefUrl = environment.baseRefUrl;
 
   constructor(private http: HttpClient) { }
 

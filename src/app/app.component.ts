@@ -9,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 export class AppComponent implements OnInit {
 
   public title = 'Sports';
+  public setMode = false;
 
   constructor() {
   }
 
   ngOnInit(): void { }
- }
+
+  receiveMode(event): void {
+    this.setMode = event;
+  }
+}

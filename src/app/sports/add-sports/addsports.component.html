@@ -32,19 +32,19 @@
             <div>
                 <form [formGroup]="sportsForm" class="form">
                     <label for="">ID :</label>
-                    <input type="text" formControlName="id" id="id" name="id" [(ngModel)]="param.id" ngModel
+                    <input type="text" formControlName="id" id="id" name="id" [ngModel]="param.id"
                         autocomplete="off">
 
                     <label for="">Sports Title :</label>
-                    <input type="text" formControlName="sportsTitle" id="sportsTitle" [(ngModel)]="param.sportsTitle"
-                        ngModel autocomplete="off">
+                    <input type="text" formControlName="sportsTitle" id="sportsTitle" [ngModel]="param.sportsTitle"
+                         autocomplete="off">
 
                     <label for="">category :</label>
-                    <input type="text" formControlName="category" id="category" [(ngModel)]="param.category" ngModel
+                    <input type="text" formControlName="category" id="category" [ngModel]="param.category"
                         autocomplete="off">
 
                     <label for="">Description :</label>
-                    <textarea formControlName="description" id="description" [(ngModel)]="param.description" ngModel
+                    <textarea formControlName="description" id="description" [ngModel]="param.description"
                         maxlength="500" autocomplete="off"></textarea>
                 </form>
             </div>

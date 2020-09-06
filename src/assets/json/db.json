@@ -21,20 +21,20 @@
     {
       "id": "2",
       "sportsTitle": "Enter Sport Name",
-      "category": "Individual or Team Player",
+      "category": "vaibhav",
       "description": "Enter Description"
     },
     {
       "id": "3",
       "sportsTitle": "Enter Sport Name",
       "category": "Individual or Team Player",
-      "description": "hi"
+      "description": "helllo"
     },
     {
       "id": "4",
-      "sportsTitle": "Enter Sport Name",
-      "category": "Individual or Team Player",
-      "description": "Enter Description"
+      "sportsTitle": "Cricket",
+      "category": "Team Player",
+      "description": "Icc"
     }
   ]
 }
