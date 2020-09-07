@@ -61,13 +61,9 @@ export class LoginComponent implements OnInit {
       password: credentials.password
     };
     if (isLogin) {
-      (document.getElementById('login-button') as any).disabled = true;
-      (document.getElementById('register-button') as any).disabled = true;
       (document.getElementById('logout-button') as any).disabled = false;
       this.store.dispatch(new LogInSuccess(payload));
     } else {
-      (document.getElementById('login-button') as any).disabled = false;
-      (document.getElementById('register-button') as any).disabled = false;
       (document.getElementById('logout-button') as any).disabled = true;
       this.store.dispatch(new LogInFailure(payload));
     }
