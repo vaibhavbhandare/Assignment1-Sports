@@ -3,21 +3,23 @@
         <p tabindex="0">Sign up</p>
     </div>
     <div>
-        <form [formGroup]="registerForm" class="form">
-            <label for="">UserName :</label>
+        <form [formGroup]="registerForm" class="forms">
+            <label for="username">UserName :</label>
             <input
               type="text"
               formControlName="username"
               name="username"
+              placeholder="Please Enter Name"
               autocomplete="off"
               aria-label="User Name"
             >
 
-            <label for="">Password :</label>
+            <label for="password">Password :</label>
             <input
              type="text"
              formControlName="password"
              name="password"
+             placeholder="Please Enter Password"
              autocomplete="off"
              aria-label="Password"
             >
@@ -28,6 +30,7 @@
          type="button"
          class="button"
          tabindex="0"
+         [disabled]="registerForm.invalid"
          (click)="onSubmit(registerForm.value)"
          aria-label="Add User"
         >Add User</button>

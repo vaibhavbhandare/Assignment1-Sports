@@ -12,15 +12,16 @@ import { ListSports, DeleteSports } from '../store/actions/auth.action';
   styleUrls: ['./sports.component.css'],
   providers: [SportsListService]
 })
+
 export class SportsComponent implements OnInit {
 
   public loginData: Array<any> = [];
   public sportsData = [];
   public userLoginStatus = false;
+  public tableTitle = 'Sports Club';
   getState: Observable<any>;
 
-  constructor(private sportsService: SportsListService,
-              private router: Router,
+  constructor(private router: Router,
               private activatedRoute: ActivatedRoute,
               private store: Store<AppState> ) {
     this.getState = this.store.select(selectAuthState);
@@ -29,7 +30,9 @@ export class SportsComponent implements OnInit {
   ngOnInit(): void {
     this.store.dispatch(new ListSports());
     this.store.subscribe(data => {
-      this.sportsData = data.sport.sports;
+      if (data && data.sport && data.sport.sports) {
+        this.sportsData = data.sport.sports;
+      }
     });
 
     this.activatedRoute.params.subscribe(param => {
@@ -41,11 +44,11 @@ export class SportsComponent implements OnInit {
     );
   }
 
-  updateSports(id): void {
+  updateSports(id: any): void {
     this.router.navigate(['/addsports', id]);
   }
 
-  deleteSports(id): void {
+  deleteSports(id: any): void {
     this.store.dispatch(new DeleteSports(id));
     this.store.dispatch(new ListSports());
   }

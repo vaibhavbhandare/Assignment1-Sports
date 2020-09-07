@@ -6,9 +6,9 @@ import { environment } from '../../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
+
 export class SportsListService {
 
-  public status: any;
   public baseRefUrl = environment.baseRefUrl;
 
   constructor(private http: HttpClient) { }

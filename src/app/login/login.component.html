@@ -4,11 +4,13 @@
     </div>
     <div>
         <form [formGroup]="loginForm" class="form">
-            <label for="">UserName :</label>
-            <input type="text" formControlName="username" id="username" aria-label="Username" autocomplete="off">
+            <label for="username">UserName :</label>
+            <input type="text" formControlName="username" id="username"
+            placeholder="Please Enter Name" aria-label="Username" autocomplete="off">
 
-            <label for="">Password :</label>
-            <input type="text" formControlName="password" aria-label="Password" id="password" autocomplete="off">
+            <label for="password">Password :</label>
+            <input type="text" formControlName="password"
+            placeholder="Please Enter Password" aria-label="Password" id="password" autocomplete="off">
         </form>
     </div>
     <div class="div2">

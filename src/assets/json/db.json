@@ -15,26 +15,26 @@
     {
       "id": "1",
       "sportsTitle": "wrestling and martial arts",
-      "description": "ABC",
+      "description": "is an ancient martial arts style of fighting",
       "category": "Dual Sports"
     },
     {
       "id": "2",
-      "sportsTitle": "Enter Sport Name",
-      "category": "vaibhav",
-      "description": "Enter Description"
+      "sportsTitle": "Basketball",
+      "category": "Team Sports",
+      "description": "The game is played on a rectangular floor called the court"
     },
     {
       "id": "3",
-      "sportsTitle": "Enter Sport Name",
-      "category": "Individual or Team Player",
-      "description": "helllo"
+      "sportsTitle": "Hockey",
+      "category": "Team Sports",
+      "description": "Field hockey is played in the Summer Olympic Games."
     },
     {
       "id": "4",
       "sportsTitle": "Cricket",
-      "category": "Team Player",
-      "description": "Icc"
+      "category": "Team Sports",
+      "description": "Cricket is a game played with a bat and ball on a large field"
     }
   ]
 }

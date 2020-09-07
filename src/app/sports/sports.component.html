@@ -5,7 +5,7 @@
              <h2
              class="heading"
              tabindex="0"
-            >Sports Club</h2>
+            >{{tableTitle}}</h2>
            </div>
         </caption>
         <tr>
@@ -28,8 +28,8 @@
     </table>
     <div class="add">
         <div class="table-bottom">
-            <button type="button" aria-label="Add Sport" class="add-button"  [disabled]="!userLoginStatus" (click)="addSports()">Add Sport</button>
-            <p class="footer-text">@Sports Club</p>
+            <button type="button" tabindex="0" aria-label="Add Sport" class="add-button"  [disabled]="!userLoginStatus" (click)="addSports()">Add Sport</button>
+            <footer-element></footer-element>
         </div>
     </div>
 </div>

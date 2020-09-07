@@ -13,7 +13,7 @@ import { LogInSuccess, LogInFailure } from '../store/actions/auth.action';
 })
 export class LoginComponent implements OnInit {
 
-  public loginForm;
+  public loginForm: any;
   public isLogin: boolean;
 
   constructor(private fb: FormBuilder,
@@ -24,8 +24,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
-      username: ['Please Enter Name', [Validators.required]],
-      password: ['Please Enter Password', [Validators.required]]
+      username: ['', [Validators.required]],
+      password: ['', [Validators.required]]
     });
   }
 
