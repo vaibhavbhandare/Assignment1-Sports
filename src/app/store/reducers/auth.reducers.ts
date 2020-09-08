@@ -7,7 +7,7 @@ import {
   LIST_DATA_SUCCESS,
   ADD_SPORTS_SUCCESS,
   DELETE_SPORTS_SUCCESS,
-  UPDATE_SPORTS_SUCCESS
+  UPDATE_SPORTS_SUCCESS,
 } from '../actions/auth.action';
 
 export interface State {
