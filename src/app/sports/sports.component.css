@@ -22,10 +22,9 @@ tr:nth-child(even) {
 }
 
 .heading {
-    background-color: lightseagreen;
-    padding: 6px;
-    margin-top: 0px;
     color: white;
+    margin: 12px;
+    padding-left: calc(100vw/2 - 100px)!important;
 }
 
 .button {
@@ -35,8 +34,8 @@ tr:nth-child(even) {
 
 .add {
     background-color: lightseagreen;
-    margin-top: 21px;
-    margin-bottom: 0px;
+    padding: 9px;
+    margin-top: 19px;
 }
 
 .table-bottom {
@@ -44,10 +43,50 @@ tr:nth-child(even) {
 }
 
 .add-button {
-    margin-left: 646px;
-    padding: 6px;
-    padding-bottom: 4px;
-    margin-top: 9px;
-    margin-bottom: 10px;
+    padding: 0px 5px 0px 5px;
+    margin: 10px;
+    margin-left: 491px;
+}
+
+.crud-button {
+   display: inline-flex;
+}
+
+.table {
+    border-collapse: inherit;
+    width: 100%;
+    min-width: 500px;
+}
+
+@media only screen and (max-width: 1002px) {
+    .button {
+        padding: 8px 3px 8px 3px;
+        margin-right: 7px;
+    }
+}
+
+@media only screen and (max-width: 1125px) {
+    .heading {
+        color: white;
+        margin: 12px;
+        padding-left: calc(100vw/2 + 1px)!important;
+    }
+
+    .add-button {
+        padding: 0px 5px 0px 5px;
+        margin: 10px;
+        margin-left: calc(100vw/2 - 263px)!important;
+    }
+}
+
+.table-header {
+    display: inline-flex;
+    background-color: lightseagreen;
+    width: 100%;
+    margin-bottom: 24px;
+}
+
+.scroll {
+    overflow: auto;
 }
 

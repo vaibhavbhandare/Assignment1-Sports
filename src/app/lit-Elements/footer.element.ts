@@ -10,7 +10,12 @@ export class FooterElement extends LitElement {
     static get styles(): any {
         return css`
          p { color: white;
-             margin: 14px 0px 0px 410px;
+             margin: 5px 0px 5px 581px;
+            }
+            @media only screen and (max-width: 1125px) {
+                p { color: white;
+                    margin: 0px 0px 0px calc(100vw/2 + 1px)!important;
+                }
             }
         `;
     }

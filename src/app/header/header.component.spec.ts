@@ -42,4 +42,14 @@ describe('HeaderComponent', () => {
     fixture.detectChanges();
     expect(component.setDark).toBeFalsy();
   });
+
+  it(`should have call changeTheme is False`, () => {
+    fixture.detectChanges();
+    expect(component.changeTheme()).toBeFalsy();
+  });
+
+  it(`should have call ngOnInit is False`, () => {
+    fixture.detectChanges();
+    expect(component.ngOnInit()).toBeFalsy();
+  });
 });

@@ -9,6 +9,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 describe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
+  let dummyTest = [];
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -23,6 +24,9 @@ describe('LoginComponent', () => {
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
     .compileComponents();
+    dummyTest = [
+      { username: 'testatrix', password: 'admin'}
+    ];
   }));
 
   beforeEach(() => {
@@ -43,5 +47,15 @@ describe('LoginComponent', () => {
   it(`should have loginForm declared`, () => {
     fixture.detectChanges();
     expect(component.loginForm).toBeDefined();
+  });
+
+  it(`should have dispatchAction called`, () => {
+    fixture.detectChanges();
+    expect(component.dispatchAction(dummyTest)).toBeUndefined();
+  });
+
+  it(`should have onSubmit declared`, () => {
+    fixture.detectChanges();
+    expect(component.onSubmit(dummyTest)).toBeUndefined();
   });
 });

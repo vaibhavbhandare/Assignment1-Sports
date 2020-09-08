@@ -165,7 +165,7 @@
     "injectables": [
         {
             "name": "AuthEffects",
-            "id": "injectable-AuthEffects-94f2aa67427bd57148d16fc45ef62fc0",
+            "id": "injectable-AuthEffects-e5b0bc6ad4d3b60732e155f34728376a",
             "file": "src/app/store/effects/auth.effects.ts",
             "properties": [
                 {
@@ -174,7 +174,7 @@
                     "type": "Observable<any>",
                     "optional": false,
                     "description": "",
-                    "line": 91,
+                    "line": 79,
                     "decorators": [
                         {
                             "name": "Effect",
@@ -188,7 +188,7 @@
                     "type": "Observable<any>",
                     "optional": false,
                     "description": "",
-                    "line": 104,
+                    "line": 92,
                     "decorators": [
                         {
                             "name": "Effect",
@@ -202,25 +202,11 @@
                     "type": "Observable<any>",
                     "optional": false,
                     "description": "",
-                    "line": 81,
+                    "line": 69,
                     "decorators": [
                         {
                             "name": "Effect",
                             "stringifiedArguments": "{dispatch: true}"
-                        }
-                    ]
-                },
-                {
-                    "name": "LogIn",
-                    "defaultValue": "this.actions.pipe(\r\n        ofType(AuthActionTypes.LOGIN)).pipe(\r\n            map((action: LogIn) => action.payload)).pipe(switchMap(payload => {\r\n                return this.sportsListService.logIn(payload.username, payload.password).pipe(\r\n                    map((user) => {\r\n                        return new LogInSuccess({ username: payload.username, password: payload.password });\r\n                    })).pipe(catchError((error) => {\r\n                        return of(new LogInFailure({ error: 'error' }));\r\n                    }));\r\n            }))",
-                    "type": "Observable<any>",
-                    "optional": false,
-                    "description": "",
-                    "line": 28,
-                    "decorators": [
-                        {
-                            "name": "Effect",
-                            "stringifiedArguments": ""
                         }
                     ]
                 },
@@ -230,7 +216,7 @@
                     "type": "Observable<any>",
                     "optional": false,
                     "description": "",
-                    "line": 49,
+                    "line": 37,
                     "decorators": [
                         {
                             "name": "Effect",
@@ -244,7 +230,7 @@
                     "type": "Observable<any>",
                     "optional": false,
                     "description": "",
-                    "line": 40,
+                    "line": 28,
                     "decorators": [
                         {
                             "name": "Effect",
@@ -258,7 +244,7 @@
                     "type": "Observable<any>",
                     "optional": false,
                     "description": "",
-                    "line": 57,
+                    "line": 45,
                     "decorators": [
                         {
                             "name": "Effect",
@@ -272,7 +258,7 @@
                     "type": "Observable<any>",
                     "optional": false,
                     "description": "",
-                    "line": 65,
+                    "line": 53,
                     "decorators": [
                         {
                             "name": "Effect",
@@ -286,7 +272,7 @@
                     "type": "Observable<any>",
                     "optional": false,
                     "description": "",
-                    "line": 118,
+                    "line": 106,
                     "decorators": [
                         {
                             "name": "Effect",
@@ -297,7 +283,7 @@
             ],
             "methods": [],
             "description": "",
-            "sourceCode": "import { Injectable } from '@angular/core';\r\nimport { Action } from '@ngrx/store';\r\nimport { Router } from '@angular/router';\r\nimport { Actions, Effect, ofType } from '@ngrx/effects';\r\nimport { Observable, of } from 'rxjs';\r\nimport { tap, map, switchMap, catchError, mergeMap } from 'rxjs/operators';\r\nimport {\r\n    AuthActionTypes,\r\n    LogIn, LogInSuccess, LogInFailure,\r\n    SignUp, SignUpSuccess, SignUpFailure, LIST_SPORTS, ListSports,\r\n    ListDataSuccess, ADD_SPORTS, AddSportsSuccess, AddSports, DeleteSportSuccess,\r\n    DELETE_SPORTS, DeleteSports, UPDATE_SPORTS, UpdateSports, UpdateSportsSuccess\r\n} from '../actions/auth.action';\r\nimport { SportsListService } from 'src/app/service/sports.service';\r\n\r\n@Injectable()\r\n\r\nexport class AuthEffects {\r\n\r\n    constructor(\r\n        private actions: Actions,\r\n        private router: Router,\r\n        private sportsListService: SportsListService\r\n    ) { }\r\n\r\n    // effects go here\r\n    @Effect()\r\n    LogIn: Observable<any> = this.actions.pipe(\r\n        ofType(AuthActionTypes.LOGIN)).pipe(\r\n            map((action: LogIn) => action.payload)).pipe(switchMap(payload => {\r\n                return this.sportsListService.logIn(payload.username, payload.password).pipe(\r\n                    map((user) => {\r\n                        return new LogInSuccess({ username: payload.username, password: payload.password });\r\n                    })).pipe(catchError((error) => {\r\n                        return of(new LogInFailure({ error: 'error' }));\r\n                    }));\r\n            }));\r\n\r\n    @Effect({ dispatch: false })\r\n    LogInSuccess: Observable<any> = this.actions.pipe(\r\n        ofType(AuthActionTypes.LOGIN_SUCCESS),\r\n        tap((user) => {\r\n            localStorage.setItem('token', user.payload.username);\r\n            this.router.navigate(['/list', { term: true }]);\r\n        })\r\n    );\r\n\r\n    @Effect({ dispatch: false })\r\n    LogInFailure: Observable<any> = this.actions.pipe(\r\n        ofType(AuthActionTypes.LOGIN_FAILURE),\r\n        tap((user) => {\r\n            alert('Please Enter Valid User Name and Password');\r\n        })\r\n    );\r\n\r\n    @Effect({ dispatch: false })\r\n    LogOut: Observable<any> = this.actions.pipe(\r\n        ofType(AuthActionTypes.LOGOUT),\r\n        tap((user) => {\r\n            window.alert('You are Logout Successfully');\r\n        })\r\n    );\r\n\r\n    @Effect({ dispatch: true })\r\n    SignUp: Observable<any> = this.actions.pipe(\r\n        ofType(AuthActionTypes.SIGNUP),\r\n        map((action: SignUp) => action.payload),\r\n        mergeMap(payload => {\r\n            return this.sportsListService.addLogin(payload).pipe(\r\n                map((data) => {\r\n                    if (data) {\r\n                        window.alert('User Added Successfully');\r\n                        return new SignUpSuccess(data);\r\n                    }\r\n                })).pipe(catchError((error) => {\r\n                    return of(new SignUpFailure({ error: 'error' }));\r\n                }));\r\n        }));\r\n\r\n    @Effect({ dispatch: true })\r\n    ListSports: Observable<any> = this.actions.pipe(\r\n        ofType(LIST_SPORTS),\r\n        map((action: ListSports) => action),\r\n        mergeMap(payload => {\r\n            return this.sportsListService.getSports().pipe(\r\n                map((data) =>\r\n                    new ListDataSuccess(data)));\r\n        }));\r\n\r\n    @Effect({ dispatch: true })\r\n    AddSports: Observable<any> = this.actions.pipe(\r\n        ofType(ADD_SPORTS),\r\n        map((action: AddSports) => action.payload),\r\n        mergeMap(payload => {\r\n            return this.sportsListService.addSport(payload).pipe(\r\n                map((data) => {\r\n                    if (data) {\r\n                        return new AddSportsSuccess(data);\r\n                    }\r\n                }));\r\n        }));\r\n\r\n    @Effect({ dispatch: true })\r\n    DeleteSports: Observable<any> = this.actions.pipe(\r\n        ofType(DELETE_SPORTS),\r\n        map((action: DeleteSports) => action.payload),\r\n        mergeMap(payload => {\r\n            return this.sportsListService.deleteSportsById(payload).pipe(\r\n                map((data) => {\r\n                    if (data) {\r\n                        window.alert('Sport Deleted Successfully');\r\n                        return new DeleteSportSuccess();\r\n                    }\r\n                }));\r\n        }));\r\n\r\n    @Effect({ dispatch: true })\r\n    UpdateSports: Observable<any> = this.actions.pipe(\r\n        ofType(UPDATE_SPORTS),\r\n        map((action: UpdateSports) => action.payload),\r\n        mergeMap(payload => {\r\n            return this.sportsListService.updateSport(payload).pipe(\r\n                map((data) => {\r\n                    if (data) {\r\n                        window.alert('Sport Updated Successfully');\r\n                        return new UpdateSportsSuccess(data);\r\n                    }\r\n                }));\r\n        }));\r\n}\r\n",
+            "sourceCode": "import { Injectable } from '@angular/core';\r\nimport { Action } from '@ngrx/store';\r\nimport { Router } from '@angular/router';\r\nimport { Actions, Effect, ofType } from '@ngrx/effects';\r\nimport { Observable, of } from 'rxjs';\r\nimport { tap, map, switchMap, catchError, mergeMap } from 'rxjs/operators';\r\nimport {\r\n    AuthActionTypes,\r\n    LogIn, LogInSuccess, LogInFailure,\r\n    SignUp, SignUpSuccess, SignUpFailure, LIST_SPORTS, ListSports,\r\n    ListDataSuccess, ADD_SPORTS, AddSportsSuccess, AddSports, DeleteSportSuccess,\r\n    DELETE_SPORTS, DeleteSports, UPDATE_SPORTS, UpdateSports, UpdateSportsSuccess\r\n} from '../actions/auth.action';\r\nimport { SportsListService } from 'src/app/service/sports.service';\r\n\r\n@Injectable()\r\n\r\nexport class AuthEffects {\r\n\r\n    constructor(\r\n        private actions: Actions,\r\n        private router: Router,\r\n        private sportsListService: SportsListService\r\n    ) { }\r\n\r\n    // effects go here\r\n    @Effect({ dispatch: false })\r\n    LogInSuccess: Observable<any> = this.actions.pipe(\r\n        ofType(AuthActionTypes.LOGIN_SUCCESS),\r\n        tap((user) => {\r\n            localStorage.setItem('token', user.payload.username);\r\n            this.router.navigate(['/list', { term: true }]);\r\n        })\r\n    );\r\n\r\n    @Effect({ dispatch: false })\r\n    LogInFailure: Observable<any> = this.actions.pipe(\r\n        ofType(AuthActionTypes.LOGIN_FAILURE),\r\n        tap((user) => {\r\n            alert('Please Enter Valid User Name and Password');\r\n        })\r\n    );\r\n\r\n    @Effect({ dispatch: false })\r\n    LogOut: Observable<any> = this.actions.pipe(\r\n        ofType(AuthActionTypes.LOGOUT),\r\n        tap((user) => {\r\n            window.alert('You are Logout Successfully');\r\n        })\r\n    );\r\n\r\n    @Effect({ dispatch: true })\r\n    SignUp: Observable<any> = this.actions.pipe(\r\n        ofType(AuthActionTypes.SIGNUP),\r\n        map((action: SignUp) => action.payload),\r\n        mergeMap(payload => {\r\n            return this.sportsListService.addLogin(payload).pipe(\r\n                map((data) => {\r\n                    if (data) {\r\n                        window.alert('User Added Successfully');\r\n                        return new SignUpSuccess(data);\r\n                    }\r\n                })).pipe(catchError((error) => {\r\n                    return of(new SignUpFailure({ error: 'error' }));\r\n                }));\r\n        }));\r\n\r\n    @Effect({ dispatch: true })\r\n    ListSports: Observable<any> = this.actions.pipe(\r\n        ofType(LIST_SPORTS),\r\n        map((action: ListSports) => action),\r\n        mergeMap(payload => {\r\n            return this.sportsListService.getSports().pipe(\r\n                map((data) =>\r\n                    new ListDataSuccess(data)));\r\n        }));\r\n\r\n    @Effect({ dispatch: true })\r\n    AddSports: Observable<any> = this.actions.pipe(\r\n        ofType(ADD_SPORTS),\r\n        map((action: AddSports) => action.payload),\r\n        mergeMap(payload => {\r\n            return this.sportsListService.addSport(payload).pipe(\r\n                map((data) => {\r\n                    if (data) {\r\n                        return new AddSportsSuccess(data);\r\n                    }\r\n                }));\r\n        }));\r\n\r\n    @Effect({ dispatch: true })\r\n    DeleteSports: Observable<any> = this.actions.pipe(\r\n        ofType(DELETE_SPORTS),\r\n        map((action: DeleteSports) => action.payload),\r\n        mergeMap(payload => {\r\n            return this.sportsListService.deleteSportsById(payload).pipe(\r\n                map((data) => {\r\n                    if (data) {\r\n                        window.alert('Sport Deleted Successfully');\r\n                        return new DeleteSportSuccess();\r\n                    }\r\n                }));\r\n        }));\r\n\r\n    @Effect({ dispatch: true })\r\n    UpdateSports: Observable<any> = this.actions.pipe(\r\n        ofType(UPDATE_SPORTS),\r\n        map((action: UpdateSports) => action.payload),\r\n        mergeMap(payload => {\r\n            return this.sportsListService.updateSport(payload).pipe(\r\n                map((data) => {\r\n                    if (data) {\r\n                        window.alert('Sport Updated Successfully');\r\n                        return new UpdateSportsSuccess(data);\r\n                    }\r\n                }));\r\n        }));\r\n}\r\n",
             "constructorObj": {
                 "name": "constructor",
                 "description": "",
@@ -344,7 +330,7 @@
         },
         {
             "name": "SportsListService",
-            "id": "injectable-SportsListService-68e9ab79a5d42123669909f44b9bfaba",
+            "id": "injectable-SportsListService-21af5440071f21d499ac81148d2457f2",
             "file": "src/app/service/sports.service.ts",
             "properties": [
                 {
@@ -354,16 +340,6 @@
                     "optional": false,
                     "description": "",
                     "line": 12,
-                    "modifierKind": [
-                        114
-                    ]
-                },
-                {
-                    "name": "status",
-                    "type": "any",
-                    "optional": false,
-                    "description": "",
-                    "line": 11,
                     "modifierKind": [
                         114
                     ]
@@ -453,39 +429,6 @@
                     "line": 16
                 },
                 {
-                    "name": "logIn",
-                    "args": [
-                        {
-                            "name": "username",
-                            "type": "string"
-                        },
-                        {
-                            "name": "password",
-                            "type": "string"
-                        }
-                    ],
-                    "optional": false,
-                    "returnType": "Observable<any>",
-                    "typeParameters": [],
-                    "line": 40,
-                    "jsdoctags": [
-                        {
-                            "name": "username",
-                            "type": "string",
-                            "tagName": {
-                                "text": "param"
-                            }
-                        },
-                        {
-                            "name": "password",
-                            "type": "string",
-                            "tagName": {
-                                "text": "param"
-                            }
-                        }
-                    ]
-                },
-                {
                     "name": "updateSport",
                     "args": [
                         {
@@ -509,7 +452,7 @@
                 }
             ],
             "description": "",
-            "sourceCode": "import { Injectable } from '@angular/core';\nimport { Observable} from 'rxjs';\nimport { HttpClient} from '@angular/common/http';\nimport { environment } from '../../environments/environment';\n\n@Injectable({\n  providedIn: 'root'\n})\nexport class SportsListService {\n\n  public status: any;\n  public baseRefUrl = environment.baseRefUrl;\n\n  constructor(private http: HttpClient) { }\n\n  getSports(): Observable<any> {\n    return this.http.get(`${this.baseRefUrl}/` + 'data');\n  }\n\n  addSport(sport: any): Observable<any> {\n    return this.http.post(`${this.baseRefUrl}/` + 'data', sport);\n  }\n\n  deleteSportsById(id: any): Observable<any> {\n    return this.http.delete(`${this.baseRefUrl}/` + 'data/' + id);\n  }\n\n  updateSport(sport: any): Observable<any> {\n    return this.http.put(`${this.baseRefUrl}/` + 'data/' + sport.id, sport);\n  }\n\n  getLoginCheck(): Observable<any> {\n    return this.http.get(`${this.baseRefUrl}/` + 'login');\n  }\n\n  addLogin(userLogin: any): Observable<any> {\n    return this.http.post(`${this.baseRefUrl}/` + 'login', userLogin);\n  }\n\n  logIn(username: string, password: string): Observable<any> {\n    const url = `${this.baseRefUrl}/` + 'login';\n    return this.http.post(url, {username, password});\n  }\n}\n",
+            "sourceCode": "import { Injectable } from '@angular/core';\nimport { Observable} from 'rxjs';\nimport { HttpClient} from '@angular/common/http';\nimport { environment } from '../../environments/environment';\n\n@Injectable({\n  providedIn: 'root'\n})\n\nexport class SportsListService {\n\n  public baseRefUrl = environment.baseRefUrl;\n\n  constructor(private http: HttpClient) { }\n\n  getSports(): Observable<any> {\n    return this.http.get(`${this.baseRefUrl}/` + 'data');\n  }\n\n  addSport(sport: any): Observable<any> {\n    return this.http.post(`${this.baseRefUrl}/` + 'data', sport);\n  }\n\n  deleteSportsById(id: any): Observable<any> {\n    return this.http.delete(`${this.baseRefUrl}/` + 'data/' + id);\n  }\n\n  updateSport(sport: any): Observable<any> {\n    return this.http.put(`${this.baseRefUrl}/` + 'data/' + sport.id, sport);\n  }\n\n  getLoginCheck(): Observable<any> {\n    return this.http.get(`${this.baseRefUrl}/` + 'login');\n  }\n\n  addLogin(userLogin: any): Observable<any> {\n    return this.http.post(`${this.baseRefUrl}/` + 'login', userLogin);\n  }\n}\n",
             "constructorObj": {
                 "name": "constructor",
                 "description": "",
@@ -770,6 +713,88 @@
             "implements": [
                 "Action"
             ]
+        },
+        {
+            "name": "FooterElement",
+            "id": "class-FooterElement-b60061620288c09a3cf7136fb742eba0",
+            "file": "src/app/lit-Elements/footer.element.ts",
+            "type": "class",
+            "sourceCode": "import { LitElement, html, customElement, css } from 'lit-element';\r\n\r\n@customElement('footer-element')\r\n\r\nexport class FooterElement extends LitElement {\r\n    constructor() {\r\n        super();\r\n    }\r\n\r\n    static get styles(): any {\r\n        return css`\r\n         p { color: white;\r\n             margin: 14px 0px 0px 410px;\r\n            }\r\n        `;\r\n    }\r\n\r\n    render(): any {\r\n        return html`<p>@Sports Club</p>`;\r\n    }\r\n\r\n}\r\n",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "args": [],
+                "line": 5
+            },
+            "properties": [],
+            "methods": [
+                {
+                    "name": "render",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "any",
+                    "typeParameters": [],
+                    "line": 18
+                }
+            ],
+            "indexSignatures": [],
+            "extends": "LitElement",
+            "accessors": {
+                "styles": {
+                    "name": "styles",
+                    "getSignature": {
+                        "name": "styles",
+                        "type": "any",
+                        "returnType": "any",
+                        "line": 10
+                    }
+                }
+            }
+        },
+        {
+            "name": "HeaderTitleElement",
+            "id": "class-HeaderTitleElement-8139f047f528655fb5d5e63b78ac2376",
+            "file": "src/app/lit-Elements/heading-element.ts",
+            "type": "class",
+            "sourceCode": "import { LitElement, html, css, customElement, property } from 'lit-element';\r\n\r\nconst mainColor = css`white`;\r\n@customElement('title-element')\r\n\r\nexport class HeaderTitleElement extends LitElement {\r\n\r\n    @property() name: any;\r\n\r\n    static get styles(): any {\r\n        return css`\r\n          h3 {\r\n              color: ${mainColor};\r\n              margin: 19px;\r\n            }\r\n        `;\r\n    }\r\n\r\n    render(): any {\r\n        return html`<h3>Sports</h3>`;\r\n    }\r\n}\r\n",
+            "properties": [
+                {
+                    "name": "name",
+                    "type": "any",
+                    "optional": false,
+                    "description": "",
+                    "line": 8,
+                    "decorators": [
+                        {
+                            "name": "property",
+                            "stringifiedArguments": ""
+                        }
+                    ]
+                }
+            ],
+            "methods": [
+                {
+                    "name": "render",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "any",
+                    "typeParameters": [],
+                    "line": 19
+                }
+            ],
+            "indexSignatures": [],
+            "extends": "LitElement",
+            "accessors": {
+                "styles": {
+                    "name": "styles",
+                    "getSignature": {
+                        "name": "styles",
+                        "type": "any",
+                        "returnType": "any",
+                        "line": 10
+                    }
+                }
+            }
         },
         {
             "name": "ListDataSuccess",
@@ -1387,7 +1412,7 @@
     "components": [
         {
             "name": "AddSportsComponent",
-            "id": "component-AddSportsComponent-e77446919b7a0a8b63bb1afa781166eb",
+            "id": "component-AddSportsComponent-1c9865685e7dcf013f6c95e6fae94a42",
             "file": "src/app/sports/add-sports/addsports.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -1407,18 +1432,29 @@
             "outputsClass": [],
             "propertiesClass": [
                 {
+                    "name": "addSportTitle",
+                    "defaultValue": "'Add Sport'",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 19,
+                    "modifierKind": [
+                        114
+                    ]
+                },
+                {
                     "name": "getState",
                     "type": "Observable<any>",
                     "optional": false,
                     "description": "",
-                    "line": 20
+                    "line": 21
                 },
                 {
                     "name": "showUpdateForm",
                     "type": "boolean",
                     "optional": false,
                     "description": "",
-                    "line": 19,
+                    "line": 18,
                     "modifierKind": [
                         114
                     ]
@@ -1428,7 +1464,7 @@
                     "type": "Array<any>",
                     "optional": false,
                     "description": "",
-                    "line": 17,
+                    "line": 16,
                     "modifierKind": [
                         114
                     ]
@@ -1438,7 +1474,7 @@
                     "type": "any",
                     "optional": false,
                     "description": "",
-                    "line": 16,
+                    "line": 15,
                     "modifierKind": [
                         114
                     ]
@@ -1448,7 +1484,18 @@
                     "type": "number",
                     "optional": false,
                     "description": "",
-                    "line": 18,
+                    "line": 17,
+                    "modifierKind": [
+                        114
+                    ]
+                },
+                {
+                    "name": "updateSportTitle",
+                    "defaultValue": "'Update Sport'",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 20,
                     "modifierKind": [
                         114
                     ]
@@ -1469,7 +1516,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 60
+                    "line": 62
                 },
                 {
                     "name": "ngOnInit",
@@ -1490,7 +1537,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 54,
+                    "line": 56,
                     "jsdoctags": [
                         {
                             "name": "sport",
@@ -1512,7 +1559,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 68,
+                    "line": 70,
                     "jsdoctags": [
                         {
                             "name": "sport",
@@ -1529,7 +1576,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 74
+                    "line": 76
                 }
             ],
             "hostBindings": [],
@@ -1537,7 +1584,7 @@
             "description": "",
             "rawdescription": "",
             "type": "component",
-            "sourceCode": "import { Component, OnInit } from '@angular/core';\nimport { FormBuilder, Validators } from '@angular/forms';\nimport { SportsListService } from '../../service/sports.service';\nimport { Router, ActivatedRoute } from '@angular/router';\nimport { Observable } from 'rxjs';\nimport { Store } from '@ngrx/store';\nimport { AppState, selectAuthState } from '../../store/app.states';\nimport { ListSports, AddSports, UpdateSports } from 'src/app/store/actions/auth.action';\n@Component({\n  selector: 'app-add-sports',\n  templateUrl: './addsports.component.html',\n  styleUrls: ['./addsports.component.css']\n})\nexport class AddSportsComponent implements OnInit {\n\n  public sportsForm: any;\n  public sportsData: Array<any>;\n  public sportsId: number;\n  public showUpdateForm: boolean;\n  getState: Observable<any>;\n\n  constructor(private fb: FormBuilder,\n              private sportsService: SportsListService,\n              private router: Router,\n              private activatedRoute: ActivatedRoute,\n              private store: Store<AppState>) {\n\n    this.sportsForm = this.fb.group({\n      id: [0, [Validators.required]],\n      sportsTitle: ['Enter Sport Name', [Validators.required]],\n      category: ['Individual or Team Player', [Validators.required]],\n      description: ['Enter Description', [Validators.required]]\n    });\n\n    this.activatedRoute.params.subscribe(param => {\n      this.sportsId = param.id;\n    });\n\n    this.getState = this.store.select(selectAuthState);\n  }\n\n  ngOnInit(): void {\n    this.getSports();\n    this.isRegisterFormToUpdate();\n  }\n\n  getSports(): void {\n    this.store.dispatch(new ListSports());\n    this.store.subscribe(data => {\n      this.sportsData = data.sport.sports;\n    });\n  }\n\n  onSubmit(sport: any): void {\n    this.store.dispatch(new AddSports(sport));\n    this.store.dispatch(new ListSports());\n    this.router.navigate(['/list', { term: true}]);\n  }\n\n  isRegisterFormToUpdate(): void {\n    if (this.sportsId === undefined) {\n      this.showUpdateForm = false;\n    } else {\n      this.showUpdateForm = true;\n    }\n  }\n\n  onUpdateSport(sport: any): void {\n    this.store.dispatch(new UpdateSports(sport));\n    this.store.dispatch(new ListSports());\n    this.router.navigate(['/list', { term: true}]);\n  }\n\n  openList(): void {\n    this.router.navigate(['/list', { term: true}]);\n  }\n}\n",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\nimport { FormBuilder, Validators } from '@angular/forms';\nimport { Router, ActivatedRoute } from '@angular/router';\nimport { Observable } from 'rxjs';\nimport { Store } from '@ngrx/store';\nimport { AppState, selectAuthState } from '../../store/app.states';\nimport { ListSports, AddSports, UpdateSports } from 'src/app/store/actions/auth.action';\n@Component({\n  selector: 'app-add-sports',\n  templateUrl: './addsports.component.html',\n  styleUrls: ['./addsports.component.css']\n})\nexport class AddSportsComponent implements OnInit {\n\n  public sportsForm: any;\n  public sportsData: Array<any>;\n  public sportsId: number;\n  public showUpdateForm: boolean;\n  public addSportTitle = 'Add Sport';\n  public updateSportTitle = 'Update Sport';\n  getState: Observable<any>;\n\n  constructor(private fb: FormBuilder,\n              private router: Router,\n              private activatedRoute: ActivatedRoute,\n              private store: Store<AppState>) {\n\n    this.sportsForm = this.fb.group({\n      id: [0, [Validators.required]],\n      sportsTitle: ['', [Validators.required]],\n      category: ['', [Validators.required]],\n      description: ['', [Validators.required, Validators.maxLength]]\n    });\n\n    this.activatedRoute.params.subscribe(param => {\n      this.sportsId = param.id;\n    });\n\n    this.getState = this.store.select(selectAuthState);\n  }\n\n  ngOnInit(): void {\n    this.getSports();\n    this.isRegisterFormToUpdate();\n  }\n\n  getSports(): void {\n    this.store.dispatch(new ListSports());\n    this.store.subscribe(data => {\n      if (data && data.sport && data.sport.sports) {\n        this.sportsData = data.sport.sports;\n      }\n    });\n  }\n\n  onSubmit(sport: any): void {\n    this.store.dispatch(new AddSports(sport));\n    this.store.dispatch(new ListSports());\n    this.router.navigate(['/list', { term: true}]);\n  }\n\n  isRegisterFormToUpdate(): void {\n    if (this.sportsId === undefined) {\n      this.showUpdateForm = false;\n    } else {\n      this.showUpdateForm = true;\n    }\n  }\n\n  onUpdateSport(sport: any): void {\n    this.store.dispatch(new UpdateSports(sport));\n    this.store.dispatch(new ListSports());\n    this.router.navigate(['/list', { term: true}]);\n  }\n\n  openList(): void {\n    this.router.navigate(['/list', { term: true}]);\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -1555,10 +1602,6 @@
                         "type": "FormBuilder"
                     },
                     {
-                        "name": "sportsService",
-                        "type": "SportsListService"
-                    },
-                    {
                         "name": "router",
                         "type": "Router"
                     },
@@ -1571,18 +1614,11 @@
                         "type": "Store<AppState>"
                     }
                 ],
-                "line": 20,
+                "line": 21,
                 "jsdoctags": [
                     {
                         "name": "fb",
                         "type": "FormBuilder",
-                        "tagName": {
-                            "text": "param"
-                        }
-                    },
-                    {
-                        "name": "sportsService",
-                        "type": "SportsListService",
                         "tagName": {
                             "text": "param"
                         }
@@ -1613,7 +1649,7 @@
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<div class=\"grid-container\" *ngIf=\"showUpdateForm == false\">\n    <div class=\"login\">\n        <p tabindex=\"0\">Add Sport</p>\n    </div>\n    <div>\n        <form [formGroup]=\"sportsForm\" class=\"form\">\n            <label for=\"\">ID :</label>\n            <input type=\"text\" formControlName=\"id\" id=\"id\" autocomplete=\"off\">\n\n            <label for=\"\">Sports Title :</label>\n            <input type=\"text\" formControlName=\"sportsTitle\" id=\"sportsTitle\" autocomplete=\"off\">\n\n            <label for=\"\">category :</label>\n            <input type=\"text\" formControlName=\"category\" id=\"category\" autocomplete=\"off\">\n\n            <label for=\"\">Description :</label>\n            <textarea formControlName=\"description\" id=\"description\" maxlength=\"500\" autocomplete=\"off\"></textarea>\n        </form>\n    </div>\n    <div class=\"div2\">\n        <button type=\"button\" class=\"button\" (click)=\"onSubmit(sportsForm.value)\"\n            [disabled]=\"sportsForm.invalid\">Submit</button>\n        <button type=\"button\" class=\"button\" (click)=\"openList()\">Home</button>\n    </div>\n</div>\n<div class=\"grid-container\" *ngIf=\"showUpdateForm == true\">\n    <ng-container *ngFor=\"let param of sportsData\">\n        <ng-container *ngIf=\"param.id === sportsId\">\n            <div class=\"login\">\n                Update Sport\n            </div>\n            <div>\n                <form [formGroup]=\"sportsForm\" class=\"form\">\n                    <label for=\"\">ID :</label>\n                    <input type=\"text\" formControlName=\"id\" id=\"id\" name=\"id\" [ngModel]=\"param.id\"\n                        autocomplete=\"off\">\n\n                    <label for=\"\">Sports Title :</label>\n                    <input type=\"text\" formControlName=\"sportsTitle\" id=\"sportsTitle\" [ngModel]=\"param.sportsTitle\"\n                         autocomplete=\"off\">\n\n                    <label for=\"\">category :</label>\n                    <input type=\"text\" formControlName=\"category\" id=\"category\" [ngModel]=\"param.category\"\n                        autocomplete=\"off\">\n\n                    <label for=\"\">Description :</label>\n                    <textarea formControlName=\"description\" id=\"description\" [ngModel]=\"param.description\"\n                        maxlength=\"500\" autocomplete=\"off\"></textarea>\n                </form>\n            </div>\n            <div class=\"div2\">\n                <button type=\"button\" class=\"button\" (click)=\"onUpdateSport(sportsForm.value)\"\n                    [disabled]=\"sportsForm.invalid\">Submit</button>\n                <button type=\"button\" class=\"button\" (click)=\"openList()\">Home</button>\n            </div>\n        </ng-container>\n    </ng-container>\n</div>"
+            "templateData": "<div class=\"grid-container\" *ngIf=\"showUpdateForm == false\">\n    <div class=\"login\">\n        <p tabindex=\"0\">{{addSportTitle}}</p>\n    </div>\n    <div>\n        <form [formGroup]=\"sportsForm\" class=\"form\">\n            <label for=\"id\">ID :</label>\n            <input type=\"text\" formControlName=\"id\" id=\"id\" aria-label=\"ID\" autocomplete=\"off\">\n\n            <label for=\"sportsTitle\">Sports Title :</label>\n            <input type=\"text\" formControlName=\"sportsTitle\" placeholder=\"Enter Sport Name\" aria-label=\"Sports Title\" id=\"sportsTitle\" autocomplete=\"off\">\n\n            <label for=\"category\">Category :</label>\n            <input type=\"text\" formControlName=\"category\" placeholder=\"Individual or Team Player\" aria-label=\"Category\" id=\"category\" autocomplete=\"off\">\n\n            <label for=\"description\">Description :</label>\n            <textarea formControlName=\"description\" id=\"description\" placeholder=\"Enter Description\" aria-label=\"Description\" maxlength=\"500\" autocomplete=\"off\"></textarea>\n        </form>\n    </div>\n    <div class=\"div2\">\n        <button type=\"button\" class=\"button\" tabindex=\"0\" (click)=\"onSubmit(sportsForm.value)\"\n            [disabled]=\"sportsForm.invalid\">Submit</button>\n        <button type=\"button\" class=\"button\" tabindex=\"0\" (click)=\"openList()\">Home</button>\n    </div>\n</div>\n<div class=\"grid-container\" *ngIf=\"showUpdateForm == true\">\n    <ng-container *ngFor=\"let param of sportsData\">\n        <ng-container *ngIf=\"param.id === sportsId\">\n            <div class=\"login\">\n                <p tabindex=\"0\">{{updateSportTitle}}</p>\n            </div>\n            <div>\n                <form [formGroup]=\"sportsForm\" class=\"form\">\n                    <label for=\"id\">ID :</label>\n                    <input type=\"text\" formControlName=\"id\" id=\"id\" aria-label=\"ID\" name=\"id\" [ngModel]=\"param.id\"\n                        autocomplete=\"off\" disabled>\n\n                    <label for=\"sportsTitle\">Sports Title :</label>\n                    <input type=\"text\" formControlName=\"sportsTitle\" id=\"sportsTitle\" aria-label=\"Sports Title\" [ngModel]=\"param.sportsTitle\"\n                         autocomplete=\"off\">\n\n                    <label for=\"category\">Category :</label>\n                    <input type=\"text\" formControlName=\"category\" id=\"category\" aria-label=\"Category\" [ngModel]=\"param.category\"\n                        autocomplete=\"off\">\n\n                    <label for=\"description\">Description :</label>\n                    <textarea formControlName=\"description\" id=\"description\" aria-label=\"Description\" [ngModel]=\"param.description\"\n                        maxlength=\"500\" autocomplete=\"off\"></textarea>\n                </form>\n            </div>\n            <div class=\"div2\">\n                <button type=\"button\" class=\"button\" tabindex=\"0\" (click)=\"onUpdateSport(sportsForm.value)\"\n                    [disabled]=\"sportsForm.invalid\">Submit</button>\n                <button type=\"button\" class=\"button\" tabindex=\"0\" (click)=\"openList()\">Home</button>\n            </div>\n        </ng-container>\n    </ng-container>\n</div>"
         },
         {
             "name": "AppComponent",
@@ -1861,7 +1897,7 @@
         },
         {
             "name": "HeaderComponent",
-            "id": "component-HeaderComponent-5e256437c6e7bc7a3126748e0024b7d0-1",
+            "id": "component-HeaderComponent-1103f2e53023a2dc070dcf1a3953af27-1",
             "file": "src/app/header/header.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -1882,7 +1918,7 @@
                 {
                     "name": "mode",
                     "defaultValue": "new EventEmitter<boolean>()",
-                    "line": 19,
+                    "line": 18,
                     "type": "EventEmitter"
                 }
             ],
@@ -1893,7 +1929,7 @@
                     "type": "string",
                     "optional": false,
                     "description": "",
-                    "line": 15,
+                    "line": 14,
                     "modifierKind": [
                         114
                     ]
@@ -1904,7 +1940,7 @@
                     "type": "",
                     "optional": false,
                     "description": "",
-                    "line": 17,
+                    "line": 16,
                     "modifierKind": [
                         114
                     ]
@@ -1914,7 +1950,7 @@
                     "type": "boolean",
                     "optional": false,
                     "description": "",
-                    "line": 16,
+                    "line": 15,
                     "modifierKind": [
                         114
                     ]
@@ -1927,7 +1963,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 49
+                    "line": 48
                 },
                 {
                     "name": "login",
@@ -1935,7 +1971,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 36
+                    "line": 35
                 },
                 {
                     "name": "logout",
@@ -1943,7 +1979,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 44
+                    "line": 43
                 },
                 {
                     "name": "ngOnInit",
@@ -1951,7 +1987,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 26
+                    "line": 25
                 },
                 {
                     "name": "register",
@@ -1959,7 +1995,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 40
+                    "line": 39
                 }
             ],
             "hostBindings": [],
@@ -1967,7 +2003,7 @@
             "description": "",
             "rawdescription": "",
             "type": "component",
-            "sourceCode": "import { Component, OnInit, Output, EventEmitter } from '@angular/core';\nimport '../lit-Elements/heading-element.js';\nimport { Router, ActivatedRoute } from '@angular/router';\nimport { Store } from '@ngrx/store';\nimport { AppState } from '../store/app.states';\nimport { LogOut } from '../store/actions/auth.action';\n\n@Component({\n  selector: 'app-header',\n  templateUrl: './header.component.html',\n  styleUrls: ['./header.component.css']\n})\nexport class HeaderComponent implements OnInit {\n\n  public headerTitle = 'Sports';\n  public userLoginStatus: boolean;\n  public setDark = false;\n\n  @Output() mode = new EventEmitter<boolean>();\n\n  constructor(private router: Router,\n              private activatedRoute: ActivatedRoute,\n              private store: Store<AppState>) {\n  }\n\n  ngOnInit(): void {\n    this.activatedRoute.params.subscribe(param => {\n      this.userLoginStatus = param.term;\n    },\n      (error) => {\n        console.log('Error in Fetching Parameter of Login API');\n      }\n    );\n  }\n\n  login(): void {\n    this.router.navigate(['/login']);\n  }\n\n  register(): void {\n    this.router.navigate(['/registermodule']);\n  }\n\n  logout(): void {\n    this.store.dispatch(new LogOut());\n    this.router.navigate(['/login']);\n  }\n\n  changeTheme(): void {\n    this.setDark = !this.setDark;\n    this.mode.emit(this.setDark);\n  }\n}\n",
+            "sourceCode": "import { Component, OnInit, Output, EventEmitter } from '@angular/core';\nimport { Router, ActivatedRoute } from '@angular/router';\nimport { Store } from '@ngrx/store';\nimport { AppState } from '../store/app.states';\nimport { LogOut } from '../store/actions/auth.action';\n\n@Component({\n  selector: 'app-header',\n  templateUrl: './header.component.html',\n  styleUrls: ['./header.component.css']\n})\nexport class HeaderComponent implements OnInit {\n\n  public headerTitle = 'Sports';\n  public userLoginStatus: boolean;\n  public setDark = false;\n\n  @Output() mode = new EventEmitter<boolean>();\n\n  constructor(private router: Router,\n              private activatedRoute: ActivatedRoute,\n              private store: Store<AppState>) {\n  }\n\n  ngOnInit(): void {\n    this.activatedRoute.params.subscribe(param => {\n      this.userLoginStatus = param.term;\n    },\n      (error) => {\n        console.log('Error in Fetching Parameter of Login API');\n      }\n    );\n  }\n\n  login(): void {\n    this.router.navigate(['/login']);\n  }\n\n  register(): void {\n    this.router.navigate(['/registermodule']);\n  }\n\n  logout(): void {\n    this.store.dispatch(new LogOut());\n    this.router.navigate(['/login']);\n  }\n\n  changeTheme(): void {\n    this.setDark = !this.setDark;\n    this.mode.emit(this.setDark);\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -1993,7 +2029,7 @@
                         "type": "Store<AppState>"
                     }
                 ],
-                "line": 19,
+                "line": 18,
                 "jsdoctags": [
                     {
                         "name": "router",
@@ -2028,7 +2064,7 @@
         },
         {
             "name": "LoginComponent",
-            "id": "component-LoginComponent-1dda82b846b3be38e892fb47a2223cb8",
+            "id": "component-LoginComponent-27a3314517f620384d551c42bf997560",
             "file": "src/app/login/login.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -2059,7 +2095,7 @@
                 },
                 {
                     "name": "loginForm",
-                    "type": "",
+                    "type": "any",
                     "optional": false,
                     "description": "",
                     "line": 16,
@@ -2140,7 +2176,7 @@
             "description": "",
             "rawdescription": "",
             "type": "component",
-            "sourceCode": "import { Component, OnInit } from '@angular/core';\nimport { FormBuilder, Validators } from '@angular/forms';\nimport { SportsListService } from '../service/sports.service';\nimport { Router } from '@angular/router';\nimport { Store } from '@ngrx/store';\nimport { AppState } from '../store/app.states';\nimport { LogInSuccess, LogInFailure } from '../store/actions/auth.action';\n\n@Component({\n  selector: 'app-form',\n  templateUrl: './login.component.html',\n  styleUrls: ['./login.component.css']\n})\nexport class LoginComponent implements OnInit {\n\n  public loginForm;\n  public isLogin: boolean;\n\n  constructor(private fb: FormBuilder,\n              private sportsService: SportsListService,\n              private router: Router,\n              private store: Store<AppState>\n  ) { }\n\n  ngOnInit(): void {\n    this.loginForm = this.fb.group({\n      username: ['Please Enter Name', [Validators.required]],\n      password: ['Please Enter Password', [Validators.required]]\n    });\n  }\n\n  onSubmit(credentials: any): void {\n    this.sportsService.getLoginCheck().subscribe(checklogin => {\n      if (credentials && checklogin) {\n        const login = checklogin;\n        for (let i = 0; i <= login.length - 1; i++) {\n          if (login[i].username === credentials.username) {\n            this.isLogin = true;\n            this.router.navigate(['/list', { term: true }]);\n            alert(`${credentials.username} Login Successfully`);\n            this.dispatchAction(credentials, true);\n            break;\n          } else {\n            this.isLogin = false;\n          }\n        }\n      }\n      if (this.isLogin === false) {\n        this.dispatchAction(credentials, false);\n      }\n    },\n      (error) => {\n        console.log('Error in Fetching Login API');\n      }\n    );\n  }\n\n  dispatchAction(credentials, isLogin?): void {\n    const payload = {\n      username: credentials.username,\n      password: credentials.password\n    };\n    if (isLogin) {\n      (document.getElementById('login-button') as any).disabled = true;\n      (document.getElementById('register-button') as any).disabled = true;\n      (document.getElementById('logout-button') as any).disabled = false;\n      this.store.dispatch(new LogInSuccess(payload));\n    } else {\n      (document.getElementById('login-button') as any).disabled = false;\n      (document.getElementById('register-button') as any).disabled = false;\n      (document.getElementById('logout-button') as any).disabled = true;\n      this.store.dispatch(new LogInFailure(payload));\n    }\n  }\n}\n",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\nimport { FormBuilder, Validators } from '@angular/forms';\nimport { SportsListService } from '../service/sports.service';\nimport { Router } from '@angular/router';\nimport { Store } from '@ngrx/store';\nimport { AppState } from '../store/app.states';\nimport { LogInSuccess, LogInFailure } from '../store/actions/auth.action';\n\n@Component({\n  selector: 'app-form',\n  templateUrl: './login.component.html',\n  styleUrls: ['./login.component.css']\n})\nexport class LoginComponent implements OnInit {\n\n  public loginForm: any;\n  public isLogin: boolean;\n\n  constructor(private fb: FormBuilder,\n              private sportsService: SportsListService,\n              private router: Router,\n              private store: Store<AppState>\n  ) { }\n\n  ngOnInit(): void {\n    this.loginForm = this.fb.group({\n      username: ['', [Validators.required]],\n      password: ['', [Validators.required]]\n    });\n  }\n\n  onSubmit(credentials: any): void {\n    this.sportsService.getLoginCheck().subscribe(checklogin => {\n      if (credentials && checklogin) {\n        const login = checklogin;\n        for (let i = 0; i <= login.length - 1; i++) {\n          if (login[i].username === credentials.username) {\n            this.isLogin = true;\n            this.router.navigate(['/list', { term: true }]);\n            alert(`${credentials.username} Login Successfully`);\n            this.dispatchAction(credentials, true);\n            break;\n          } else {\n            this.isLogin = false;\n          }\n        }\n      }\n      if (this.isLogin === false) {\n        this.dispatchAction(credentials, false);\n      }\n    },\n      (error) => {\n        console.log('Error in Fetching Login API');\n      }\n    );\n  }\n\n  dispatchAction(credentials, isLogin?): void {\n    const payload = {\n      username: credentials.username,\n      password: credentials.password\n    };\n    if (isLogin) {\n      (document.getElementById('logout-button') as any).disabled = false;\n      this.store.dispatch(new LogInSuccess(payload));\n    } else {\n      (document.getElementById('logout-button') as any).disabled = true;\n      this.store.dispatch(new LogInFailure(payload));\n    }\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -2205,7 +2241,7 @@
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<div class=\"grid-container\">\n    <div class=\"login\">\n        <p tabindex=\"0\">Login</p>\n    </div>\n    <div>\n        <form [formGroup]=\"loginForm\" class=\"form\">\n            <label for=\"\">UserName :</label>\n            <input type=\"text\" formControlName=\"username\" id=\"username\" aria-label=\"Username\" autocomplete=\"off\">\n\n            <label for=\"\">Password :</label>\n            <input type=\"text\" formControlName=\"password\" aria-label=\"Password\" id=\"password\" autocomplete=\"off\">\n        </form>\n    </div>\n    <div class=\"div2\">\n        <button\n            type=\"button\"\n            class=\"button\"\n            tabindex=\"0\"\n            (click)=\"onSubmit(loginForm.value)\"\n            [disabled]=\"loginForm.invalid\"\n            aria-label=\"Submit Login Form\"\n        >Submit</button>\n        <button\n            type=\"button\"\n            class=\"button\"\n            tabindex=\"0\"\n            [routerLink]=\"['/list']\"\n            aria-label=\"Move Home Page\"\n        >Home</button>\n    </div>\n</div>\n\n"
+            "templateData": "<div class=\"grid-container\">\n    <div class=\"login\">\n        <p tabindex=\"0\">Login</p>\n    </div>\n    <div>\n        <form [formGroup]=\"loginForm\" class=\"form\">\n            <label for=\"username\">UserName :</label>\n            <input type=\"text\" formControlName=\"username\" id=\"username\"\n            placeholder=\"Please Enter Name\" aria-label=\"Username\" autocomplete=\"off\">\n\n            <label for=\"password\">Password :</label>\n            <input type=\"text\" formControlName=\"password\"\n            placeholder=\"Please Enter Password\" aria-label=\"Password\" id=\"password\" autocomplete=\"off\">\n        </form>\n    </div>\n    <div class=\"div2\">\n        <button\n            type=\"button\"\n            class=\"button\"\n            tabindex=\"0\"\n            (click)=\"onSubmit(loginForm.value)\"\n            [disabled]=\"loginForm.invalid\"\n            aria-label=\"Submit Login Form\"\n        >Submit</button>\n        <button\n            type=\"button\"\n            class=\"button\"\n            tabindex=\"0\"\n            [routerLink]=\"['/list']\"\n            aria-label=\"Move Home Page\"\n        >Home</button>\n    </div>\n</div>\n\n"
         },
         {
             "name": "PageComponent",
@@ -2271,7 +2307,7 @@
         },
         {
             "name": "RegisterComponent",
-            "id": "component-RegisterComponent-ea24683fa6194d1c23b153a629c2a356",
+            "id": "component-RegisterComponent-0f0fc598948626fae17a5964ff1725fa",
             "file": "src/app/register-module/register/register.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -2295,7 +2331,7 @@
                     "type": "any",
                     "optional": false,
                     "description": "",
-                    "line": 15,
+                    "line": 14,
                     "modifierKind": [
                         114
                     ]
@@ -2305,7 +2341,7 @@
                     "type": "any",
                     "optional": false,
                     "description": "",
-                    "line": 16,
+                    "line": 15,
                     "modifierKind": [
                         114
                     ]
@@ -2323,7 +2359,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 29,
+                    "line": 27,
                     "jsdoctags": [
                         {
                             "name": "register",
@@ -2340,11 +2376,11 @@
             "description": "",
             "rawdescription": "",
             "type": "component",
-            "sourceCode": "import { Component } from '@angular/core';\nimport { FormBuilder, Validators } from '@angular/forms';\nimport { SportsListService } from '../../service/sports.service';\nimport { Store } from '@ngrx/store';\nimport { AppState } from '../../store/app.states';\nimport { AuthActionTypes, SignUpSuccess, SignUp } from '../../store/actions/auth.action';\n\n@Component({\n  selector: 'app-register',\n  templateUrl: './register.component.html',\n  styleUrls: ['./register.component.css']\n})\nexport class RegisterComponent {\n\n  public registerForm: any;\n  public SportsData: any;\n\n  constructor(private fb: FormBuilder,\n              private sportsService: SportsListService,\n              private store: Store<AppState>\n  ) {\n\n    this.registerForm = this.fb.group({\n      username: ['Please Enter Name', [Validators.required]],\n      password: ['Please Enter Password', [Validators.required]]\n    });\n  }\n\n  onSubmit(register: any): void {\n    const payload = {\n      username: register.username,\n      password: register.password\n    };\n    this.store.dispatch(new SignUp(payload));\n  }\n}\n",
+            "sourceCode": "import { Component } from '@angular/core';\nimport { FormBuilder, Validators } from '@angular/forms';\nimport { Store } from '@ngrx/store';\nimport { AppState } from '../../store/app.states';\nimport { SignUp } from '../../store/actions/auth.action';\n\n@Component({\n  selector: 'app-register',\n  templateUrl: './register.component.html',\n  styleUrls: ['./register.component.css']\n})\nexport class RegisterComponent {\n\n  public registerForm: any;\n  public SportsData: any;\n\n  constructor(private fb: FormBuilder,\n              private store: Store<AppState>\n  ) {\n\n    this.registerForm = this.fb.group({\n      username: ['', [Validators.required]],\n      password: ['', [Validators.required]]\n    });\n  }\n\n  onSubmit(register: any): void {\n    const payload = {\n      username: register.username,\n      password: register.password\n    };\n    this.store.dispatch(new SignUp(payload));\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": ".grid-container {\r\n    width: 30%;\r\n    margin-left: 420px;\r\n    margin-top: 100px;\r\n}\r\n\r\n.form {\r\n    display: grid;\r\n    grid-template-columns: [labels] auto [controls] 1fr;\r\n    grid-auto-flow: row;\r\n    grid-gap: .8em;\r\n    background: #eee;\r\n    padding: 1.2em;\r\n}\r\n\r\n.myForm > label  {\r\n    grid-column: controls;\r\n    grid-row: auto;\r\n}\r\n\r\n.myForm > input {\r\n    grid-column: controls;\r\n    grid-row: auto;\r\n    border: none;\r\n    padding: 1em;\r\n}\r\n\r\n.myForm > button {\r\n    grid-row: controls;\r\n    grid-row: auto;\r\n    border: none;\r\n    padding: 1em;\r\n}\r\n\r\n.button {\r\n    margin: 8px;\r\n    padding: 3px 10px 3px 10px;\r\n}\r\n\r\n.div2 {\r\n    background: lightseagreen;\r\n}\r\n\r\n*{  margin: 0;\r\n    padding: 0;\r\n    box-sizing: border-box;\r\n    text-align: center;\r\n    font-family: '',\r\n    cursive;\r\n}\r\n\r\n.login {\r\n    background-color: lightseagreen;\r\n    padding: 11px;\r\n}\r\n\r\n",
+                    "data": ".grid-container {\r\n    width: 30%;\r\n    margin-left: 420px;\r\n    margin-top: 100px;\r\n}\r\n\r\n.forms {\r\n    display: grid;\r\n    grid-template-columns: [labels] auto [controls] 1fr;\r\n    grid-auto-flow: row;\r\n    grid-gap: .8em;\r\n    background: #eee;\r\n    padding: 1.2em;\r\n}\r\n\r\n.myForm > label  {\r\n    grid-column: controls;\r\n    grid-row: auto;\r\n}\r\n\r\n.myForm > input {\r\n    grid-column: controls;\r\n    grid-row: auto;\r\n    border: none;\r\n    padding: 1em;\r\n}\r\n\r\n.myForm > button {\r\n    grid-row: controls;\r\n    grid-row: auto;\r\n    border: none;\r\n    padding: 1em;\r\n}\r\n\r\n.button {\r\n    margin: 8px;\r\n    padding: 3px 10px 3px 10px;\r\n}\r\n\r\n.div2 {\r\n    background: lightseagreen;\r\n}\r\n\r\n*{  margin: 0;\r\n    padding: 0;\r\n    box-sizing: border-box;\r\n    text-align: center;\r\n    font-family: '',\r\n    cursive;\r\n}\r\n\r\n.login {\r\n    background-color: lightseagreen;\r\n    padding: 11px;\r\n}\r\n\r\n",
                     "styleUrl": "./register.component.css"
                 }
             ],
@@ -2358,26 +2394,15 @@
                         "type": "FormBuilder"
                     },
                     {
-                        "name": "sportsService",
-                        "type": "SportsListService"
-                    },
-                    {
                         "name": "store",
                         "type": "Store<AppState>"
                     }
                 ],
-                "line": 16,
+                "line": 15,
                 "jsdoctags": [
                     {
                         "name": "fb",
                         "type": "FormBuilder",
-                        "tagName": {
-                            "text": "param"
-                        }
-                    },
-                    {
-                        "name": "sportsService",
-                        "type": "SportsListService",
                         "tagName": {
                             "text": "param"
                         }
@@ -2391,11 +2416,11 @@
                     }
                 ]
             },
-            "templateData": "<div class=\"grid-container\">\n    <div class=\"login\">\n        <p tabindex=\"0\">Sign up</p>\n    </div>\n    <div>\n        <form [formGroup]=\"registerForm\" class=\"form\">\n            <label for=\"\">UserName :</label>\n            <input\n              type=\"text\"\n              formControlName=\"username\"\n              name=\"username\"\n              autocomplete=\"off\"\n              aria-label=\"User Name\"\n            >\n\n            <label for=\"\">Password :</label>\n            <input\n             type=\"text\"\n             formControlName=\"password\"\n             name=\"password\"\n             autocomplete=\"off\"\n             aria-label=\"Password\"\n            >\n        </form>\n    </div>\n    <div class=\"div2\">\n        <button\n         type=\"button\"\n         class=\"button\"\n         tabindex=\"0\"\n         (click)=\"onSubmit(registerForm.value)\"\n         aria-label=\"Add User\"\n        >Add User</button>\n        <button\n         type=\"button\"\n         class=\"button\"\n         tabindex=\"0\"\n         [routerLink]=\"['/list']\"\n         aria-label=\"Move Home Page\"\n        >Home</button>\n    </div>\n</div>\n\n\n"
+            "templateData": "<div class=\"grid-container\">\n    <div class=\"login\">\n        <p tabindex=\"0\">Sign up</p>\n    </div>\n    <div>\n        <form [formGroup]=\"registerForm\" class=\"forms\">\n            <label for=\"username\">UserName :</label>\n            <input\n              type=\"text\"\n              formControlName=\"username\"\n              name=\"username\"\n              placeholder=\"Please Enter Name\"\n              autocomplete=\"off\"\n              aria-label=\"User Name\"\n            >\n\n            <label for=\"password\">Password :</label>\n            <input\n             type=\"text\"\n             formControlName=\"password\"\n             name=\"password\"\n             placeholder=\"Please Enter Password\"\n             autocomplete=\"off\"\n             aria-label=\"Password\"\n            >\n        </form>\n    </div>\n    <div class=\"div2\">\n        <button\n         type=\"button\"\n         class=\"button\"\n         tabindex=\"0\"\n         [disabled]=\"registerForm.invalid\"\n         (click)=\"onSubmit(registerForm.value)\"\n         aria-label=\"Add User\"\n        >Add User</button>\n        <button\n         type=\"button\"\n         class=\"button\"\n         tabindex=\"0\"\n         [routerLink]=\"['/list']\"\n         aria-label=\"Move Home Page\"\n        >Home</button>\n    </div>\n</div>\n\n\n"
         },
         {
             "name": "SportsComponent",
-            "id": "component-SportsComponent-0422dafd6197e4a41321c0955d724fca",
+            "id": "component-SportsComponent-867a2f8af4ca383e66fcb8857d84ac63",
             "file": "src/app/sports/sports.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -2423,7 +2448,7 @@
                     "type": "Observable<any>",
                     "optional": false,
                     "description": "",
-                    "line": 20
+                    "line": 22
                 },
                 {
                     "name": "loginData",
@@ -2431,7 +2456,7 @@
                     "type": "Array<any>",
                     "optional": false,
                     "description": "",
-                    "line": 17,
+                    "line": 18,
                     "modifierKind": [
                         114
                     ]
@@ -2442,7 +2467,18 @@
                     "type": "[]",
                     "optional": false,
                     "description": "",
-                    "line": 18,
+                    "line": 19,
+                    "modifierKind": [
+                        114
+                    ]
+                },
+                {
+                    "name": "tableTitle",
+                    "defaultValue": "'Sports Club'",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 21,
                     "modifierKind": [
                         114
                     ]
@@ -2453,7 +2489,7 @@
                     "type": "",
                     "optional": false,
                     "description": "",
-                    "line": 19,
+                    "line": 20,
                     "modifierKind": [
                         114
                     ]
@@ -2466,24 +2502,24 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 53
+                    "line": 59
                 },
                 {
                     "name": "deleteSports",
                     "args": [
                         {
                             "name": "id",
-                            "type": ""
+                            "type": "any"
                         }
                     ],
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 48,
+                    "line": 51,
                     "jsdoctags": [
                         {
                             "name": "id",
-                            "type": "",
+                            "type": "any",
                             "tagName": {
                                 "text": "param"
                             }
@@ -2496,24 +2532,24 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 29
+                    "line": 30
                 },
                 {
                     "name": "updateSports",
                     "args": [
                         {
                             "name": "id",
-                            "type": ""
+                            "type": "any"
                         }
                     ],
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 44,
+                    "line": 47,
                     "jsdoctags": [
                         {
                             "name": "id",
-                            "type": "",
+                            "type": "any",
                             "tagName": {
                                 "text": "param"
                             }
@@ -2526,11 +2562,11 @@
             "description": "",
             "rawdescription": "",
             "type": "component",
-            "sourceCode": "import { Component, OnInit } from '@angular/core';\nimport { SportsListService } from '../service/sports.service';\nimport { Router, ActivatedRoute } from '@angular/router';\nimport { Store } from '@ngrx/store';\nimport { AppState, selectAuthState } from '../store/app.states';\nimport { Observable } from 'rxjs';\nimport { ListSports, DeleteSports } from '../store/actions/auth.action';\n\n@Component({\n  selector: 'app-listing-page',\n  templateUrl: './sports.component.html',\n  styleUrls: ['./sports.component.css'],\n  providers: [SportsListService]\n})\nexport class SportsComponent implements OnInit {\n\n  public loginData: Array<any> = [];\n  public sportsData = [];\n  public userLoginStatus = false;\n  getState: Observable<any>;\n\n  constructor(private sportsService: SportsListService,\n              private router: Router,\n              private activatedRoute: ActivatedRoute,\n              private store: Store<AppState> ) {\n    this.getState = this.store.select(selectAuthState);\n  }\n\n  ngOnInit(): void {\n    this.store.dispatch(new ListSports());\n    this.store.subscribe(data => {\n      this.sportsData = data.sport.sports;\n    });\n\n    this.activatedRoute.params.subscribe(param => {\n      this.userLoginStatus = param.term;\n    },\n      (error) => {\n        console.log('Error in Fetch Route Parameter');\n      }\n    );\n  }\n\n  updateSports(id): void {\n    this.router.navigate(['/addsports', id]);\n  }\n\n  deleteSports(id): void {\n    this.store.dispatch(new DeleteSports(id));\n    this.store.dispatch(new ListSports());\n  }\n\n  addSports(): void {\n    this.router.navigate(['/addsports']);\n  }\n\n}\n",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\nimport { SportsListService } from '../service/sports.service';\nimport { Router, ActivatedRoute } from '@angular/router';\nimport { Store } from '@ngrx/store';\nimport { AppState, selectAuthState } from '../store/app.states';\nimport { Observable } from 'rxjs';\nimport { ListSports, DeleteSports } from '../store/actions/auth.action';\n\n@Component({\n  selector: 'app-listing-page',\n  templateUrl: './sports.component.html',\n  styleUrls: ['./sports.component.css'],\n  providers: [SportsListService]\n})\n\nexport class SportsComponent implements OnInit {\n\n  public loginData: Array<any> = [];\n  public sportsData = [];\n  public userLoginStatus = false;\n  public tableTitle = 'Sports Club';\n  getState: Observable<any>;\n\n  constructor(private router: Router,\n              private activatedRoute: ActivatedRoute,\n              private store: Store<AppState> ) {\n    this.getState = this.store.select(selectAuthState);\n  }\n\n  ngOnInit(): void {\n    this.store.dispatch(new ListSports());\n    this.store.subscribe(data => {\n      if (data && data.sport && data.sport.sports) {\n        this.sportsData = data.sport.sports;\n      }\n    });\n\n    this.activatedRoute.params.subscribe(param => {\n      this.userLoginStatus = param.term;\n    },\n      (error) => {\n        console.log('Error in Fetch Route Parameter');\n      }\n    );\n  }\n\n  updateSports(id: any): void {\n    this.router.navigate(['/addsports', id]);\n  }\n\n  deleteSports(id: any): void {\n    if (confirm('Are you sure to delete sport')) {\n      this.store.dispatch(new DeleteSports(id));\n      this.store.dispatch(new ListSports());\n    } else {\n    }\n  }\n\n  addSports(): void {\n    this.router.navigate(['/addsports']);\n  }\n\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": ".list {\r\n    width: auto;\r\n    margin-top: 25px;\r\n    border: 1px solid black;\r\n}\r\n\r\ntable {\r\n    font-family: arial, sans-serif;\r\n    border-collapse: collapse;\r\n    width: 100%;\r\n}\r\n\r\ntd, th {\r\n    border: 1px solid #dddddd;\r\n    text-align: left;\r\n    padding: 8px;\r\n    text-align: center;\r\n}\r\n\r\ntr:nth-child(even) {\r\n    background-color: #dddddd;\r\n}\r\n\r\n.heading {\r\n    background-color: lightseagreen;\r\n    padding: 6px;\r\n    margin-top: 0px;\r\n    color: white;\r\n}\r\n\r\n.button {\r\n    padding: 6px 15px;\r\n    margin-right: 10px;\r\n}\r\n\r\n.add {\r\n    background-color: lightseagreen;\r\n    padding: 5px;\r\n    margin-top: 17px;\r\n}\r\n\r\n.add-button {\r\n    padding: 6px 15px;\r\n    margin-left: 646px;\r\n}\r\n",
+                    "data": ".list {\r\n    width: auto;\r\n    margin-top: 25px;\r\n    border: 1px solid black;\r\n}\r\n\r\ntable {\r\n    font-family: arial, sans-serif;\r\n    border-collapse: collapse;\r\n    width: 100%;\r\n}\r\n\r\ntd, th {\r\n    border: 1px solid #dddddd;\r\n    text-align: left;\r\n    padding: 8px;\r\n    text-align: center;\r\n}\r\n\r\ntr:nth-child(even) {\r\n    background-color: #dddddd;\r\n}\r\n\r\n.heading {\r\n    background-color: lightseagreen;\r\n    padding: 6px;\r\n    margin-top: 0px;\r\n    color: white;\r\n}\r\n\r\n.button {\r\n    padding: 6px 15px;\r\n    margin-right: 10px;\r\n}\r\n\r\n.add {\r\n    background-color: lightseagreen;\r\n    margin-top: 21px;\r\n    margin-bottom: 0px;\r\n}\r\n\r\n.table-bottom {\r\n    display: inline-flex;\r\n}\r\n\r\n.add-button {\r\n    margin-left: 646px;\r\n    padding: 6px;\r\n    padding-bottom: 4px;\r\n    margin-top: 9px;\r\n    margin-bottom: 10px;\r\n}\r\n\r\n",
                     "styleUrl": "./sports.component.css"
                 }
             ],
@@ -2539,10 +2575,6 @@
                 "name": "constructor",
                 "description": "",
                 "args": [
-                    {
-                        "name": "sportsService",
-                        "type": "SportsListService"
-                    },
                     {
                         "name": "router",
                         "type": "Router"
@@ -2556,15 +2588,8 @@
                         "type": "Store<AppState>"
                     }
                 ],
-                "line": 20,
+                "line": 22,
                 "jsdoctags": [
-                    {
-                        "name": "sportsService",
-                        "type": "SportsListService",
-                        "tagName": {
-                            "text": "param"
-                        }
-                    },
                     {
                         "name": "router",
                         "type": "Router",
@@ -2591,7 +2616,7 @@
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<div class=\"list\">\n    <table style=\"width:100%\">\n        <caption>\n           <div>\n             <h2\n             class=\"heading\"\n             tabindex=\"0\"\n            >Sports Club</h2>\n           </div>\n        </caption>\n        <tr>\n            <th tabindex=\"0\">Sr. No.</th>\n            <th tabindex=\"0\">Sports Title</th>\n            <th tabindex=\"0\">Description</th>\n            <th tabindex=\"0\">Category</th>\n            <th tabindex=\"0\">Actions</th>\n        </tr>\n        <tr *ngFor=\"let item of sportsData\">\n            <td tabindex=\"0\">{{item.id}}</td>\n            <td tabindex=\"0\">{{item.sportsTitle}}</td>\n            <td tabindex=\"0\">{{item.description}}</td>\n            <td tabindex=\"0\">{{item.category}}</td>\n            <td tabindex=\"0\">\n                <button type=\"button\" aria-label=\"Update\" [disabled]=\"!userLoginStatus\" class=\"button\" (click)=\"updateSports(item.id)\">Update</button>\n                <button type=\"button\" aria-label=\"Delete\" [disabled]=\"!userLoginStatus\" class=\"button\" (click)=\"deleteSports(item.id)\" >Delete</button>\n            </td>\n        </tr>\n    </table>\n    <div>\n        <div class=\"add\">\n            <button type=\"button\" aria-label=\"Add Sport\" class=\"add-button\" [disabled]=\"!userLoginStatus\" (click)=\"addSports()\">Add Sport</button>\n        </div>\n    </div>\n</div>"
+            "templateData": "<div class=\"list\">\n    <table style=\"width:100%\">\n        <caption>\n           <div>\n             <h2\n             class=\"heading\"\n             tabindex=\"0\"\n            >{{tableTitle}}</h2>\n           </div>\n        </caption>\n        <tr>\n            <th tabindex=\"0\">Sr. No.</th>\n            <th tabindex=\"0\">Sports Title</th>\n            <th tabindex=\"0\">Description</th>\n            <th tabindex=\"0\">Category</th>\n            <th tabindex=\"0\">Actions</th>\n        </tr>\n        <tr *ngFor=\"let item of sportsData\">\n            <td tabindex=\"0\">{{item.id}}</td>\n            <td tabindex=\"0\">{{item.sportsTitle}}</td>\n            <td tabindex=\"0\">{{item.description}}</td>\n            <td tabindex=\"0\">{{item.category}}</td>\n            <td tabindex=\"0\">\n                <button type=\"button\" tabindex=\"0\" aria-label=\"Update\" [disabled]=\"!userLoginStatus\" class=\"button\" (click)=\"updateSports(item.id)\">Update</button>\n                <button type=\"button\" tabindex=\"0\" aria-label=\"Delete\" [disabled]=\"!userLoginStatus\" class=\"button\" (click)=\"deleteSports(item.id)\" >Delete</button>\n            </td>\n        </tr>\n    </table>\n    <div class=\"add\">\n        <div class=\"table-bottom\">\n            <button type=\"button\" tabindex=\"0\" aria-label=\"Add Sport\" class=\"add-button\"  [disabled]=\"!userLoginStatus\" (click)=\"addSports()\">Add Sport</button>\n            <footer-element></footer-element>\n        </div>\n    </div>\n</div>"
         }
     ],
     "modules": [
@@ -2760,14 +2785,6 @@
                 "defaultValue": "'[Sports] Add sport success'"
             },
             {
-                "name": "context",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "test.ts",
-                "type": "",
-                "defaultValue": "require.context('./', true, /\\.spec\\.ts$/)"
-            },
-            {
                 "name": "DELETE_SPORTS",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -2787,17 +2804,17 @@
                 "name": "environment",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/environments/environment.ts",
+                "file": "src/environments/environment.prod.ts",
                 "type": "object",
-                "defaultValue": "{\n  production: false,\n  baseRefUrl : 'http://localhost:3000'\n}"
+                "defaultValue": "{\n  production: true,\n  baseRefUrl : 'http://localhost:3000'\n}"
             },
             {
                 "name": "environment",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/environments/environment.prod.ts",
+                "file": "src/environments/environment.ts",
                 "type": "object",
-                "defaultValue": "{\n  production: true,\n  baseRefUrl : 'http://localhost:3000'\n}"
+                "defaultValue": "{\n  production: false,\n  baseRefUrl : 'http://localhost:3000'\n}"
             },
             {
                 "name": "initializeState",
@@ -2872,6 +2889,14 @@
                 "defaultValue": "Template.bind({})"
             },
             {
+                "name": "mainColor",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/lit-Elements/heading-element.ts",
+                "type": "",
+                "defaultValue": "css`white`"
+            },
+            {
                 "name": "Primary",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -2886,13 +2911,6 @@
                 "file": "src/app/store/app.states.ts",
                 "type": "object",
                 "defaultValue": "{\r\n    auth: auth.reducer,\r\n    sport: auth.reducer\r\n}"
-            },
-            {
-                "name": "require",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "test.ts",
-                "type": "literal type"
             },
             {
                 "name": "Secondary",
@@ -3118,21 +3136,14 @@
                     "defaultValue": "'[Sports] Update sport success'"
                 }
             ],
-            "test.ts": [
+            "src/environments/environment.prod.ts": [
                 {
-                    "name": "context",
+                    "name": "environment",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "test.ts",
-                    "type": "",
-                    "defaultValue": "require.context('./', true, /\\.spec\\.ts$/)"
-                },
-                {
-                    "name": "require",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "test.ts",
-                    "type": "literal type"
+                    "file": "src/environments/environment.prod.ts",
+                    "type": "object",
+                    "defaultValue": "{\n  production: true,\n  baseRefUrl : 'http://localhost:3000'\n}"
                 }
             ],
             "src/environments/environment.ts": [
@@ -3143,16 +3154,6 @@
                     "file": "src/environments/environment.ts",
                     "type": "object",
                     "defaultValue": "{\n  production: false,\n  baseRefUrl : 'http://localhost:3000'\n}"
-                }
-            ],
-            "src/environments/environment.prod.ts": [
-                {
-                    "name": "environment",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/environments/environment.prod.ts",
-                    "type": "object",
-                    "defaultValue": "{\n  production: true,\n  baseRefUrl : 'http://localhost:3000'\n}"
                 }
             ],
             "src/app/store/app.states.ts": [
@@ -3292,6 +3293,16 @@
                     "type": "Story<Page>",
                     "defaultValue": "(args: Page) => ({\n  component: Page,\n  props: args,\n})"
                 }
+            ],
+            "src/app/lit-Elements/heading-element.ts": [
+                {
+                    "name": "mainColor",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/lit-Elements/heading-element.ts",
+                    "type": "",
+                    "defaultValue": "css`white`"
+                }
             ]
         },
         "groupedFunctions": {
@@ -3425,7 +3436,10 @@
                                         "children": [
                                             {
                                                 "path": "",
-                                                "component": "RegisterComponent"
+                                                "component": "RegisterComponent",
+                                                "canDeactivate": [
+                                                    "AuthGuard"
+                                                ]
                                             }
                                         ],
                                         "kind": "module"
@@ -3477,12 +3491,49 @@
                 "status": "low"
             },
             {
+                "filePath": "src/app/lit-Elements/footer.element.ts",
+                "type": "class",
+                "linktype": "classe",
+                "name": "FooterElement",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/lit-Elements/heading-element.ts",
+                "type": "class",
+                "linktype": "classe",
+                "name": "HeaderTitleElement",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/lit-Elements/heading-element.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "mainColor",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
                 "filePath": "src/app/login/login.component.ts",
                 "type": "component",
                 "linktype": "component",
                 "name": "LoginComponent",
                 "coveragePercent": 0,
                 "coverageCount": "0/7",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/register-module/guards/auth.guard.ts",
+                "type": "guard",
+                "linktype": "guard",
+                "name": "AuthGuard",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
                 "status": "low"
             },
             {
@@ -3500,7 +3551,7 @@
                 "linktype": "injectable",
                 "name": "SportsListService",
                 "coveragePercent": 0,
-                "coverageCount": "0/11",
+                "coverageCount": "0/9",
                 "status": "low"
             },
             {
@@ -3509,7 +3560,7 @@
                 "linktype": "component",
                 "name": "AddSportsComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/13",
+                "coverageCount": "0/15",
                 "status": "low"
             },
             {
@@ -3518,7 +3569,7 @@
                 "linktype": "component",
                 "name": "SportsComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/10",
+                "coverageCount": "0/11",
                 "status": "low"
             },
             {
@@ -3800,7 +3851,7 @@
                 "linktype": "injectable",
                 "name": "AuthEffects",
                 "coveragePercent": 0,
-                "coverageCount": "0/11",
+                "coverageCount": "0/10",
                 "status": "low"
             },
             {
@@ -4004,26 +4055,6 @@
                 "name": "PageComponent",
                 "coveragePercent": 0,
                 "coverageCount": "0/5",
-                "status": "low"
-            },
-            {
-                "filePath": "test.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "context",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "test.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "require",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
                 "status": "low"
             }
         ]

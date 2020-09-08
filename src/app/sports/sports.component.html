@@ -1,35 +1,37 @@
 <div class="list">
-    <table style="width:100%">
-        <caption>
-           <div>
-             <h2
-             class="heading"
-             tabindex="0"
-            >{{tableTitle}}</h2>
-           </div>
-        </caption>
-        <tr>
-            <th tabindex="0">Sr. No.</th>
-            <th tabindex="0">Sports Title</th>
-            <th tabindex="0">Description</th>
-            <th tabindex="0">Category</th>
-            <th tabindex="0">Actions</th>
-        </tr>
-        <tr *ngFor="let item of sportsData">
-            <td tabindex="0">{{item.id}}</td>
-            <td tabindex="0">{{item.sportsTitle}}</td>
-            <td tabindex="0">{{item.description}}</td>
-            <td tabindex="0">{{item.category}}</td>
-            <td tabindex="0">
-                <button type="button" tabindex="0" aria-label="Update" [disabled]="!userLoginStatus" class="button" (click)="updateSports(item.id)">Update</button>
-                <button type="button" tabindex="0" aria-label="Delete" [disabled]="!userLoginStatus" class="button" (click)="deleteSports(item.id)" >Delete</button>
-            </td>
-        </tr>
-    </table>
+    <div class="scroll">
+        <table class="table">
+            <caption>
+               <div class="table-header">
+                 <h2
+                 class="heading"
+                 tabindex="0"
+                >{{tableTitle}}</h2>
+                <button type="button" tabindex="0" aria-label="Add Sport" class="add-button"  [disabled]="!userLoginStatus" (click)="addSports()">Add Sport</button>
+               </div>
+            </caption>
+            <tr>
+                <th tabindex="0">Sr. No.</th>
+                <th tabindex="0">Sports Title</th>
+                <th tabindex="0">Description</th>
+                <th tabindex="0">Category</th>
+                <th tabindex="0">Actions</th>
+            </tr>
+            <tr *ngFor="let item of sportsData">
+                <td tabindex="0">{{item.id}}</td>
+                <td tabindex="0">{{item.sportsTitle}}</td>
+                <td tabindex="0">{{item.description}}</td>
+                <td tabindex="0">{{item.category}}</td>
+                <td tabindex="0">
+                    <div class="crud-button">
+                        <button type="button" tabindex="0" aria-label="Update" [disabled]="!userLoginStatus" class="button" (click)="updateSports(item.id)">Update</button>
+                        <button type="button" tabindex="0" aria-label="Delete" [disabled]="!userLoginStatus" class="button" (click)="deleteSports(item.id)" >Delete</button>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
     <div class="add">
-        <div class="table-bottom">
-            <button type="button" tabindex="0" aria-label="Add Sport" class="add-button"  [disabled]="!userLoginStatus" (click)="addSports()">Add Sport</button>
-            <footer-element></footer-element>
-        </div>
+        <footer-element></footer-element>
     </div>
 </div>

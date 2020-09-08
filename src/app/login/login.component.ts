@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
             this.isLogin = true;
             this.router.navigate(['/list', { term: true }]);
             alert(`${credentials.username} Login Successfully`);
-            this.dispatchAction(credentials, true);
+            this.dispatchAction(credentials, this.isLogin);
             break;
           } else {
             this.isLogin = false;
@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
         }
       }
       if (this.isLogin === false) {
-        this.dispatchAction(credentials, false);
+        this.dispatchAction(credentials, this.isLogin);
       }
     },
       (error) => {
@@ -61,10 +61,8 @@ export class LoginComponent implements OnInit {
       password: credentials.password
     };
     if (isLogin) {
-      (document.getElementById('logout-button') as any).disabled = false;
       this.store.dispatch(new LogInSuccess(payload));
     } else {
-      (document.getElementById('logout-button') as any).disabled = true;
       this.store.dispatch(new LogInFailure(payload));
     }
   }

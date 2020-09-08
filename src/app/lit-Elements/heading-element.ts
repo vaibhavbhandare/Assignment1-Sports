@@ -13,6 +13,12 @@ export class HeaderTitleElement extends LitElement {
               color: ${mainColor};
               margin: 19px;
             }
+            @media only screen and (max-width: 760px) {
+                h3 {
+                    color: ${mainColor};
+                    margin: 9px;
+                  }
+            }
         `;
     }
 
