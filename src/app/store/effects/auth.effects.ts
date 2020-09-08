@@ -24,18 +24,6 @@ export class AuthEffects {
     ) { }
 
     // effects go here
-    @Effect()
-    LogIn: Observable<any> = this.actions.pipe(
-        ofType(AuthActionTypes.LOGIN)).pipe(
-            map((action: LogIn) => action.payload)).pipe(switchMap(payload => {
-                return this.sportsListService.logIn(payload.username, payload.password).pipe(
-                    map((user) => {
-                        return new LogInSuccess({ username: payload.username, password: payload.password });
-                    })).pipe(catchError((error) => {
-                        return of(new LogInFailure({ error: 'error' }));
-                    }));
-            }));
-
     @Effect({ dispatch: false })
     LogInSuccess: Observable<any> = this.actions.pipe(
         ofType(AuthActionTypes.LOGIN_SUCCESS),

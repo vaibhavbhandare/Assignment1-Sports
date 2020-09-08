@@ -57,4 +57,20 @@ describe('AddSportsComponent', () => {
     expect(component.showUpdateForm).toBeDefined();
   });
 
+  it('should have getSports Called', () => {
+    spyOn(component, 'getSports');
+    component = fixture.debugElement.componentInstance;
+    fixture.detectChanges();
+    component.ngOnInit();
+    expect(component.getSports).toHaveBeenCalled();
+  });
+
+  it('should have isRegisterFormToUpdate Called', () => {
+    spyOn(component, 'isRegisterFormToUpdate');
+    component = fixture.debugElement.componentInstance;
+    fixture.detectChanges();
+    component.ngOnInit();
+    expect(component.isRegisterFormToUpdate).toHaveBeenCalled();
+  });
+
 });

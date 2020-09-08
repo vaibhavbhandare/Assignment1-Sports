@@ -4,7 +4,7 @@ import { LoginComponent } from './login/login.component';
 import { SportsComponent } from './sports/sports.component';
 import { AddSportsComponent } from './sports/add-sports/addsports.component';
 
-const routes: Routes = [
+export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'list', component: SportsComponent },
   { path: 'addsports', component: AddSportsComponent },

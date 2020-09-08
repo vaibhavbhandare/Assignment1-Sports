@@ -36,9 +36,4 @@ export class SportsListService {
   addLogin(userLogin: any): Observable<any> {
     return this.http.post(`${this.baseRefUrl}/` + 'login', userLogin);
   }
-
-  logIn(username: string, password: string): Observable<any> {
-    const url = `${this.baseRefUrl}/` + 'login';
-    return this.http.post(url, {username, password});
-  }
 }

@@ -49,8 +49,11 @@ export class SportsComponent implements OnInit {
   }
 
   deleteSports(id: any): void {
-    this.store.dispatch(new DeleteSports(id));
-    this.store.dispatch(new ListSports());
+    if (confirm('Are you sure to delete sport')) {
+      this.store.dispatch(new DeleteSports(id));
+      this.store.dispatch(new ListSports());
+    } else {
+    }
   }
 
   addSports(): void {

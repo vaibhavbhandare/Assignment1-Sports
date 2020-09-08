@@ -14,6 +14,11 @@
       "username": "tavisca",
       "password": "tavisca",
       "id": "yQCH5Xt"
+    },
+    {
+      "username": "vaibhav",
+      "password": "vaibhav",
+      "id": "7alg37n"
     }
   ],
   "data": [
@@ -34,12 +39,6 @@
       "sportsTitle": "Hockey",
       "category": "Team Sports",
       "description": "Field hockey is played in the Summer Olympic Games."
-    },
-    {
-      "id": "4",
-      "sportsTitle": "Cricket",
-      "category": "Team Sports",
-      "description": "Cricket is a game played with a bat and ball on a large field"
     }
   ]
 }

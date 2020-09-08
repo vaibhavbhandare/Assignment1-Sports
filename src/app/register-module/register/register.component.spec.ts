@@ -38,4 +38,14 @@ describe('RegisterComponent', () => {
     component = fixture.componentInstance;
     expect(component).toBeTruthy();
   });
+
+  it(`should have 'RegisterForm declared`, () => {
+    fixture.detectChanges();
+    expect(component.registerForm).toBeTruthy();
+  });
+
+  it(`should have 'SportsData' declared`, () => {
+    fixture.detectChanges();
+    expect(component.SportsData).toBeUndefined();
+  });
 });

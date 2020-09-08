@@ -47,4 +47,16 @@ describe('SportsComponent', () => {
     expect(compiled.querySelector('h2').textContent).toContain('Sports Club');
   });
 
+  it('should have userLoginStatus false', () => {
+    expect(component.userLoginStatus).toBeFalsy();
+  });
+
+  it('should have sportsData empty', () => {
+    expect(component.sportsData.length).toEqual(0);
+  });
+
+  it('should have loginData empty', () => {
+    expect(component.sportsData.length).toEqual(0);
+  });
+
 });
