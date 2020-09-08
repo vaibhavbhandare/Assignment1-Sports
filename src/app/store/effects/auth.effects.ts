@@ -6,7 +6,7 @@ import { Observable, of } from 'rxjs';
 import { tap, map, switchMap, catchError, mergeMap } from 'rxjs/operators';
 import {
     AuthActionTypes,
-    LogIn, LogInSuccess, LogInFailure,
+    LogInSuccess, LogInFailure,
     SignUp, SignUpSuccess, SignUpFailure, LIST_SPORTS, ListSports,
     ListDataSuccess, ADD_SPORTS, AddSportsSuccess, AddSports, DeleteSportSuccess,
     DELETE_SPORTS, DeleteSports, UPDATE_SPORTS, UpdateSports, UpdateSportsSuccess

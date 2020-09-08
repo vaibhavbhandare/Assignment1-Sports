@@ -20,11 +20,6 @@ export const ADD_SPORTS_SUCCESS = '[Sports] Add sport success';
 export const DELETE_SPORTS_SUCCESS = '[Sports] Delete sport success';
 export const UPDATE_SPORTS_SUCCESS = '[Sports] Update sport success';
 
-export class LogIn implements Action {
-    readonly type = AuthActionTypes.LOGIN;
-    constructor(public payload: any) {}
-}
-
 export class LogInSuccess implements Action {
     readonly type = AuthActionTypes.LOGIN_SUCCESS;
     constructor(public payload: any) {}
@@ -65,27 +60,27 @@ export class ListDataSuccess implements Action {
 
 export class AddSports implements Action {
   readonly type = ADD_SPORTS;
-  constructor(public payload: Sport) {}
+  constructor(public payload: Sport[]) {}
 }
 
 export class AddSportsSuccess implements Action {
   readonly type = ADD_SPORTS_SUCCESS;
-  constructor(public payload: Sport) {}
+  constructor(public payload: Sport[]) {}
 }
 
 export class UpdateSports implements Action {
   readonly type = UPDATE_SPORTS;
-  constructor(public payload: Sport) {}
+  constructor(public payload: Sport[]) {}
 }
 
 export class UpdateSportsSuccess implements Action {
   readonly type = UPDATE_SPORTS_SUCCESS;
-  constructor(public payload: Sport) {}
+  constructor(public payload: Sport[]) {}
 }
 
 export class DeleteSports implements Action {
   readonly type = DELETE_SPORTS;
-  constructor(public payload: string) {}
+  constructor(public payload) {}
 }
 
 export class DeleteSportSuccess implements Action {
@@ -93,7 +88,6 @@ export class DeleteSportSuccess implements Action {
 }
 
 export type All =
-    | LogIn
     | LogInSuccess
     | LogInFailure
     | SignUp
