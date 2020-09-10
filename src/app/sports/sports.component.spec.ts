@@ -56,7 +56,7 @@ describe('SportsComponent', () => {
   });
 
   it('should have loginData empty', () => {
-    expect(component.sportsData.length).toEqual(0);
+    expect(component.loginData.length).toEqual(0);
   });
 
 });

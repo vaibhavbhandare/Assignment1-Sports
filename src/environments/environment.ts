@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  baseRefUrl : 'http://localhost:3000'
+  baseRefUrl : 'http://localhost:3000',
+  providers: []
 };
 
 /*

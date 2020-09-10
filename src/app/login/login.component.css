@@ -1,6 +1,6 @@
 .grid-container {
-    width: 30%;
-    margin-left: 420px;
+    width: 45%;
+    margin-left: calc(100vw/3 - 90px)!important;
     margin-top: 100px;
 }
 
@@ -52,4 +52,5 @@
 .login {
     background-color: lightseagreen;
     padding: 11px;
+    color: white;
 }

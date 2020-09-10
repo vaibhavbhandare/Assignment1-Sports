@@ -65,11 +65,11 @@ tr:nth-child(even) {
     }
 }
 
-@media only screen and (max-width: 1125px) {
+@media only screen and (max-width: 1165px) {
     .heading {
         color: white;
         margin: 12px;
-        padding-left: calc(100vw/2 + 1px)!important;
+        padding-left: calc(100vw/3 + 1px)!important;
     }
 
     .add-button {

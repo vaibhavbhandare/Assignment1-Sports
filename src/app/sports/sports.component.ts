@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SportsListService } from '../service/sports.service';
+import { SportsListService } from '../service/mock.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AppState, selectAuthState } from '../store/app.states';
@@ -23,7 +23,8 @@ export class SportsComponent implements OnInit {
 
   constructor(private router: Router,
               private activatedRoute: ActivatedRoute,
-              private store: Store<AppState> ) {
+              private store: Store<AppState>,
+              private service: SportsListService ) {
     this.getState = this.store.select(selectAuthState);
   }
 
@@ -33,6 +34,10 @@ export class SportsComponent implements OnInit {
       if (data && data.sport && data.sport.sports) {
         this.sportsData = data.sport.sports;
       }
+    });
+
+    this.service.getSports().subscribe(data => {
+      this.sportsData = data;
     });
 
     this.activatedRoute.params.subscribe(param => {
@@ -57,6 +62,15 @@ export class SportsComponent implements OnInit {
   }
 
   addSports(): void {
+    this.store.dispatch(new ListSports());
+    this.store.subscribe(data => {
+      if (data && data.sport && data.sport.sports) {
+        this.sportsData = data.sport.sports;
+      }
+    });
+    // this.service.getSports().subscribe(data => {
+    //   this.sportsData = data;
+    // });
     this.router.navigate(['/addsports']);
   }
 

@@ -14,7 +14,7 @@
     padding: 6px 10px 6px 10px;
 }
 
-@media only screen and (max-width: 1125px) {
+@media only screen and (max-width: 1165px) {
     .ui-button {
         margin-left: auto;
         padding-bottom: 9px;

@@ -19,7 +19,8 @@ export class HeaderComponent implements OnInit {
 
   constructor(private router: Router,
               private activatedRoute: ActivatedRoute,
-              private store: Store<AppState>) {
+              private store: Store<AppState>
+              ) {
   }
 
   ngOnInit(): void {
