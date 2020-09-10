@@ -56,7 +56,6 @@ export class AddSportsComponent implements OnInit {
   onSubmit(sport: any): void {
     this.store.dispatch(new AddSports(sport));
     this.store.dispatch(new ListSports());
-    window.alert('Sport Added Successfully');
     this.router.navigate(['/list', { term: true}]);
   }
 

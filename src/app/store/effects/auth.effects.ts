@@ -82,7 +82,9 @@ export class AuthEffects {
         mergeMap(payload => {
             return this.sportsListService.addSport(payload).pipe(
                 map((data) => {
+                    console.log(data);
                     if (data) {
+                        window.alert('Sport Added Successfully');
                         return new AddSportsSuccess(data);
                     }
                 }));

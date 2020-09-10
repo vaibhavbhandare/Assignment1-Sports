@@ -5,12 +5,24 @@
     <div>
         <form [formGroup]="loginForm" class="form">
             <label for="username">UserName :</label>
-            <input type="text" formControlName="username" id="username"
-            placeholder="Please Enter Name" aria-label="Username" autocomplete="off">
+            <input
+             type="text"
+             formControlName="username"
+             id="username"
+             placeholder="Please Enter Name"
+             aria-label="Username"
+             autocomplete="off"
+            >
 
             <label for="password">Password :</label>
-            <input type="text" formControlName="password"
-            placeholder="Please Enter Password" aria-label="Password" id="password" autocomplete="off">
+            <input
+             type="text"
+             formControlName="password"
+             placeholder="Please Enter Password"
+             aria-label="Password"
+             id="password"
+             autocomplete="off"
+            >
         </form>
     </div>
     <div class="div2">
@@ -28,7 +40,7 @@
             tabindex="0"
             [routerLink]="['/list']"
             aria-label="Move Home Page"
-        >Home</button>
+        >Cancel</button>
     </div>
 </div>
 

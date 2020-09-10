@@ -9,8 +9,7 @@ import { ListSports, DeleteSports } from '../store/actions/auth.action';
 @Component({
   selector: 'app-listing-page',
   templateUrl: './sports.component.html',
-  styleUrls: ['./sports.component.css'],
-  providers: [SportsListService]
+  styleUrls: ['./sports.component.css']
 })
 
 export class SportsComponent implements OnInit {
@@ -36,9 +35,9 @@ export class SportsComponent implements OnInit {
       }
     });
 
-    this.service.getSports().subscribe(data => {
-      this.sportsData = data;
-    });
+    // this.service.getSports().subscribe(data => {
+    //   this.sportsData = data;
+    // });
 
     this.activatedRoute.params.subscribe(param => {
       this.userLoginStatus = param.term;
@@ -68,9 +67,6 @@ export class SportsComponent implements OnInit {
         this.sportsData = data.sport.sports;
       }
     });
-    // this.service.getSports().subscribe(data => {
-    //   this.sportsData = data;
-    // });
     this.router.navigate(['/addsports']);
   }
 

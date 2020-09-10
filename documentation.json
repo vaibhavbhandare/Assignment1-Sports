@@ -29,14 +29,88 @@
         },
         {
             "name": "ISportsList",
-            "id": "interface-ISportsList-80d0f5336c28375d3290773f3c570fa4",
+            "id": "interface-ISportsList-096f2f35b5f8d8fe77647c4900e7c1cc",
             "file": "src/app/service/sportslist.service.interface.ts",
             "type": "interface",
-            "sourceCode": "import { Observable } from 'rxjs';\r\n\r\nexport interface ISportsList\r\n{\r\n    getSports(): Observable<any>;\r\n\r\n    // addSport(sport: any): Observable<any>;\r\n\r\n    // deleteSportsById(id: any): Observable<any>;\r\n\r\n    // updateSport(sport: any): Observable<any>;\r\n\r\n    // getLoginCheck(): Observable<any>;\r\n    // addLogin(userLogin: any): Observable<any>;\r\n}\r\n",
+            "sourceCode": "import { Observable } from 'rxjs';\r\n\r\nexport interface ISportsList\r\n{\r\n    getSports(): Observable<any>;\r\n\r\n    addSport(sport: any): Observable<any>;\r\n\r\n    deleteSportsById(id: any): Observable<any>;\r\n\r\n    updateSport(sport: any): Observable<any>;\r\n\r\n    getLoginCheck(): Observable<any>;\r\n\r\n    addLogin(userLogin: any): Observable<any>;\r\n}\r\n",
             "properties": [],
             "indexSignatures": [],
             "kind": 152,
             "methods": [
+                {
+                    "name": "addLogin",
+                    "args": [
+                        {
+                            "name": "userLogin",
+                            "type": "any"
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "Observable<any>",
+                    "typeParameters": [],
+                    "line": 15,
+                    "jsdoctags": [
+                        {
+                            "name": "userLogin",
+                            "type": "any",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "addSport",
+                    "args": [
+                        {
+                            "name": "sport",
+                            "type": "any"
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "Observable<any>",
+                    "typeParameters": [],
+                    "line": 7,
+                    "jsdoctags": [
+                        {
+                            "name": "sport",
+                            "type": "any",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "deleteSportsById",
+                    "args": [
+                        {
+                            "name": "id",
+                            "type": "any"
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "Observable<any>",
+                    "typeParameters": [],
+                    "line": 9,
+                    "jsdoctags": [
+                        {
+                            "name": "id",
+                            "type": "any",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "getLoginCheck",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "Observable<any>",
+                    "typeParameters": [],
+                    "line": 13
+                },
                 {
                     "name": "getSports",
                     "args": [],
@@ -44,6 +118,28 @@
                     "returnType": "Observable<any>",
                     "typeParameters": [],
                     "line": 5
+                },
+                {
+                    "name": "updateSport",
+                    "args": [
+                        {
+                            "name": "sport",
+                            "type": "any"
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "Observable<any>",
+                    "typeParameters": [],
+                    "line": 11,
+                    "jsdoctags": [
+                        {
+                            "name": "sport",
+                            "type": "any",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
                 }
             ]
         },
@@ -350,21 +446,117 @@
         },
         {
             "name": "SportsListService",
-            "id": "injectable-SportsListService-2eb9ddc7074178bdbe3d1659113bfef0",
+            "id": "injectable-SportsListService-6e7b6af08f591ba68318dc608e305176",
             "file": "src/app/service/mock.service.ts",
             "properties": [],
             "methods": [
+                {
+                    "name": "addLogin",
+                    "args": [
+                        {
+                            "name": "userLogin",
+                            "type": "any"
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "Observable<any>",
+                    "typeParameters": [],
+                    "line": 23,
+                    "jsdoctags": [
+                        {
+                            "name": "userLogin",
+                            "type": "any",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "addSport",
+                    "args": [
+                        {
+                            "name": "sport",
+                            "type": "any"
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "Observable<any>",
+                    "typeParameters": [],
+                    "line": 10,
+                    "jsdoctags": [
+                        {
+                            "name": "sport",
+                            "type": "any",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "deleteSportsById",
+                    "args": [
+                        {
+                            "name": "id",
+                            "type": "any"
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "Observable<any>",
+                    "typeParameters": [],
+                    "line": 14,
+                    "jsdoctags": [
+                        {
+                            "name": "id",
+                            "type": "any",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "getLoginCheck",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "Observable<any>",
+                    "typeParameters": [],
+                    "line": 20
+                },
                 {
                     "name": "getSports",
                     "args": [],
                     "optional": false,
                     "returnType": "Observable<any>",
                     "typeParameters": [],
-                    "line": 10
+                    "line": 27
+                },
+                {
+                    "name": "updateSport",
+                    "args": [
+                        {
+                            "name": "sport",
+                            "type": "any"
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "Observable<any>",
+                    "typeParameters": [],
+                    "line": 17,
+                    "jsdoctags": [
+                        {
+                            "name": "sport",
+                            "type": "any",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
                 }
             ],
             "description": "",
-            "sourceCode": "import { Injectable } from '@angular/core';\r\nimport { Observable, of} from 'rxjs';\r\nimport { ISportsList } from './sportslist.service.interface';\r\n\r\n@Injectable({\r\n  providedIn: 'root'\r\n})\r\nexport class SportsListService implements ISportsList {\r\n\r\n  getSports(): Observable<any> {\r\n    return of( [{\r\n        id: '1',\r\n        sportsTitle: 'wrestling and martial arts',\r\n        description: 'is an ancient martial arts style of fighting',\r\n        category: 'Dual Sports'\r\n    }]);\r\n  }\r\n\r\n}\r\n",
+            "sourceCode": "import { Injectable } from '@angular/core';\r\nimport { Observable, of} from 'rxjs';\r\nimport { ISportsList } from './sportslist.service.interface';\r\n\r\n@Injectable({\r\n  providedIn: 'root'\r\n})\r\nexport class SportsListService implements ISportsList {\r\n\r\n  addSport(sport: any): Observable<any> {\r\n      throw new Error('Method not implemented.');\r\n  }\r\n\r\n  deleteSportsById(id: any): Observable<any> {\r\n      throw new Error('Method not implemented.');\r\n  }\r\n  updateSport(sport: any): Observable<any> {\r\n      throw new Error('Method not implemented.');\r\n  }\r\n  getLoginCheck(): Observable<any> {\r\n      throw new Error('Method not implemented.');\r\n  }\r\n  addLogin(userLogin: any): Observable<any> {\r\n      throw new Error('Method not implemented.');\r\n  }\r\n\r\n  getSports(): Observable<any> {\r\n    return of( [\r\n        {\r\n        id: '1',\r\n        sportsTitle: 'wrestling and martial arts',\r\n        description: 'is an ancient martial arts style of fighting',\r\n        category: 'Dual Sports'\r\n        },\r\n        {\r\n            id: '1',\r\n            sportsTitle: 'wrestling and martial arts',\r\n            description: 'is an ancient martial arts style of fighting',\r\n            category: 'Dual Sports'\r\n        },\r\n        {\r\n            id: '1',\r\n            sportsTitle: 'wrestling and martial arts',\r\n            description: 'is an ancient martial arts style of fighting',\r\n            category: 'Dual Sports'\r\n        }\r\n    ]);\r\n  }\r\n\r\n}\r\n",
             "type": "injectable"
         },
         {
@@ -2195,7 +2387,7 @@
         },
         {
             "name": "SportsComponent",
-            "id": "component-SportsComponent-598942a11d4844dc13a41662064e93ae",
+            "id": "component-SportsComponent-6e3274bc45e41571e68c3c221b204c14",
             "file": "src/app/sports/sports.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -2277,7 +2469,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 60
+                    "line": 64
                 },
                 {
                     "name": "deleteSports",
@@ -2290,7 +2482,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 52,
+                    "line": 56,
                     "jsdoctags": [
                         {
                             "name": "id",
@@ -2320,7 +2512,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 48,
+                    "line": 52,
                     "jsdoctags": [
                         {
                             "name": "id",
@@ -2337,7 +2529,7 @@
             "description": "",
             "rawdescription": "",
             "type": "component",
-            "sourceCode": "import { Component, OnInit } from '@angular/core';\nimport { SportsListService } from '../service/sports.service';\nimport { Router, ActivatedRoute } from '@angular/router';\nimport { Store } from '@ngrx/store';\nimport { AppState, selectAuthState } from '../store/app.states';\nimport { Observable } from 'rxjs';\nimport { ListSports, DeleteSports } from '../store/actions/auth.action';\n\n@Component({\n  selector: 'app-listing-page',\n  templateUrl: './sports.component.html',\n  styleUrls: ['./sports.component.css'],\n  providers: [SportsListService]\n})\n\nexport class SportsComponent implements OnInit {\n\n  public loginData: Array<any> = [];\n  public sportsData = [];\n  public userLoginStatus = false;\n  public tableTitle = 'Sports Club';\n  getState: Observable<any>;\n\n  constructor(private router: Router,\n              private activatedRoute: ActivatedRoute,\n              private store: Store<AppState>,\n              private service: SportsListService ) {\n    this.getState = this.store.select(selectAuthState);\n  }\n\n  ngOnInit(): void {\n    this.store.dispatch(new ListSports());\n    this.store.subscribe(data => {\n      if (data && data.sport && data.sport.sports) {\n        this.sportsData = data.sport.sports;\n      }\n    });\n\n    this.activatedRoute.params.subscribe(param => {\n      this.userLoginStatus = param.term;\n    },\n      (error) => {\n        console.log('Error in Fetch Route Parameter');\n      }\n    );\n  }\n\n  updateSports(id: any): void {\n    this.router.navigate(['/addsports', id]);\n  }\n\n  deleteSports(id: any): void {\n    if (window.confirm('Are you sure to delete sport')) {\n      this.store.dispatch(new DeleteSports(id));\n      this.store.dispatch(new ListSports());\n    } else {\n    }\n  }\n\n  addSports(): void {\n    // this.store.dispatch(new ListSports());\n    // this.store.subscribe(data => {\n    //   if (data && data.sport && data.sport.sports) {\n    //     this.sportsData = data.sport.sports;\n    //   }\n    // });\n    this.service.getSports().subscribe(data => {\n       console.log(data);\n    });\n    console.log('hi');\n    // this.router.navigate(['/addsports']);\n  }\n\n\n}\n",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\nimport { SportsListService } from '../service/mock.service';\nimport { Router, ActivatedRoute } from '@angular/router';\nimport { Store } from '@ngrx/store';\nimport { AppState, selectAuthState } from '../store/app.states';\nimport { Observable } from 'rxjs';\nimport { ListSports, DeleteSports } from '../store/actions/auth.action';\n\n@Component({\n  selector: 'app-listing-page',\n  templateUrl: './sports.component.html',\n  styleUrls: ['./sports.component.css'],\n  providers: [SportsListService]\n})\n\nexport class SportsComponent implements OnInit {\n\n  public loginData: Array<any> = [];\n  public sportsData = [];\n  public userLoginStatus = false;\n  public tableTitle = 'Sports Club';\n  getState: Observable<any>;\n\n  constructor(private router: Router,\n              private activatedRoute: ActivatedRoute,\n              private store: Store<AppState>,\n              private service: SportsListService ) {\n    this.getState = this.store.select(selectAuthState);\n  }\n\n  ngOnInit(): void {\n    this.store.dispatch(new ListSports());\n    this.store.subscribe(data => {\n      if (data && data.sport && data.sport.sports) {\n        this.sportsData = data.sport.sports;\n      }\n    });\n\n    this.service.getSports().subscribe(data => {\n      this.sportsData = data;\n    });\n\n    this.activatedRoute.params.subscribe(param => {\n      this.userLoginStatus = param.term;\n    },\n      (error) => {\n        console.log('Error in Fetch Route Parameter');\n      }\n    );\n  }\n\n  updateSports(id: any): void {\n    this.router.navigate(['/addsports', id]);\n  }\n\n  deleteSports(id: any): void {\n    if (window.confirm('Are you sure to delete sport')) {\n      this.store.dispatch(new DeleteSports(id));\n      this.store.dispatch(new ListSports());\n    } else {\n    }\n  }\n\n  addSports(): void {\n    this.store.dispatch(new ListSports());\n    this.store.subscribe(data => {\n      if (data && data.sport && data.sport.sports) {\n        this.sportsData = data.sport.sports;\n      }\n    });\n    // this.service.getSports().subscribe(data => {\n    //   this.sportsData = data;\n    // });\n    this.router.navigate(['/addsports']);\n  }\n\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -2745,17 +2937,17 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/login/login.stories.ts",
-                "type": "Story<LoginComponent>",
-                "defaultValue": "(args: LoginComponent) => ({\r\n  component: LoginComponent,\r\n  props: args,\r\n})"
+                "file": "src/app/header/header.stories.ts",
+                "type": "Story<HeaderComponent>",
+                "defaultValue": "(args: HeaderComponent) => ({\r\n  component: HeaderComponent,\r\n  props: args,\r\n})"
             },
             {
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/header/header.stories.ts",
-                "type": "Story<HeaderComponent>",
-                "defaultValue": "(args: HeaderComponent) => ({\r\n  component: HeaderComponent,\r\n  props: args,\r\n})"
+                "file": "src/app/login/login.stories.ts",
+                "type": "Story<LoginComponent>",
+                "defaultValue": "(args: LoginComponent) => ({\r\n  component: LoginComponent,\r\n  props: args,\r\n})"
             },
             {
                 "name": "Template",
@@ -3494,7 +3686,7 @@
                 "linktype": "injectable",
                 "name": "SportsListService",
                 "coveragePercent": 0,
-                "coverageCount": "0/2",
+                "coverageCount": "0/7",
                 "status": "low"
             },
             {
@@ -3512,7 +3704,7 @@
                 "linktype": "interface",
                 "name": "ISportsList",
                 "coveragePercent": 0,
-                "coverageCount": "0/2",
+                "coverageCount": "0/7",
                 "status": "low"
             },
             {
