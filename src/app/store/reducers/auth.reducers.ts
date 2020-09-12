@@ -1,13 +1,6 @@
 import { User, Sport } from '../model/user';
 import {
-  AuthActionTypes, All,
-  LIST_SPORTS, ADD_SPORTS,
-  UPDATE_SPORTS,
-  DELETE_SPORTS,
-  LIST_DATA_SUCCESS,
-  ADD_SPORTS_SUCCESS,
-  DELETE_SPORTS_SUCCESS,
-  UPDATE_SPORTS_SUCCESS,
+  AuthActionTypes, AuthAction
 } from '../actions/auth.action';
 
 export interface State {
@@ -17,25 +10,15 @@ export interface State {
   user: User | null;
   // error message
   errorMessage: string | null;
-  sports: Sport[];
-  added: boolean | null;
-  updated: boolean | null;
-  deleted: boolean | null;
-  loaded: boolean | null;
 }
 
 export const initialState: State = {
   isAuthenticated: false,
   user: null,
   errorMessage: null,
-  sports: [],
-  added: null,
-  updated: null,
-  loaded: null,
-  deleted: null
 };
 
-export function reducer(state = initialState, action: All): State {
+export function reducer(state = initialState, action: AuthAction): State {
   switch (action.type) {
     case AuthActionTypes.LOGIN_SUCCESS: {
       return {
@@ -71,64 +54,8 @@ export function reducer(state = initialState, action: All): State {
       };
     }
     case AuthActionTypes.LOGOUT: {
-      return {
-        ...state,
-        loaded: true
-      };
+      return;
     }
-    case ADD_SPORTS: {
-      return {
-        ...state
-      };
-    }
-    case LIST_SPORTS: {
-      return {
-        ...state
-      };
-    }
-    case DELETE_SPORTS: {
-      return {
-        isAuthenticated: true,
-        ...state
-      };
-    }
-    case UPDATE_SPORTS: {
-      return {
-        ...state,
-      };
-    }
-    case LIST_DATA_SUCCESS: {
-      return {
-        ...state,
-        sports: [...action.payload],
-        errorMessage: null,
-        loaded: true
-      };
-    }
-    case ADD_SPORTS_SUCCESS: {
-      return {
-        ...state,
-       // sports: [...action.payload],
-        errorMessage: null,
-        loaded: true
-      };
-    }
-    case UPDATE_SPORTS_SUCCESS: {
-      return {
-        ...state,
-        isAuthenticated: true,
-        // sports: [...action],
-        errorMessage: 'The Sport is updated successfully!',
-        loaded: false
-      };
-    }
-    case DELETE_SPORTS_SUCCESS: {
-      return {
-        isAuthenticated: true,
-        ...state
-      };
-    }
-
     default: {
       return state;
     }

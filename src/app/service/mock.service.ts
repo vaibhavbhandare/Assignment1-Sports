@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { ISportsList } from './sports.service.interface';
@@ -7,6 +8,9 @@ import { ISportsList } from './sports.service.interface';
 })
 
 export class SportsListService implements ISportsList {
+    handleError(error: HttpErrorResponse): Observable<never> {
+        throw new Error('Method not implemented.');
+    }
 
     addSport(sport: any): Observable<any> {
         return of([
@@ -51,7 +55,7 @@ export class SportsListService implements ISportsList {
         ]);
     }
 
-    getLoginCheck(): Observable<any> {
+    getLoginCheck(user: any): Observable<any> {
         return of([
             {
                 id: '1',

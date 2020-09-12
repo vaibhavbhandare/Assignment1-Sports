@@ -24,11 +24,8 @@ export class RegisterComponent {
     });
   }
 
-  onSubmit(register: any): void {
-    const payload = {
-      username: register.username,
-      password: register.password
-    };
+  onSubmit(): void {
+    const payload = this.registerForm.value;
     this.store.dispatch(new SignUp(payload));
   }
 }

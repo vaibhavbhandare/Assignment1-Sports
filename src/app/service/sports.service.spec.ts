@@ -60,19 +60,6 @@ describe('SportsListService', () => {
       httpMock.verify();
     })));
 
-  it(`should fetch login Details as an Observable`, async(inject([HttpTestingController, SportsListService],
-    (httpClient: HttpTestingController, sportService: SportsListService) => {
-
-      sportService.getLoginCheck().subscribe((sports: any) => {
-        expect(sports.length).toBeGreaterThan(0);
-      });
-
-      const req = httpMock.expectOne(sportService.baseRefUrl + '/login');
-      expect(req.request.method).toBe('GET');
-      req.flush(loginDummyPosts);
-      httpMock.verify();
-    })));
-
   it('should post the sport data', () => {
     service.addSport(dummyAddPosts)
       .subscribe((data: any) => {

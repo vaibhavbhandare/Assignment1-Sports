@@ -10,12 +10,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { SportsComponent } from './sports/sports.component';
 import { AddSportsComponent } from './sports/add-sports/addsports.component';
 import { AuthEffects } from './store/effects/auth.effects';
+import { SportEffects } from './store/effects/sports.effects';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { reducers } from './store/app.states';
 import { FooterElement } from './lit-Elements/footer.element';
 import { HeaderTitleElement } from './lit-Elements/heading-element';
 import { environment } from 'src/environments/environment';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +33,7 @@ import { environment } from 'src/environments/environment';
     CommonModule,
     HttpClientModule,
     ReactiveFormsModule,
-    EffectsModule.forRoot([AuthEffects]),
+    EffectsModule.forRoot([AuthEffects, SportEffects]),
     StoreModule.forRoot(reducers, {}),
   ],
   providers: [ ...environment.providers ],

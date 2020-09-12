@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Action } from '@ngrx/store';
 import { Router } from '@angular/router';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Observable, of } from 'rxjs';
@@ -7,9 +6,7 @@ import { tap, map, switchMap, catchError, mergeMap } from 'rxjs/operators';
 import {
     AuthActionTypes,
     LogInSuccess, LogInFailure,
-    SignUp, SignUpSuccess, SignUpFailure, LIST_SPORTS, ListSports,
-    ListDataSuccess, ADD_SPORTS, AddSportsSuccess, AddSports, DeleteSportSuccess,
-    DELETE_SPORTS, DeleteSports, UPDATE_SPORTS, UpdateSports, UpdateSportsSuccess, LogIn
+    SignUp, SignUpSuccess, SignUpFailure, LogIn
 } from '../actions/auth.action';
 import { SportsListService } from 'src/app/service/sports.service';
 
@@ -29,10 +26,10 @@ export class AuthEffects {
       ofType(AuthActionTypes.LOGIN),
       map((action: LogIn) => action.payload),
       switchMap((payload) => {
-        return this.sportsListService.getLoginCheck().pipe(
+        return this.sportsListService.getLoginCheck(payload).pipe(
           map((user) => {
             if (user.length > 0) {
-              return new LogInSuccess(payload);
+              return new LogInSuccess({ username: payload.username });
             } else {
               return new LogInFailure({ error: 'Invalid credentials' });
             }
@@ -46,7 +43,8 @@ export class AuthEffects {
         ofType(AuthActionTypes.LOGIN_SUCCESS),
         tap((user) => {
             localStorage.setItem('token', user.payload.username);
-            this.router.navigate(['/list']);
+            window.alert('Logged in successfully');
+            this.router.navigate(['/']);
         })
     );
 
@@ -88,7 +86,7 @@ export class AuthEffects {
         ofType(AuthActionTypes.SIGNUP_SUCCESS),
         tap((user) => {
             localStorage.setItem('user', user.payload);
-            window.alert('Registered successfully');
+            window.alert('Please Login With Your Credential');
         })
     );
     /**
@@ -100,55 +98,4 @@ export class AuthEffects {
         tap((user) => { })
     );
 
-    @Effect({ dispatch: true })
-    ListSports: Observable<any> = this.actions.pipe(
-        ofType(LIST_SPORTS),
-        map((action: ListSports) => action),
-        mergeMap(payload => {
-            return this.sportsListService.getSports().pipe(
-                map((data) =>
-                    new ListDataSuccess(data)));
-        }));
-
-    @Effect({ dispatch: true })
-    AddSports: Observable<any> = this.actions.pipe(
-        ofType(ADD_SPORTS),
-        map((action: AddSports) => action.payload),
-        mergeMap(payload => {
-            return this.sportsListService.addSport(payload).pipe(
-                map((data) => {
-                    if (data) {
-                        window.alert('Sport Added Successfully');
-                        return new AddSportsSuccess(data);
-                    }
-                }));
-        }));
-
-    @Effect({ dispatch: true })
-    DeleteSports: Observable<any> = this.actions.pipe(
-        ofType(DELETE_SPORTS),
-        map((action: DeleteSports) => action.payload),
-        mergeMap(payload => {
-            return this.sportsListService.deleteSportsById(payload).pipe(
-                map((data) => {
-                    if (data) {
-                        window.alert('Sport Deleted Successfully');
-                        return new DeleteSportSuccess();
-                    }
-                }));
-        }));
-
-    @Effect({ dispatch: true })
-    UpdateSports: Observable<any> = this.actions.pipe(
-        ofType(UPDATE_SPORTS),
-        map((action: UpdateSports) => action.payload),
-        mergeMap(payload => {
-            return this.sportsListService.updateSport(payload).pipe(
-                map((data) => {
-                    if (data) {
-                         window.alert('Sport Updated Successfully');
-                         return new UpdateSportsSuccess(data);
-                    }
-                }));
-        }));
 }

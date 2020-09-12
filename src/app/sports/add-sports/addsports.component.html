@@ -18,9 +18,9 @@
         </form>
     </div>
     <div class="div2">
-        <button type="button" class="button" tabindex="0" (click)="onSubmit(sportsForm.value)"
+        <button type="button" class="button" tabindex="0" (click)="onSubmit()"
             [disabled]="sportsForm.invalid">Submit</button>
-        <button type="button" class="button" tabindex="0" (click)="openList()">Home</button>
+        <button type="button" class="button" tabindex="0" [routerLink]="['/list']">Home</button>
     </div>
 </div>
 <div class="grid-container" *ngIf="showUpdateForm == true">
@@ -49,9 +49,9 @@
                 </form>
             </div>
             <div class="div2">
-                <button type="button" class="button" tabindex="0" (click)="onUpdateSport(sportsForm.value)"
+                <button type="button" class="button" tabindex="0" (click)="onUpdateSport()"
                     [disabled]="sportsForm.invalid">Submit</button>
-                <button type="button" class="button" tabindex="0" (click)="openList()">Home</button>
+                <button type="button" class="button" tabindex="0"  [routerLink]="['/list']">Home</button>
             </div>
         </ng-container>
     </ng-container>

@@ -2,7 +2,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AppState, selectAuthState } from '../store/app.states';
-import { LogOut } from '../store/actions/auth.action';
+import {  LogOut } from '../store/actions/auth.action';
 import { Observable } from 'rxjs';
 import { SportsListService } from '../service/sports.service';
 
@@ -16,7 +16,7 @@ export class HeaderComponent implements OnInit {
   public headerTitle = 'Sports';
   public setDark = false;
   public getState: Observable<any>;
-  public isAuthenticated = true;
+  public isAuthenticated: boolean;
 
   @Output() mode = new EventEmitter<boolean>();
 
@@ -29,24 +29,8 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.getState.subscribe(isLogin => {
-      console.log(isLogin);
-      // if (isLogin.isAuthenticated) {
-      //   this.isAuthenticated = isLogin.isAuthenticated;
-      // }
       this.isAuthenticated = isLogin.isAuthenticated;
     });
-
-    // this.activatedRoute.params.subscribe(param => {
-    //   this.userLoginStatus = param.term;
-    // },
-    //   (error) => {
-    //     console.log('Error in Fetching Parameter of Login API');
-    //   }
-    // );
-  }
-
-  login(): void {
-    this.router.navigate(['/login']);
   }
 
   logout(): void {

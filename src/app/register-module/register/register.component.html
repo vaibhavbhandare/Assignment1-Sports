@@ -16,7 +16,7 @@
 
             <label for="password">Password :</label>
             <input
-             type="text"
+             type="password"
              formControlName="password"
              name="password"
              placeholder="Please Enter Password"
@@ -31,7 +31,7 @@
          class="button"
          tabindex="0"
          [disabled]="registerForm.invalid"
-         (click)="onSubmit(registerForm.value)"
+         (click)="onSubmit()"
          aria-label="Add User"
         >Add User</button>
         <button

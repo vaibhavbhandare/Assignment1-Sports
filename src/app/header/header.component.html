@@ -15,7 +15,8 @@
          id="login-button"
          class="header-button"
          tabindex="0"
-         (click)="login()"
+         [routerLink]="['/login']"
+         *ngIf="!isAuthenticated"
         >Log In</button>
         <button
          type="button"
@@ -23,6 +24,7 @@
          class="header-button"
          tabindex="0"
          (click)="logout()"
+         *ngIf="isAuthenticated"
         >Logout</button>
     </div>
 </div>

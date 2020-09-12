@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 export interface ISportsList
@@ -10,7 +11,9 @@ export interface ISportsList
 
     updateSport(sport: any): Observable<any>;
 
-    getLoginCheck(): Observable<any>;
+    getLoginCheck(user: any): Observable<any>;
 
     addLogin(userLogin: any): Observable<any>;
+
+    handleError(error: HttpErrorResponse): Observable<never>;
 }

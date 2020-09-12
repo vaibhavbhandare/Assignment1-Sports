@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { SportsListService } from '../service/sports.service';
-import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AppState } from '../store/app.states';
-import { LogInSuccess, LogInFailure } from '../store/actions/auth.action';
+import { LogIn } from '../store/actions/auth.action';
 
 @Component({
   selector: 'app-form',
@@ -17,8 +15,6 @@ export class LoginComponent implements OnInit {
   public isLogin: boolean;
 
   constructor(private fb: FormBuilder,
-              private sportsService: SportsListService,
-              private router: Router,
               private store: Store<AppState>
   ) { }
 
@@ -29,40 +25,8 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  onSubmit(credentials: any): void {
-    this.sportsService.getLoginCheck().subscribe(checklogin => {
-      if (credentials && checklogin) {
-        const login = checklogin;
-        for (let i = 0; i <= login.length - 1; i++) {
-          if (login[i].username === credentials.username) {
-            this.isLogin = true;
-            alert(`${credentials.username} Login Successfully`);
-            this.dispatchAction(credentials, this.isLogin);
-            break;
-          } else {
-            this.isLogin = false;
-          }
-        }
-      }
-      if (this.isLogin === false) {
-        this.dispatchAction(credentials, this.isLogin);
-      }
-    },
-      (error) => {
-        console.log('Error in Fetching Login API');
-      }
-    );
-  }
-
-  dispatchAction(credentials, isLogin?): void {
-    const payload = {
-      username: credentials.username,
-      password: credentials.password
-    };
-    if (isLogin) {
-      this.store.dispatch(new LogInSuccess(payload));
-    } else {
-      this.store.dispatch(new LogInFailure(payload));
-    }
+  onSubmit(): void {
+    const payload = this.loginForm.value;
+    this.store.dispatch(new LogIn(payload));
   }
 }

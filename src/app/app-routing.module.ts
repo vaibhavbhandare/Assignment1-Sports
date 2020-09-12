@@ -11,7 +11,8 @@ export const routes: Routes = [
   { path: 'addsports/:id', component: AddSportsComponent },
   { path: 'registermodule',
     loadChildren: () => import('../app/register-module/register-module.module').then(m => m.RegisterModules)},
-  { path: '', redirectTo: '/list', pathMatch: 'full' }
+  { path: '', component: SportsComponent },
+  { path: '**', redirectTo: '/', pathMatch: 'full'  }
 ];
 
 @NgModule({
