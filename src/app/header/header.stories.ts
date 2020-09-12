@@ -35,7 +35,14 @@ const Template: Story<HeaderComponent> = (args: HeaderComponent) => ({
   props: args,
 });
 
-export const header = Template.bind({});
-header.args = {
+export const Default = Template.bind({});
+Default.args = {
   user: {},
+  isAuthenticated: true
+};
+
+export const NotAuth = Template.bind({});
+NotAuth.args = {
+  user: {},
+  isAuthenticated: false
 };

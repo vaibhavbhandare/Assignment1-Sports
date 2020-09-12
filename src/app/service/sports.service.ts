@@ -53,7 +53,7 @@ export class SportsListService implements ISportsList {
       // Server-side errors
       errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
     }
-    console.log(errorMessage);
+    window.alert(errorMessage);
     return throwError(errorMessage);
   }
 }

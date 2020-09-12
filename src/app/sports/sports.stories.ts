@@ -34,8 +34,8 @@ const Template: Story<SportsComponent> = (args: SportsComponent) => ({
   props: args,
 });
 
-export const sports = Template.bind({});
-sports.args = {
+export const Default = Template.bind({});
+Default.args = {
   user: {},
 };
 

@@ -36,7 +36,6 @@ export class LoginComponent implements OnInit {
         for (let i = 0; i <= login.length - 1; i++) {
           if (login[i].username === credentials.username) {
             this.isLogin = true;
-            this.router.navigate(['/list', { term: true }]);
             alert(`${credentials.username} Login Successfully`);
             this.dispatchAction(credentials, this.isLogin);
             break;

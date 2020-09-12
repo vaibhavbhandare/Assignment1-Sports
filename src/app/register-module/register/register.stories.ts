@@ -32,8 +32,8 @@ const Template: Story<RegisterComponent> = (args: RegisterComponent) => ({
   props: args,
 });
 
-export const register = Template.bind({});
-register.args = {
+export const Default = Template.bind({});
+Default.args = {
   user: {},
 };
 

@@ -20,6 +20,10 @@ export const ADD_SPORTS_SUCCESS = '[Sports] Add sport success';
 export const DELETE_SPORTS_SUCCESS = '[Sports] Delete sport success';
 export const UPDATE_SPORTS_SUCCESS = '[Sports] Update sport success';
 
+export class LogIn implements Action {
+  readonly type = AuthActionTypes.LOGIN;
+  constructor(public payload: any) {}
+}
 export class LogInSuccess implements Action {
     readonly type = AuthActionTypes.LOGIN_SUCCESS;
     constructor(public payload: any) {}

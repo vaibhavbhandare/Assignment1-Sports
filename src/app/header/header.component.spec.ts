@@ -33,11 +33,6 @@ describe('HeaderComponent', () => {
     expect(component.headerTitle).toContain('Sports');
   });
 
-  it(`should have userLoginStatus declared`, () => {
-    fixture.detectChanges();
-    expect(component.userLoginStatus).toBeUndefined();
-  });
-
   it(`should have setDark Theme is False`, () => {
     fixture.detectChanges();
     expect(component.setDark).toBeFalsy();

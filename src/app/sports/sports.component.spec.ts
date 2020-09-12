@@ -48,7 +48,7 @@ describe('SportsComponent', () => {
   });
 
   it('should have userLoginStatus false', () => {
-    expect(component.userLoginStatus).toBeFalsy();
+    expect(component.isAuthenticated).toBeFalsy();
   });
 
   it('should have sportsData empty', () => {

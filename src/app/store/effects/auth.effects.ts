@@ -9,7 +9,7 @@ import {
     LogInSuccess, LogInFailure,
     SignUp, SignUpSuccess, SignUpFailure, LIST_SPORTS, ListSports,
     ListDataSuccess, ADD_SPORTS, AddSportsSuccess, AddSports, DeleteSportSuccess,
-    DELETE_SPORTS, DeleteSports, UPDATE_SPORTS, UpdateSports, UpdateSportsSuccess
+    DELETE_SPORTS, DeleteSports, UPDATE_SPORTS, UpdateSports, UpdateSportsSuccess, LogIn
 } from '../actions/auth.action';
 import { SportsListService } from 'src/app/service/sports.service';
 
@@ -24,12 +24,29 @@ export class AuthEffects {
     ) { }
 
     // effects go here
+    @Effect()
+    LogIn: Observable<any> = this.actions.pipe(
+      ofType(AuthActionTypes.LOGIN),
+      map((action: LogIn) => action.payload),
+      switchMap((payload) => {
+        return this.sportsListService.getLoginCheck().pipe(
+          map((user) => {
+            if (user.length > 0) {
+              return new LogInSuccess(payload);
+            } else {
+              return new LogInFailure({ error: 'Invalid credentials' });
+            }
+          })
+        );
+      })
+    );
+
     @Effect({ dispatch: false })
     LogInSuccess: Observable<any> = this.actions.pipe(
         ofType(AuthActionTypes.LOGIN_SUCCESS),
         tap((user) => {
             localStorage.setItem('token', user.payload.username);
-            this.router.navigate(['/list', { term: true }]);
+            this.router.navigate(['/list']);
         })
     );
 
@@ -37,7 +54,7 @@ export class AuthEffects {
     LogInFailure: Observable<any> = this.actions.pipe(
         ofType(AuthActionTypes.LOGIN_FAILURE),
         tap((user) => {
-            alert('Please Enter Valid User Name and Password');
+            window.alert('Invalid Credentials');
         })
     );
 
@@ -45,6 +62,7 @@ export class AuthEffects {
     LogOut: Observable<any> = this.actions.pipe(
         ofType(AuthActionTypes.LOGOUT),
         tap((user) => {
+            localStorage.removeItem('token');
             window.alert('You are Logout Successfully');
         })
     );
@@ -65,6 +83,23 @@ export class AuthEffects {
                 }));
         }));
 
+    @Effect({ dispatch: false })
+    SignUpSuccess: Observable<any> = this.actions.pipe(
+        ofType(AuthActionTypes.SIGNUP_SUCCESS),
+        tap((user) => {
+            localStorage.setItem('user', user.payload);
+            window.alert('Registered successfully');
+        })
+    );
+    /**
+     * TODO: Combine signupFailure and login failure to create a single effect
+     */
+    @Effect({ dispatch: false })
+    SignUpFailure: Observable<any> = this.actions.pipe(
+        ofType(AuthActionTypes.SIGNUP_FAILURE),
+        tap((user) => { })
+    );
+
     @Effect({ dispatch: true })
     ListSports: Observable<any> = this.actions.pipe(
         ofType(LIST_SPORTS),
@@ -82,7 +117,6 @@ export class AuthEffects {
         mergeMap(payload => {
             return this.sportsListService.addSport(payload).pipe(
                 map((data) => {
-                    console.log(data);
                     if (data) {
                         window.alert('Sport Added Successfully');
                         return new AddSportsSuccess(data);
@@ -112,8 +146,8 @@ export class AuthEffects {
             return this.sportsListService.updateSport(payload).pipe(
                 map((data) => {
                     if (data) {
-                        window.alert('Sport Updated Successfully');
-                        return new UpdateSportsSuccess(data);
+                         window.alert('Sport Updated Successfully');
+                         return new UpdateSportsSuccess(data);
                     }
                 }));
         }));

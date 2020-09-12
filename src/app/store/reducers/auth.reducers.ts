@@ -57,15 +57,24 @@ export function reducer(state = initialState, action: All): State {
     case AuthActionTypes.SIGNUP_SUCCESS: {
       return {
         ...state,
-        isAuthenticated: true,
+        isAuthenticated: false,
         user: {
           username: action.payload.username
         },
         errorMessage: null
       };
     }
+    case AuthActionTypes.SIGNUP_FAILURE: {
+      return {
+        ...state,
+        errorMessage: 'The user is already Registered.',
+      };
+    }
     case AuthActionTypes.LOGOUT: {
-      return initialState;
+      return {
+        ...state,
+        loaded: true
+      };
     }
     case ADD_SPORTS: {
       return {
@@ -79,12 +88,13 @@ export function reducer(state = initialState, action: All): State {
     }
     case DELETE_SPORTS: {
       return {
+        isAuthenticated: true,
         ...state
       };
     }
     case UPDATE_SPORTS: {
       return {
-        ...state
+        ...state,
       };
     }
     case LIST_DATA_SUCCESS: {
@@ -98,20 +108,24 @@ export function reducer(state = initialState, action: All): State {
     case ADD_SPORTS_SUCCESS: {
       return {
         ...state,
-        errorMessage: 'The Sport is added successfully!',
-        added: true
-      };
-    }
-    case DELETE_SPORTS_SUCCESS: {
-      return {
-        ...state
+       // sports: [...action.payload],
+        errorMessage: null,
+        loaded: true
       };
     }
     case UPDATE_SPORTS_SUCCESS: {
       return {
         ...state,
+        isAuthenticated: true,
+        // sports: [...action],
         errorMessage: 'The Sport is updated successfully!',
-        added: true
+        loaded: false
+      };
+    }
+    case DELETE_SPORTS_SUCCESS: {
+      return {
+        isAuthenticated: true,
+        ...state
       };
     }
 

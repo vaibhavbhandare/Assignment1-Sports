@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SportsListService } from '../service/mock.service';
+import { SportsListService } from '../service/sports.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AppState, selectAuthState } from '../store/app.states';
@@ -16,36 +16,38 @@ export class SportsComponent implements OnInit {
 
   public loginData: Array<any> = [];
   public sportsData = [];
-  public userLoginStatus = false;
+  public isAuthenticated;
   public tableTitle = 'Sports Club';
-  getState: Observable<any>;
+  public errorMessage: string | null;
+  public getState: Observable<any>;
 
   constructor(private router: Router,
               private activatedRoute: ActivatedRoute,
               private store: Store<AppState>,
-              private service: SportsListService ) {
+              public sportsListService: SportsListService ) {
     this.getState = this.store.select(selectAuthState);
   }
 
   ngOnInit(): void {
+
     this.store.dispatch(new ListSports());
     this.store.subscribe(data => {
-      if (data && data.sport && data.sport.sports) {
+      if (data && data.sport && data.sport.sports ) {
         this.sportsData = data.sport.sports;
       }
     });
 
-    // this.service.getSports().subscribe(data => {
-    //   this.sportsData = data;
-    // });
+    this.getState.subscribe(isLogin => {
+     // this.isAuthenticated = isLogin.isAuthenticated;
+    });
 
-    this.activatedRoute.params.subscribe(param => {
-      this.userLoginStatus = param.term;
-    },
-      (error) => {
-        console.log('Error in Fetch Route Parameter');
-      }
-    );
+    // this.activatedRoute.params.subscribe(param => {
+    //   this.userLoginStatus = param.term;
+    // },
+    //   (error) => {
+    //     console.log('Error in Fetch Route Parameter');
+    //   }
+    // );
   }
 
   updateSports(id: any): void {
@@ -61,13 +63,12 @@ export class SportsComponent implements OnInit {
   }
 
   addSports(): void {
-    this.store.dispatch(new ListSports());
-    this.store.subscribe(data => {
-      if (data && data.sport && data.sport.sports) {
-        this.sportsData = data.sport.sports;
-      }
-    });
+    // this.store.dispatch(new ListSports());
+    // this.store.subscribe(data => {
+    //   if (data && data.sport && data.sport.sports) {
+    //     this.sportsData = data.sport.sports;
+    //   }
+    // });
     this.router.navigate(['/addsports']);
   }
-
 }

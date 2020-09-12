@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { AppState, selectAuthState } from '../../store/app.states';
 import { ListSports, AddSports, UpdateSports } from 'src/app/store/actions/auth.action';
+import { SportsListService } from 'src/app/service/sports.service';
 @Component({
   selector: 'app-add-sports',
   templateUrl: './addsports.component.html',
@@ -23,7 +24,8 @@ export class AddSportsComponent implements OnInit {
   constructor(private fb: FormBuilder,
               private router: Router,
               private activatedRoute: ActivatedRoute,
-              private store: Store<AppState>) {
+              private store: Store<AppState>,
+              public sportsListService: SportsListService) {
 
     this.sportsForm = this.fb.group({
       id: [0, [Validators.required]],
@@ -56,7 +58,7 @@ export class AddSportsComponent implements OnInit {
   onSubmit(sport: any): void {
     this.store.dispatch(new AddSports(sport));
     this.store.dispatch(new ListSports());
-    this.router.navigate(['/list', { term: true}]);
+    this.router.navigate(['/list']);
   }
 
   isRegisterFormToUpdate(): void {
@@ -69,11 +71,11 @@ export class AddSportsComponent implements OnInit {
 
   onUpdateSport(sport: any): void {
     this.store.dispatch(new UpdateSports(sport));
-    this.store.dispatch(new ListSports());
-    this.router.navigate(['/list', { term: true}]);
+    // this.store.dispatch(new ListSports());
+   // this.router.navigate(['/', { term: true}]);
   }
 
   openList(): void {
-    this.router.navigate(['/list', { term: true}]);
+    this.router.navigate(['/']);
   }
 }
