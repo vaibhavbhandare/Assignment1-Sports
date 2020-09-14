@@ -49,13 +49,8 @@ describe('LoginComponent', () => {
     expect(component.loginForm).toBeDefined();
   });
 
-  it(`should have dispatchAction called`, () => {
-    fixture.detectChanges();
-    expect(component.dispatchAction(dummyTest)).toBeUndefined();
-  });
-
   it(`should have onSubmit declared`, () => {
     fixture.detectChanges();
-    expect(component.onSubmit(dummyTest)).toBeUndefined();
+    expect(component.onSubmit()).toBeUndefined();
   });
 });

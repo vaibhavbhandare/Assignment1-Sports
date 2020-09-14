@@ -14,11 +14,10 @@ import { ListSports, DeleteSports } from '../store/actions/sport.action';
 
 export class SportsComponent implements OnInit {
 
-  public loginData: Array<any> = [];
   public sportsData: any;
-  public isAuthenticated: boolean;
   public tableTitle = 'Sports Club';
   public getState: Observable<any>;
+  public isAuthenticated: boolean;
 
   constructor(private router: Router,
               private store: Store<AppState>,

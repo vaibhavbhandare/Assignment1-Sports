@@ -36,27 +36,12 @@ describe('SportsComponent', () => {
   });
 
   it(`should have title 'Sports Club'`, () => {
-    fixture.detectChanges();
-    expect(component.tableTitle).toContain('Sports Club');
+    expect(component.tableTitle).toBeTruthy();
   });
 
   it(`should render title contain 'Sports Club'`, () => {
     const compiled = fixture.nativeElement;
     component = fixture.debugElement.componentInstance;
-    fixture.detectChanges();
     expect(compiled.querySelector('h2').textContent).toContain('Sports Club');
   });
-
-  it('should have userLoginStatus false', () => {
-    expect(component.isAuthenticated).toBeFalsy();
-  });
-
-  it('should have sportsData empty', () => {
-    expect(component.sportsData.length).toEqual(0);
-  });
-
-  it('should have loginData empty', () => {
-    expect(component.loginData.length).toEqual(0);
-  });
-
 });
