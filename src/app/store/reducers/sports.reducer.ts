@@ -11,7 +11,7 @@ import {
 } from '../actions/sport.action';
 
 export interface State {
-    sport: Sport[];
+    sport: any;
     success: boolean | null;
     message: string | null;
 }
@@ -54,7 +54,7 @@ export function reducer(state = initialState, action: SportsActions.SportsAction
     case ADD_SPORTS_SUCCESS: {
         return {
             ...state,
-            sport: [...action.payload],
+            sport: [ ...state.sport, action.payload],
             message: 'The sport is added successfully!',
             success: true,
         };

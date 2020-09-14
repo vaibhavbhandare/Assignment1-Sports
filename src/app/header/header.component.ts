@@ -35,7 +35,7 @@ export class HeaderComponent implements OnInit {
 
   logout(): void {
     this.store.dispatch(new LogOut());
-    this.router.navigate(['/login']);
+    this.router.navigate(['/list']);
   }
 
   changeTheme(): void {
