@@ -32,6 +32,21 @@ tr:nth-child(even) {
     margin-right: 10px;
 }
 
+.button-delete {
+    padding: 6px 15px;
+    margin-right: 10px;
+    background-color: red;
+    color: white;
+}
+
+.button-update {
+    padding: 6px 15px;
+    margin-right: 10px;
+    background-color: blue;
+    color: white;
+}
+
+
 .add {
     background-color: lightseagreen;
     padding: 9px;
@@ -46,6 +61,8 @@ tr:nth-child(even) {
     padding: 0px 5px 0px 5px;
     margin: 10px;
     margin-left: 491px;
+    color: white;
+    background-color: blue;
 }
 
 .crud-button {
@@ -76,6 +93,8 @@ tr:nth-child(even) {
         padding: 0px 5px 0px 5px;
         margin: 10px;
         margin-left: calc(100vw/2 - 263px)!important;
+        color: white;
+        background-color: blue;
     }
 }
 

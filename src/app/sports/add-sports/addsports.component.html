@@ -1,6 +1,7 @@
-<div class="grid-container" *ngIf="showUpdateForm == false">
+<div class="grid-container">
     <div class="login">
-        <p tabindex="0">{{addSportTitle}}</p>
+        <p tabindex="0" *ngIf="showUpdateForm == false">{{addSportTitle}}</p>
+        <p tabindex="0" *ngIf="showUpdateForm == true">{{updateSportTitle}}</p>
     </div>
     <div>
         <form [formGroup]="sportsForm" class="form">
@@ -19,40 +20,9 @@
     </div>
     <div class="div2">
         <button type="button" class="button" tabindex="0" (click)="onSubmit()"
-            [disabled]="sportsForm.invalid">Submit</button>
+        *ngIf="showUpdateForm == false"  [disabled]="sportsForm.invalid">Submit</button>
+        <button type="button" class="button" tabindex="0" (click)="onUpdateSport()"
+        *ngIf="showUpdateForm == true"  [disabled]="sportsForm.invalid">Submit</button>
         <button type="button" class="button" tabindex="0" [routerLink]="['/list']">Home</button>
     </div>
-</div>
-<div class="grid-container" *ngIf="showUpdateForm == true">
-    <ng-container *ngFor="let param of sportsData">
-        <ng-container *ngIf="param.id === sportsId">
-            <div class="login">
-                <p tabindex="0">{{updateSportTitle}}</p>
-            </div>
-            <div>
-                <form [formGroup]="sportsForm" class="form">
-                    <label for="id">ID :</label>
-                    <input type="text" formControlName="id" id="id" aria-label="ID" name="id" [ngModel]="param.id"
-                        autocomplete="off" disabled>
-
-                    <label for="sportsTitle">Sports Title :</label>
-                    <input type="text" formControlName="sportsTitle" id="sportsTitle" aria-label="Sports Title" [ngModel]="param.sportsTitle"
-                         autocomplete="off">
-
-                    <label for="category">Category :</label>
-                    <input type="text" formControlName="category" id="category" aria-label="Category" [ngModel]="param.category"
-                        autocomplete="off">
-
-                    <label for="description">Description :</label>
-                    <textarea formControlName="description" id="description" aria-label="Description" [ngModel]="param.description"
-                        maxlength="500" autocomplete="off"></textarea>
-                </form>
-            </div>
-            <div class="div2">
-                <button type="button" class="button" tabindex="0" (click)="onUpdateSport()"
-                    [disabled]="sportsForm.invalid">Submit</button>
-                <button type="button" class="button" tabindex="0"  [routerLink]="['/list']">Home</button>
-            </div>
-        </ng-container>
-    </ng-container>
 </div>

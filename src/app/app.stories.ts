@@ -49,8 +49,15 @@ const Template: Story<AppComponent> = (args: AppComponent) => ({
   props: args,
 });
 
+
 export const Default = Template.bind({});
 Default.args = {
   user: {},
+  setMode: false
 };
 
+export const AppTheme = Template.bind({});
+AppTheme.args = {
+  user: {},
+  setMode: true
+};

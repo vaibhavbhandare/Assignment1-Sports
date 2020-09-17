@@ -41,17 +41,14 @@ export class AddSportsComponent implements OnInit {
       this.sportsId = param.id;
     });
 
-    this.getSports();
-    this.isRegisterFormToUpdate();
-  }
-
-  getSports(): void {
     this.store.dispatch(new ListSports());
     this.store.subscribe(data => {
       if (data && data.sport) {
         this.sportsData = data.sport.sport;
       }
     });
+
+    this.isRegisterFormToUpdate();
   }
 
   onSubmit(): void {
@@ -61,10 +58,20 @@ export class AddSportsComponent implements OnInit {
   }
 
   isRegisterFormToUpdate(): void {
-    if (this.sportsId === undefined) {
-      this.showUpdateForm = false;
+    if (this.sportsId && this.sportsData) {
+       this.showUpdateForm = true;
+       for (const sport of this.sportsData) {
+           if (this.sportsId === sport.id) {
+            this.sportsForm.patchValue({
+              id: sport.id,
+              category: sport.category,
+              description: sport.description,
+              sportsTitle: sport.sportsTitle
+            });
+           }
+       }
     } else {
-      this.showUpdateForm = true;
+      this.showUpdateForm = false;
     }
   }
 

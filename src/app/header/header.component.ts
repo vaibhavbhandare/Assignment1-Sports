@@ -1,8 +1,8 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AppState, selectAuthState } from '../store/app.states';
-import {  LogOut } from '../store/actions/auth.action';
+import { LogOut } from '../store/actions/auth.action';
 import { Observable } from 'rxjs';
 import { SportsListService } from '../service/sports.service';
 
@@ -21,7 +21,6 @@ export class HeaderComponent implements OnInit {
   @Output() mode = new EventEmitter<boolean>();
 
   constructor(private router: Router,
-              private activatedRoute: ActivatedRoute,
               private store: Store<AppState>,
               public sportService: SportsListService
               )

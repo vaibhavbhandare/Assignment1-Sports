@@ -38,11 +38,5 @@ const Template: Story<HeaderComponent> = (args: HeaderComponent) => ({
 export const Default = Template.bind({});
 Default.args = {
   user: {},
-  isAuthenticated: true
-};
-
-export const NotAuth = Template.bind({});
-NotAuth.args = {
-  user: {},
   isAuthenticated: false
 };

@@ -221,10 +221,10 @@
         },
         {
             "name": "State",
-            "id": "interface-State-a64d45c822e2155f6b4751bee67b30f1",
+            "id": "interface-State-449faa738993945ca75af683a257f4a4",
             "file": "src/app/store/reducers/auth.reducers.ts",
             "type": "interface",
-            "sourceCode": "import { User, Sport } from '../model/user';\r\nimport {\r\n  AuthActionTypes, AuthAction\r\n} from '../actions/auth.action';\r\n\r\nexport interface State {\r\n  // is a user authenticated?\r\n  isAuthenticated: boolean;\r\n  // if authenticated, there should be a user object\r\n  user: User | null;\r\n  // error message\r\n  errorMessage: string | null;\r\n}\r\n\r\nexport const initialState: State = {\r\n  isAuthenticated: false,\r\n  user: null,\r\n  errorMessage: null,\r\n};\r\n\r\nexport function reducer(state = initialState, action: AuthAction): State {\r\n  switch (action.type) {\r\n    case AuthActionTypes.LOGIN_SUCCESS: {\r\n      return {\r\n        ...state,\r\n        isAuthenticated: true,\r\n        user: {\r\n          username: action.payload.username,\r\n          password: action.payload.password\r\n        },\r\n        errorMessage: null\r\n      };\r\n    }\r\n    case AuthActionTypes.LOGIN_FAILURE: {\r\n      return {\r\n        ...state,\r\n        errorMessage: 'Incorrect email and/or password.'\r\n      };\r\n    }\r\n    case AuthActionTypes.SIGNUP_SUCCESS: {\r\n      return {\r\n        ...state,\r\n        isAuthenticated: false,\r\n        user: {\r\n          username: action.payload.username\r\n        },\r\n        errorMessage: null\r\n      };\r\n    }\r\n    case AuthActionTypes.SIGNUP_FAILURE: {\r\n      return {\r\n        ...state,\r\n        errorMessage: 'The user is already Registered.',\r\n      };\r\n    }\r\n    case AuthActionTypes.LOGOUT: {\r\n      return;\r\n    }\r\n    default: {\r\n      return state;\r\n    }\r\n  }\r\n}\r\n",
+            "sourceCode": "import { User, Sport } from '../model/user';\r\nimport {\r\n  AuthActionTypes, AuthAction\r\n} from '../actions/auth.action';\r\n\r\nexport interface State {\r\n  // is a user authenticated?\r\n  isAuthenticated: boolean;\r\n  // if authenticated, there should be a user object\r\n  user: User | null;\r\n  // error message\r\n  errorMessage: string | null;\r\n}\r\n\r\nexport const initialState: State = {\r\n  isAuthenticated: false,\r\n  user: null,\r\n  errorMessage: null,\r\n};\r\n\r\nexport function reducer(state = initialState, action: AuthAction): State {\r\n  switch (action.type) {\r\n    case AuthActionTypes.LOGIN_SUCCESS: {\r\n      return {\r\n        ...state,\r\n        isAuthenticated: true,\r\n        user: {\r\n          username: action.payload.username,\r\n          password: action.payload.password\r\n        },\r\n        errorMessage: null\r\n      };\r\n    }\r\n    case AuthActionTypes.LOGIN_FAILURE: {\r\n      return {\r\n        ...state,\r\n        errorMessage: 'Incorrect email and/or password.'\r\n      };\r\n    }\r\n    case AuthActionTypes.SIGNUP_SUCCESS: {\r\n      return {\r\n        ...state,\r\n        isAuthenticated: false,\r\n        user: {\r\n          username: action.payload.username\r\n        },\r\n        errorMessage: null\r\n      };\r\n    }\r\n    case AuthActionTypes.SIGNUP_FAILURE: {\r\n      return {\r\n        ...state,\r\n        errorMessage: 'The user is already Registered.',\r\n      };\r\n    }\r\n    case AuthActionTypes.LOGOUT: {\r\n      return initialState;\r\n    }\r\n    default: {\r\n      return state;\r\n    }\r\n  }\r\n}\r\n",
             "properties": [
                 {
                     "name": "errorMessage",
@@ -254,10 +254,10 @@
         },
         {
             "name": "State",
-            "id": "interface-State-0ede2754e5943fb22a74b0320391722f-1",
+            "id": "interface-State-1dccc4dfa3b74dc4e3f12805a63f066e-1",
             "file": "src/app/store/reducers/sports.reducer.ts",
             "type": "interface",
-            "sourceCode": "import { User, Sport } from '../model/user';\r\nimport * as SportsActions from '../actions/sport.action';\r\nimport {\r\n  LIST_SPORTS, ADD_SPORTS,\r\n  UPDATE_SPORTS,\r\n  DELETE_SPORTS,\r\n  LIST_DATA_SUCCESS,\r\n  ADD_SPORTS_SUCCESS,\r\n  DELETE_SPORTS_SUCCESS,\r\n  UPDATE_SPORTS_SUCCESS,\r\n} from '../actions/sport.action';\r\n\r\nexport interface State {\r\n    sport: Sport[];\r\n    success: boolean | null;\r\n    message: string | null;\r\n}\r\n\r\nexport const initialState: State = {\r\n    sport: [],\r\n    message: null,\r\n    success: null,\r\n  };\r\n\r\nexport function reducer(state = initialState, action: SportsActions.SportsActions): State {\r\n  switch (action.type) {\r\n    case ADD_SPORTS: {\r\n        return {\r\n          ...state\r\n        };\r\n    }\r\n    case LIST_SPORTS: {\r\n      return {\r\n        ...state\r\n      };\r\n    }\r\n    case DELETE_SPORTS: {\r\n      return {\r\n        ...state\r\n      };\r\n    }\r\n    case UPDATE_SPORTS: {\r\n      return {\r\n        ...state,\r\n      };\r\n    }\r\n    case LIST_DATA_SUCCESS: {\r\n      return {\r\n        ...state,\r\n        sport: [...action.payload],\r\n        message: null,\r\n      };\r\n    }\r\n    case ADD_SPORTS_SUCCESS: {\r\n        return {\r\n            ...state,\r\n            sport: [...action.payload],\r\n            message: 'The sport is added successfully!',\r\n            success: true,\r\n        };\r\n    }\r\n    case UPDATE_SPORTS_SUCCESS: {\r\n      return {\r\n        ...state,\r\n        message: 'The Sport is updated successfully!',\r\n        success: true,\r\n      };\r\n    }\r\n    case DELETE_SPORTS_SUCCESS: {\r\n      return {\r\n        ...state\r\n      };\r\n    }\r\n\r\n    default: {\r\n      return state;\r\n    }\r\n  }\r\n}\r\n",
+            "sourceCode": "import { User, Sport } from '../model/user';\r\nimport * as SportsActions from '../actions/sport.action';\r\nimport {\r\n  LIST_SPORTS, ADD_SPORTS,\r\n  UPDATE_SPORTS,\r\n  DELETE_SPORTS,\r\n  LIST_DATA_SUCCESS,\r\n  ADD_SPORTS_SUCCESS,\r\n  DELETE_SPORTS_SUCCESS,\r\n  UPDATE_SPORTS_SUCCESS,\r\n} from '../actions/sport.action';\r\n\r\nexport interface State {\r\n    sport: any;\r\n    success: boolean | null;\r\n    message: string | null;\r\n}\r\n\r\nexport const initialState: State = {\r\n    sport: [],\r\n    message: null,\r\n    success: null,\r\n  };\r\n\r\nexport function reducer(state = initialState, action: SportsActions.SportsActions): State {\r\n  switch (action.type) {\r\n    case ADD_SPORTS: {\r\n        return {\r\n          ...state\r\n        };\r\n    }\r\n    case LIST_SPORTS: {\r\n      return {\r\n        ...state\r\n      };\r\n    }\r\n    case DELETE_SPORTS: {\r\n      return {\r\n        ...state\r\n      };\r\n    }\r\n    case UPDATE_SPORTS: {\r\n      return {\r\n        ...state,\r\n      };\r\n    }\r\n    case LIST_DATA_SUCCESS: {\r\n      return {\r\n        ...state,\r\n        sport: [...action.payload],\r\n        message: null,\r\n      };\r\n    }\r\n    case ADD_SPORTS_SUCCESS: {\r\n        return {\r\n            ...state,\r\n            sport: [ ...state.sport, action.payload],\r\n            message: 'The sport is added successfully!',\r\n            success: true,\r\n        };\r\n    }\r\n    case UPDATE_SPORTS_SUCCESS: {\r\n      return {\r\n        ...state,\r\n        message: 'The Sport is updated successfully!',\r\n        success: true,\r\n      };\r\n    }\r\n    case DELETE_SPORTS_SUCCESS: {\r\n      return {\r\n        ...state\r\n      };\r\n    }\r\n\r\n    default: {\r\n      return state;\r\n    }\r\n  }\r\n}\r\n",
             "properties": [
                 {
                     "name": "message",
@@ -268,7 +268,7 @@
                 },
                 {
                     "name": "sport",
-                    "type": "Sport[]",
+                    "type": "any",
                     "optional": false,
                     "description": "",
                     "line": 14
@@ -1845,7 +1845,7 @@
     "components": [
         {
             "name": "AddSportsComponent",
-            "id": "component-AddSportsComponent-5ed0687b3a306e6fef2642b5e75601d7",
+            "id": "component-AddSportsComponent-914c48b2c575fb9488a41d247496df14",
             "file": "src/app/sports/add-sports/addsports.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -1946,20 +1946,12 @@
             ],
             "methodsClass": [
                 {
-                    "name": "getSports",
-                    "args": [],
-                    "optional": false,
-                    "returnType": "void",
-                    "typeParameters": [],
-                    "line": 48
-                },
-                {
                     "name": "isRegisterFormToUpdate",
                     "args": [],
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 63
+                    "line": 60
                 },
                 {
                     "name": "ngOnInit",
@@ -1975,7 +1967,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 57
+                    "line": 54
                 },
                 {
                     "name": "onUpdateSport",
@@ -1983,7 +1975,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 71
+                    "line": 78
                 }
             ],
             "hostBindings": [],
@@ -1991,11 +1983,11 @@
             "description": "",
             "rawdescription": "",
             "type": "component",
-            "sourceCode": "import { Component, OnInit } from '@angular/core';\r\nimport { FormBuilder, Validators } from '@angular/forms';\r\nimport { Router, ActivatedRoute } from '@angular/router';\r\nimport { Observable } from 'rxjs';\r\nimport { Store } from '@ngrx/store';\r\nimport { AppState, selectAuthState } from '../../store/app.states';\r\nimport { ListSports, AddSports, UpdateSports } from 'src/app/store/actions/sport.action';\r\nimport { SportsListService } from 'src/app/service/sports.service';\r\n@Component({\r\n  selector: 'app-add-sports',\r\n  templateUrl: './addsports.component.html',\r\n  styleUrls: ['./addsports.component.css']\r\n})\r\nexport class AddSportsComponent implements OnInit {\r\n\r\n  public sportsForm: any;\r\n  public sportsData;\r\n  public sportsId: number;\r\n  public showUpdateForm: boolean;\r\n  public addSportTitle = 'Add Sport';\r\n  public updateSportTitle = 'Update Sport';\r\n  getState: Observable<any>;\r\n\r\n  constructor(private fb: FormBuilder,\r\n              private router: Router,\r\n              private activatedRoute: ActivatedRoute,\r\n              private store: Store<AppState>,\r\n              public sportsListService: SportsListService) {\r\n    this.getState = this.store.select(selectAuthState);\r\n  }\r\n\r\n  ngOnInit(): void {\r\n    this.sportsForm = this.fb.group({\r\n      id: [0, [Validators.required]],\r\n      sportsTitle: ['', [Validators.required]],\r\n      category: ['', [Validators.required]],\r\n      description: ['', [Validators.required, Validators.maxLength]]\r\n    });\r\n\r\n    this.activatedRoute.params.subscribe(param => {\r\n      this.sportsId = param.id;\r\n    });\r\n\r\n    this.getSports();\r\n    this.isRegisterFormToUpdate();\r\n  }\r\n\r\n  getSports(): void {\r\n    this.store.dispatch(new ListSports());\r\n    this.store.subscribe(data => {\r\n      if (data && data.sport) {\r\n        this.sportsData = data.sport.sport;\r\n      }\r\n    });\r\n  }\r\n\r\n  onSubmit(): void {\r\n    this.store.dispatch(new AddSports(this.sportsForm.value));\r\n    this.store.dispatch(new ListSports());\r\n    this.router.navigateByUrl('/list');\r\n  }\r\n\r\n  isRegisterFormToUpdate(): void {\r\n    if (this.sportsId === undefined) {\r\n      this.showUpdateForm = false;\r\n    } else {\r\n      this.showUpdateForm = true;\r\n    }\r\n  }\r\n\r\n  onUpdateSport(): void {\r\n    this.store.dispatch(new UpdateSports(this.sportsForm.value));\r\n    this.store.dispatch(new ListSports());\r\n    window.alert('updated successfully');\r\n    this.router.navigateByUrl('/list');\r\n  }\r\n}\r\n",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\r\nimport { FormBuilder, Validators } from '@angular/forms';\r\nimport { Router, ActivatedRoute } from '@angular/router';\r\nimport { Observable } from 'rxjs';\r\nimport { Store } from '@ngrx/store';\r\nimport { AppState, selectAuthState } from '../../store/app.states';\r\nimport { ListSports, AddSports, UpdateSports } from 'src/app/store/actions/sport.action';\r\nimport { SportsListService } from 'src/app/service/sports.service';\r\n@Component({\r\n  selector: 'app-add-sports',\r\n  templateUrl: './addsports.component.html',\r\n  styleUrls: ['./addsports.component.css']\r\n})\r\nexport class AddSportsComponent implements OnInit {\r\n\r\n  public sportsForm: any;\r\n  public sportsData;\r\n  public sportsId: number;\r\n  public showUpdateForm: boolean;\r\n  public addSportTitle = 'Add Sport';\r\n  public updateSportTitle = 'Update Sport';\r\n  getState: Observable<any>;\r\n\r\n  constructor(private fb: FormBuilder,\r\n              private router: Router,\r\n              private activatedRoute: ActivatedRoute,\r\n              private store: Store<AppState>,\r\n              public sportsListService: SportsListService) {\r\n    this.getState = this.store.select(selectAuthState);\r\n  }\r\n\r\n  ngOnInit(): void {\r\n    this.sportsForm = this.fb.group({\r\n      id: [0, [Validators.required]],\r\n      sportsTitle: ['', [Validators.required]],\r\n      category: ['', [Validators.required]],\r\n      description: ['', [Validators.required, Validators.maxLength]]\r\n    });\r\n\r\n    this.activatedRoute.params.subscribe(param => {\r\n      this.sportsId = param.id;\r\n    });\r\n\r\n    this.store.dispatch(new ListSports());\r\n    this.store.subscribe(data => {\r\n      if (data && data.sport) {\r\n        this.sportsData = data.sport.sport;\r\n      }\r\n    });\r\n\r\n    this.isRegisterFormToUpdate();\r\n  }\r\n\r\n  onSubmit(): void {\r\n    this.store.dispatch(new AddSports(this.sportsForm.value));\r\n    this.store.dispatch(new ListSports());\r\n    this.router.navigateByUrl('/list');\r\n  }\r\n\r\n  isRegisterFormToUpdate(): void {\r\n    if (this.sportsId && this.sportsData) {\r\n       this.showUpdateForm = true;\r\n       for (const sport of this.sportsData) {\r\n           if (this.sportsId === sport.id) {\r\n            this.sportsForm.patchValue({\r\n              id: sport.id,\r\n              category: sport.category,\r\n              description: sport.description,\r\n              sportsTitle: sport.sportsTitle\r\n            });\r\n           }\r\n       }\r\n    } else {\r\n      this.showUpdateForm = false;\r\n    }\r\n  }\r\n\r\n  onUpdateSport(): void {\r\n    this.store.dispatch(new UpdateSports(this.sportsForm.value));\r\n    this.store.dispatch(new ListSports());\r\n    window.alert('updated successfully');\r\n    this.router.navigateByUrl('/list');\r\n  }\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": ".grid-container {\r\n    width: 80%;\r\n    margin-top: 50px;\r\n    margin-left: 115px;\r\n    padding-bottom: 250px;\r\n}\r\n\r\n.form {\r\n    display: grid;\r\n    grid-template-columns: [labels] auto [controls] 1fr;\r\n    grid-auto-flow: row;\r\n    grid-gap: .8em;\r\n    background: #eee;\r\n    padding: 1.2em;\r\n}\r\n\r\n.myForm > label  {\r\n    grid-column: controls;\r\n    grid-row: auto;\r\n}\r\n\r\n.myForm > input {\r\n    grid-column: controls;\r\n    grid-row: auto;\r\n    border: none;\r\n    padding: 1em;\r\n}\r\n\r\n.myForm > button {\r\n    grid-row: controls;\r\n    grid-row: auto;\r\n    border: none;\r\n    padding: 1em;\r\n}\r\n\r\n.button {\r\n    margin: 8px;\r\n    padding: 2px 10px 2px 10px;\r\n}\r\n\r\n.div2 {\r\n    background: lightseagreen;\r\n}\r\n\r\n*{  margin: 0;\r\n    padding: 0;\r\n    box-sizing: border-box;\r\n    text-align: center;\r\n    font-family: '',\r\n    cursive;\r\n}\r\n\r\n.login {\r\n    background-color: lightseagreen;\r\n    padding: 11px;\r\n    color: white;\r\n}",
+                    "data": ".grid-container {\r\n    width: 80%;\r\n    margin-top: 50px;\r\n    margin-left: 115px;\r\n    padding-bottom: 250px;\r\n}\r\n\r\n.form {\r\n    display: grid;\r\n    grid-template-columns: [labels] auto [controls] 1fr;\r\n    grid-auto-flow: row;\r\n    grid-gap: .8em;\r\n    background: #eee;\r\n    padding: 1.2em;\r\n}\r\n\r\n.myForm > label  {\r\n    grid-column: controls;\r\n    grid-row: auto;\r\n}\r\n\r\n.myForm > input {\r\n    grid-column: controls;\r\n    grid-row: auto;\r\n    border: none;\r\n    padding: 1em;\r\n}\r\n\r\n.myForm > button {\r\n    grid-row: controls;\r\n    grid-row: auto;\r\n    border: none;\r\n    padding: 1em;\r\n}\r\n\r\n.button {\r\n    margin: 8px;\r\n    padding: 2px 10px 2px 10px;\r\n}\r\n\r\n\r\n.div2 {\r\n    background: lightseagreen;\r\n}\r\n\r\n*{  margin: 0;\r\n    padding: 0;\r\n    box-sizing: border-box;\r\n    text-align: center;\r\n    font-family: '',\r\n    cursive;\r\n}\r\n\r\n.login {\r\n    background-color: lightseagreen;\r\n    padding: 11px;\r\n    color: white;\r\n}",
                     "styleUrl": "./addsports.component.css"
                 }
             ],
@@ -2067,7 +2059,7 @@
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<div class=\"grid-container\" *ngIf=\"showUpdateForm == false\">\n    <div class=\"login\">\n        <p tabindex=\"0\">{{addSportTitle}}</p>\n    </div>\n    <div>\n        <form [formGroup]=\"sportsForm\" class=\"form\">\n            <label for=\"id\">ID :</label>\n            <input type=\"text\" formControlName=\"id\" id=\"id\" aria-label=\"ID\" autocomplete=\"off\">\n\n            <label for=\"sportsTitle\">Sports Title :</label>\n            <input type=\"text\" formControlName=\"sportsTitle\" placeholder=\"Enter Sport Name\" aria-label=\"Sports Title\" id=\"sportsTitle\" autocomplete=\"off\">\n\n            <label for=\"category\">Category :</label>\n            <input type=\"text\" formControlName=\"category\" placeholder=\"Individual or Team Player\" aria-label=\"Category\" id=\"category\" autocomplete=\"off\">\n\n            <label for=\"description\">Description :</label>\n            <textarea formControlName=\"description\" id=\"description\" placeholder=\"Enter Description\" aria-label=\"Description\" maxlength=\"500\" autocomplete=\"off\"></textarea>\n        </form>\n    </div>\n    <div class=\"div2\">\n        <button type=\"button\" class=\"button\" tabindex=\"0\" (click)=\"onSubmit()\"\n            [disabled]=\"sportsForm.invalid\">Submit</button>\n        <button type=\"button\" class=\"button\" tabindex=\"0\" [routerLink]=\"['/list']\">Home</button>\n    </div>\n</div>\n<div class=\"grid-container\" *ngIf=\"showUpdateForm == true\">\n    <ng-container *ngFor=\"let param of sportsData\">\n        <ng-container *ngIf=\"param.id === sportsId\">\n            <div class=\"login\">\n                <p tabindex=\"0\">{{updateSportTitle}}</p>\n            </div>\n            <div>\n                <form [formGroup]=\"sportsForm\" class=\"form\">\n                    <label for=\"id\">ID :</label>\n                    <input type=\"text\" formControlName=\"id\" id=\"id\" aria-label=\"ID\" name=\"id\" [ngModel]=\"param.id\"\n                        autocomplete=\"off\" disabled>\n\n                    <label for=\"sportsTitle\">Sports Title :</label>\n                    <input type=\"text\" formControlName=\"sportsTitle\" id=\"sportsTitle\" aria-label=\"Sports Title\" [ngModel]=\"param.sportsTitle\"\n                         autocomplete=\"off\">\n\n                    <label for=\"category\">Category :</label>\n                    <input type=\"text\" formControlName=\"category\" id=\"category\" aria-label=\"Category\" [ngModel]=\"param.category\"\n                        autocomplete=\"off\">\n\n                    <label for=\"description\">Description :</label>\n                    <textarea formControlName=\"description\" id=\"description\" aria-label=\"Description\" [ngModel]=\"param.description\"\n                        maxlength=\"500\" autocomplete=\"off\"></textarea>\n                </form>\n            </div>\n            <div class=\"div2\">\n                <button type=\"button\" class=\"button\" tabindex=\"0\" (click)=\"onUpdateSport()\"\n                    [disabled]=\"sportsForm.invalid\">Submit</button>\n                <button type=\"button\" class=\"button\" tabindex=\"0\"  [routerLink]=\"['/list']\">Home</button>\n            </div>\n        </ng-container>\n    </ng-container>\n</div>"
+            "templateData": "<div class=\"grid-container\">\n    <div class=\"login\">\n        <p tabindex=\"0\" *ngIf=\"showUpdateForm == false\">{{addSportTitle}}</p>\n        <p tabindex=\"0\" *ngIf=\"showUpdateForm == true\">{{updateSportTitle}}</p>\n    </div>\n    <div>\n        <form [formGroup]=\"sportsForm\" class=\"form\">\n            <label for=\"id\">ID :</label>\n            <input type=\"text\" formControlName=\"id\" id=\"id\" aria-label=\"ID\" autocomplete=\"off\">\n\n            <label for=\"sportsTitle\">Sports Title :</label>\n            <input type=\"text\" formControlName=\"sportsTitle\" placeholder=\"Enter Sport Name\" aria-label=\"Sports Title\" id=\"sportsTitle\" autocomplete=\"off\">\n\n            <label for=\"category\">Category :</label>\n            <input type=\"text\" formControlName=\"category\" placeholder=\"Individual or Team Player\" aria-label=\"Category\" id=\"category\" autocomplete=\"off\">\n\n            <label for=\"description\">Description :</label>\n            <textarea formControlName=\"description\" id=\"description\" placeholder=\"Enter Description\" aria-label=\"Description\" maxlength=\"500\" autocomplete=\"off\"></textarea>\n        </form>\n    </div>\n    <div class=\"div2\">\n        <button type=\"button\" class=\"button\" tabindex=\"0\" (click)=\"onSubmit()\"\n        *ngIf=\"showUpdateForm == false\"  [disabled]=\"sportsForm.invalid\">Submit</button>\n        <button type=\"button\" class=\"button\" tabindex=\"0\" (click)=\"onUpdateSport()\"\n        *ngIf=\"showUpdateForm == true\"  [disabled]=\"sportsForm.invalid\">Submit</button>\n        <button type=\"button\" class=\"button\" tabindex=\"0\" [routerLink]=\"['/list']\">Home</button>\n    </div>\n</div>\n"
         },
         {
             "name": "AppComponent",
@@ -2161,7 +2153,7 @@
         },
         {
             "name": "HeaderComponent",
-            "id": "component-HeaderComponent-6a3dc90a2a57fbd64e384acad60025c6",
+            "id": "component-HeaderComponent-30eda1e34ac6b94156c5fcdf6fa63742",
             "file": "src/app/header/header.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -2234,7 +2226,7 @@
                     "type": "SportsListService",
                     "optional": false,
                     "description": "",
-                    "line": 26,
+                    "line": 25,
                     "modifierKind": [
                         114
                     ]
@@ -2247,7 +2239,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 41
+                    "line": 40
                 },
                 {
                     "name": "logout",
@@ -2255,7 +2247,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 36
+                    "line": 35
                 },
                 {
                     "name": "ngOnInit",
@@ -2263,7 +2255,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 30
+                    "line": 29
                 }
             ],
             "hostBindings": [],
@@ -2271,11 +2263,11 @@
             "description": "",
             "rawdescription": "",
             "type": "component",
-            "sourceCode": "import { Component, OnInit, Output, EventEmitter } from '@angular/core';\nimport { Router, ActivatedRoute } from '@angular/router';\nimport { Store } from '@ngrx/store';\nimport { AppState, selectAuthState } from '../store/app.states';\nimport {  LogOut } from '../store/actions/auth.action';\nimport { Observable } from 'rxjs';\nimport { SportsListService } from '../service/sports.service';\n\n@Component({\n  selector: 'app-header',\n  templateUrl: './header.component.html',\n  styleUrls: ['./header.component.css']\n})\nexport class HeaderComponent implements OnInit {\n\n  public headerTitle = 'Sports';\n  public setDark = false;\n  public getState: Observable<any>;\n  public isAuthenticated: boolean;\n\n  @Output() mode = new EventEmitter<boolean>();\n\n  constructor(private router: Router,\n              private activatedRoute: ActivatedRoute,\n              private store: Store<AppState>,\n              public sportService: SportsListService\n              )\n  { this.getState = this.store.select(selectAuthState); }\n\n  ngOnInit(): void {\n    this.getState.subscribe(isLogin => {\n      this.isAuthenticated = isLogin.isAuthenticated;\n    });\n  }\n\n  logout(): void {\n    this.store.dispatch(new LogOut());\n    this.router.navigate(['/login']);\n  }\n\n  changeTheme(): void {\n    this.setDark = !this.setDark;\n    this.mode.emit(this.setDark);\n  }\n}\n",
+            "sourceCode": "import { Component, OnInit, Output, EventEmitter } from '@angular/core';\nimport { Router } from '@angular/router';\nimport { Store } from '@ngrx/store';\nimport { AppState, selectAuthState } from '../store/app.states';\nimport { LogOut } from '../store/actions/auth.action';\nimport { Observable } from 'rxjs';\nimport { SportsListService } from '../service/sports.service';\n\n@Component({\n  selector: 'app-header',\n  templateUrl: './header.component.html',\n  styleUrls: ['./header.component.css']\n})\nexport class HeaderComponent implements OnInit {\n\n  public headerTitle = 'Sports';\n  public setDark = false;\n  public getState: Observable<any>;\n  public isAuthenticated: boolean;\n\n  @Output() mode = new EventEmitter<boolean>();\n\n  constructor(private router: Router,\n              private store: Store<AppState>,\n              public sportService: SportsListService\n              )\n  { this.getState = this.store.select(selectAuthState); }\n\n  ngOnInit(): void {\n    this.getState.subscribe(isLogin => {\n      this.isAuthenticated = isLogin.isAuthenticated;\n    });\n  }\n\n  logout(): void {\n    this.store.dispatch(new LogOut());\n    this.router.navigate(['/list']);\n  }\n\n  changeTheme(): void {\n    this.setDark = !this.setDark;\n    this.mode.emit(this.setDark);\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "\r\n.div1 {\r\n    background-color: lightseagreen;\r\n    display: inline-flex;\r\n    width: 100%;\r\n}\r\n\r\n.ui-button {\r\n    margin-left: 801px;\r\n}\r\n\r\n.header-button {\r\n    margin: 15px;\r\n    padding: 6px 10px 6px 10px;\r\n}\r\n\r\n@media only screen and (max-width: 1165px) {\r\n    .ui-button {\r\n        margin-left: auto;\r\n        padding-bottom: 9px;\r\n        padding-top: 3px;\r\n    }\r\n\r\n    .header-button {\r\n        margin: 3px;\r\n        margin-top: 6px;\r\n        padding-left: 1px;\r\n        padding-right: 1px;\r\n    }\r\n  }\r\n",
+                    "data": "\r\n.div1 {\r\n    background-color: lightseagreen;\r\n    display: inline-flex;\r\n    width: 100%;\r\n}\r\n\r\n.ui-button {\r\n    margin-left: 985px;\r\n}\r\n\r\n.header-button {\r\n    margin: 15px;\r\n    padding: 6px 10px 6px 10px;\r\n}\r\n\r\n@media only screen and (max-width: 1165px) {\r\n    .ui-button {\r\n        margin-left: auto;\r\n        padding-bottom: 9px;\r\n        padding-top: 3px;\r\n    }\r\n\r\n    .header-button {\r\n        margin: 3px;\r\n        margin-top: 6px;\r\n        padding-left: 1px;\r\n        padding-right: 1px;\r\n    }\r\n  }\r\n",
                     "styleUrl": "./header.component.css"
                 }
             ],
@@ -2287,10 +2279,6 @@
                     {
                         "name": "router",
                         "type": "Router"
-                    },
-                    {
-                        "name": "activatedRoute",
-                        "type": "ActivatedRoute"
                     },
                     {
                         "name": "store",
@@ -2306,13 +2294,6 @@
                     {
                         "name": "router",
                         "type": "Router",
-                        "tagName": {
-                            "text": "param"
-                        }
-                    },
-                    {
-                        "name": "activatedRoute",
-                        "type": "ActivatedRoute",
                         "tagName": {
                             "text": "param"
                         }
@@ -2549,7 +2530,7 @@
         },
         {
             "name": "SportsComponent",
-            "id": "component-SportsComponent-5ff94a58a0c5db1bb7bf4ab752a6b15c",
+            "id": "component-SportsComponent-7f51e2c4c560dc0953b79db4d469aa2e",
             "file": "src/app/sports/sports.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -2573,7 +2554,7 @@
                     "type": "Observable<any>",
                     "optional": false,
                     "description": "",
-                    "line": 21,
+                    "line": 19,
                     "modifierKind": [
                         114
                     ]
@@ -2583,18 +2564,7 @@
                     "type": "boolean",
                     "optional": false,
                     "description": "",
-                    "line": 19,
-                    "modifierKind": [
-                        114
-                    ]
-                },
-                {
-                    "name": "loginData",
-                    "defaultValue": "[]",
-                    "type": "Array<any>",
-                    "optional": false,
-                    "description": "",
-                    "line": 17,
+                    "line": 20,
                     "modifierKind": [
                         114
                     ]
@@ -2604,7 +2574,7 @@
                     "type": "any",
                     "optional": false,
                     "description": "",
-                    "line": 18,
+                    "line": 17,
                     "modifierKind": [
                         114
                     ]
@@ -2614,7 +2584,7 @@
                     "type": "SportsListService",
                     "optional": false,
                     "description": "",
-                    "line": 25,
+                    "line": 24,
                     "modifierKind": [
                         114
                     ]
@@ -2625,7 +2595,7 @@
                     "type": "string",
                     "optional": false,
                     "description": "",
-                    "line": 20,
+                    "line": 18,
                     "modifierKind": [
                         114
                     ]
@@ -2643,7 +2613,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 42,
+                    "line": 46,
                     "jsdoctags": [
                         {
                             "name": "id",
@@ -2660,7 +2630,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 29
+                    "line": 28
                 }
             ],
             "hostBindings": [],
@@ -2668,11 +2638,11 @@
             "description": "",
             "rawdescription": "",
             "type": "component",
-            "sourceCode": "import { Component, OnInit } from '@angular/core';\r\nimport { SportsListService } from '../service/mock.service';\r\nimport { Router } from '@angular/router';\r\nimport { Store } from '@ngrx/store';\r\nimport { AppState, selectAuthState } from '../store/app.states';\r\nimport { Observable } from 'rxjs';\r\nimport { ListSports, DeleteSports } from '../store/actions/sport.action';\r\n\r\n@Component({\r\n  selector: 'app-listing-page',\r\n  templateUrl: './sports.component.html',\r\n  styleUrls: ['./sports.component.css']\r\n})\r\n\r\nexport class SportsComponent implements OnInit {\r\n\r\n  public loginData: Array<any> = [];\r\n  public sportsData: any;\r\n  public isAuthenticated: boolean;\r\n  public tableTitle = 'Sports Club';\r\n  public getState: Observable<any>;\r\n\r\n  constructor(private router: Router,\r\n              private store: Store<AppState>,\r\n              public sportsListService: SportsListService ) {\r\n    this.getState = this.store.select(selectAuthState);\r\n  }\r\n\r\n  ngOnInit(): void {\r\n    this.store.dispatch(new ListSports());\r\n    this.store.subscribe(data => {\r\n      if (data && data.sport ) {\r\n        this.sportsData = data.sport.sport;\r\n      }\r\n    });\r\n\r\n    this.getState.subscribe(isLogin => {\r\n      this.isAuthenticated = isLogin.isAuthenticated;\r\n    });\r\n  }\r\n\r\n  deleteSports(id: any): void {\r\n    if (window.confirm('Are you sure to delete sport')) {\r\n      this.store.dispatch(new DeleteSports(id));\r\n      this.store.dispatch(new ListSports());\r\n    }\r\n  }\r\n}\r\n",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\r\nimport { SportsListService } from '../service/mock.service';\r\nimport { Router } from '@angular/router';\r\nimport { Store } from '@ngrx/store';\r\nimport { AppState, selectAuthState } from '../store/app.states';\r\nimport { Observable } from 'rxjs';\r\nimport { ListSports, DeleteSports } from '../store/actions/sport.action';\r\n\r\n@Component({\r\n  selector: 'app-listing-page',\r\n  templateUrl: './sports.component.html',\r\n  styleUrls: ['./sports.component.css']\r\n})\r\n\r\nexport class SportsComponent implements OnInit {\r\n\r\n  public sportsData: any;\r\n  public tableTitle = 'Sports Club';\r\n  public getState: Observable<any>;\r\n  public isAuthenticated: boolean;\r\n\r\n  constructor(private router: Router,\r\n              private store: Store<AppState>,\r\n              public sportsListService: SportsListService ) {\r\n    this.getState = this.store.select(selectAuthState);\r\n  }\r\n\r\n  ngOnInit(): void {\r\n    this.store.dispatch(new ListSports());\r\n    this.store.subscribe(data => {\r\n      if (data && data.sport ) {\r\n        this.sportsData = data.sport.sport;\r\n      }\r\n    });\r\n\r\n    // to get json data if run storybook feature\r\n    this.sportsListService.getSports().subscribe(sport => {\r\n      this.sportsData = sport;\r\n    });\r\n\r\n    this.getState.subscribe(isLogin => {\r\n      this.isAuthenticated = isLogin.isAuthenticated;\r\n    });\r\n  }\r\n\r\n  deleteSports(id: any): void {\r\n    if (window.confirm('Are you sure to delete sport')) {\r\n      this.store.dispatch(new DeleteSports(id));\r\n      this.store.dispatch(new ListSports());\r\n    }\r\n  }\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": ".list {\r\n    width: auto;\r\n    margin-top: 25px;\r\n    border: 1px solid black;\r\n}\r\n\r\ntable {\r\n    font-family: arial, sans-serif;\r\n    border-collapse: collapse;\r\n    width: 100%;\r\n}\r\n\r\ntd, th {\r\n    border: 1px solid #dddddd;\r\n    text-align: left;\r\n    padding: 8px;\r\n    text-align: center;\r\n}\r\n\r\ntr:nth-child(even) {\r\n    background-color: #dddddd;\r\n}\r\n\r\n.heading {\r\n    color: white;\r\n    margin: 12px;\r\n    padding-left: calc(100vw/2 - 100px)!important;\r\n}\r\n\r\n.button {\r\n    padding: 6px 15px;\r\n    margin-right: 10px;\r\n}\r\n\r\n.add {\r\n    background-color: lightseagreen;\r\n    padding: 9px;\r\n    margin-top: 19px;\r\n}\r\n\r\n.table-bottom {\r\n    display: inline-flex;\r\n}\r\n\r\n.add-button {\r\n    padding: 0px 5px 0px 5px;\r\n    margin: 10px;\r\n    margin-left: 491px;\r\n}\r\n\r\n.crud-button {\r\n   display: inline-flex;\r\n}\r\n\r\n.table {\r\n    border-collapse: inherit;\r\n    width: 100%;\r\n    min-width: 500px;\r\n}\r\n\r\n@media only screen and (max-width: 1002px) {\r\n    .button {\r\n        padding: 8px 3px 8px 3px;\r\n        margin-right: 7px;\r\n    }\r\n}\r\n\r\n@media only screen and (max-width: 1165px) {\r\n    .heading {\r\n        color: white;\r\n        margin: 12px;\r\n        padding-left: calc(100vw/3 + 1px)!important;\r\n    }\r\n\r\n    .add-button {\r\n        padding: 0px 5px 0px 5px;\r\n        margin: 10px;\r\n        margin-left: calc(100vw/2 - 263px)!important;\r\n    }\r\n}\r\n\r\n.table-header {\r\n    display: inline-flex;\r\n    background-color: lightseagreen;\r\n    width: 100%;\r\n    margin-bottom: 24px;\r\n}\r\n\r\n.scroll {\r\n    overflow: auto;\r\n}\r\n\r\n",
+                    "data": ".list {\r\n    width: auto;\r\n    margin-top: 25px;\r\n    border: 1px solid black;\r\n}\r\n\r\ntable {\r\n    font-family: arial, sans-serif;\r\n    border-collapse: collapse;\r\n    width: 100%;\r\n}\r\n\r\ntd, th {\r\n    border: 1px solid #dddddd;\r\n    text-align: left;\r\n    padding: 8px;\r\n    text-align: center;\r\n}\r\n\r\ntr:nth-child(even) {\r\n    background-color: #dddddd;\r\n}\r\n\r\n.heading {\r\n    color: white;\r\n    margin: 12px;\r\n    padding-left: calc(100vw/2 - 100px)!important;\r\n}\r\n\r\n.button {\r\n    padding: 6px 15px;\r\n    margin-right: 10px;\r\n}\r\n\r\n.button-delete {\r\n    padding: 6px 15px;\r\n    margin-right: 10px;\r\n    background-color: red;\r\n    color: white;\r\n}\r\n\r\n.button-update {\r\n    padding: 6px 15px;\r\n    margin-right: 10px;\r\n    background-color: blue;\r\n    color: white;\r\n}\r\n\r\n\r\n.add {\r\n    background-color: lightseagreen;\r\n    padding: 9px;\r\n    margin-top: 19px;\r\n}\r\n\r\n.table-bottom {\r\n    display: inline-flex;\r\n}\r\n\r\n.add-button {\r\n    padding: 0px 5px 0px 5px;\r\n    margin: 10px;\r\n    margin-left: 491px;\r\n    color: white;\r\n    background-color: blue;\r\n}\r\n\r\n.crud-button {\r\n   display: inline-flex;\r\n}\r\n\r\n.table {\r\n    border-collapse: inherit;\r\n    width: 100%;\r\n    min-width: 500px;\r\n}\r\n\r\n@media only screen and (max-width: 1002px) {\r\n    .button {\r\n        padding: 8px 3px 8px 3px;\r\n        margin-right: 7px;\r\n    }\r\n}\r\n\r\n@media only screen and (max-width: 1165px) {\r\n    .heading {\r\n        color: white;\r\n        margin: 12px;\r\n        padding-left: calc(100vw/3 + 1px)!important;\r\n    }\r\n\r\n    .add-button {\r\n        padding: 0px 5px 0px 5px;\r\n        margin: 10px;\r\n        margin-left: calc(100vw/2 - 263px)!important;\r\n        color: white;\r\n        background-color: blue;\r\n    }\r\n}\r\n\r\n.table-header {\r\n    display: inline-flex;\r\n    background-color: lightseagreen;\r\n    width: 100%;\r\n    margin-bottom: 24px;\r\n}\r\n\r\n.scroll {\r\n    overflow: auto;\r\n}\r\n\r\n",
                     "styleUrl": "./sports.component.css"
                 }
             ],
@@ -2694,7 +2664,7 @@
                         "type": "SportsListService"
                     }
                 ],
-                "line": 21,
+                "line": 20,
                 "jsdoctags": [
                     {
                         "name": "router",
@@ -2722,7 +2692,7 @@
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<div class=\"list\">\r\n    <div class=\"scroll\">\r\n        <table class=\"table\">\r\n            <caption>\r\n               <div class=\"table-header\">\r\n                 <h2\r\n                 class=\"heading\"\r\n                 tabindex=\"0\"\r\n                >{{tableTitle}}</h2>\r\n                <button\r\n                 type=\"button\"\r\n                 tabindex=\"0\"\r\n                 aria-label=\"Add Sport\"\r\n                 class=\"add-button\"\r\n                 *ngIf=\"isAuthenticated\"\r\n                 [routerLink]=\"['/addsports']\"\r\n                >Add Sport</button>\r\n               </div>\r\n            </caption>\r\n            <tr>\r\n                <th tabindex=\"0\">Sr. No.</th>\r\n                <th tabindex=\"0\">Sports Title</th>\r\n                <th tabindex=\"0\">Description</th>\r\n                <th tabindex=\"0\">Category</th>\r\n                <th tabindex=\"0\" *ngIf=\"isAuthenticated\">Actions</th>\r\n            </tr>\r\n            <tr *ngFor=\"let item of sportsData\">\r\n                <td tabindex=\"0\">{{item.id}}</td>\r\n                <td tabindex=\"0\">{{item.sportsTitle}}</td>\r\n                <td tabindex=\"0\">{{item.description}}</td>\r\n                <td tabindex=\"0\">{{item.category}}</td>\r\n                <td tabindex=\"0\" *ngIf=\"isAuthenticated\">\r\n                    <div class=\"crud-button\">\r\n                        <button\r\n                         type=\"button\"\r\n                         tabindex=\"0\"\r\n                         aria-label=\"Update\"\r\n                         class=\"button\"\r\n                         [routerLink]=\"['/addsports', item.id]\"\r\n                        >Update</button>\r\n                        <button\r\n                         type=\"button\"\r\n                         tabindex=\"0\"\r\n                         aria-label=\"Delete\"\r\n                         class=\"button\"\r\n                         (click)=\"deleteSports(item.id)\"\r\n                        >Delete</button>\r\n                    </div>\r\n                </td>\r\n            </tr>\r\n        </table>\r\n    </div>\r\n    <div class=\"add\">\r\n        <footer-element></footer-element>\r\n    </div>\r\n</div>"
+            "templateData": "<div class=\"list\">\r\n    <div class=\"scroll\">\r\n        <table class=\"table\">\r\n            <caption>\r\n               <div class=\"table-header\">\r\n                 <h2\r\n                 class=\"heading\"\r\n                 tabindex=\"0\"\r\n                >{{tableTitle}}</h2>\r\n                <button\r\n                 type=\"button\"\r\n                 tabindex=\"0\"\r\n                 aria-label=\"Add Sport\"\r\n                 class=\"add-button\"\r\n                 *ngIf=\"isAuthenticated\"\r\n                 [routerLink]=\"['/addsports']\"\r\n                >Add Sport</button>\r\n               </div>\r\n            </caption>\r\n            <tr>\r\n                <th tabindex=\"0\">Sr. No.</th>\r\n                <th tabindex=\"0\">Sports Title</th>\r\n                <th tabindex=\"0\">Description</th>\r\n                <th tabindex=\"0\">Category</th>\r\n                <th tabindex=\"0\" *ngIf=\"isAuthenticated\">Actions</th>\r\n            </tr>\r\n            <tr *ngFor=\"let item of sportsData\">\r\n                <td tabindex=\"0\">{{item.id}}</td>\r\n                <td tabindex=\"0\">{{item.sportsTitle}}</td>\r\n                <td tabindex=\"0\">{{item.description}}</td>\r\n                <td tabindex=\"0\">{{item.category}}</td>\r\n                <td tabindex=\"0\" *ngIf=\"isAuthenticated\">\r\n                    <div class=\"crud-button\">\r\n                        <button\r\n                         type=\"button\"\r\n                         tabindex=\"0\"\r\n                         aria-label=\"Update\"\r\n                         class=\"button-update\"\r\n                         [routerLink]=\"['/addsports', item.id]\"\r\n                        >Update</button>\r\n                        <button\r\n                         type=\"button\"\r\n                         tabindex=\"0\"\r\n                         aria-label=\"Delete\"\r\n                         class=\"button-delete\"\r\n                         (click)=\"deleteSports(item.id)\"\r\n                        >Delete</button>\r\n                    </div>\r\n                </td>\r\n            </tr>\r\n        </table>\r\n    </div>\r\n    <div class=\"add\">\r\n        <footer-element></footer-element>\r\n    </div>\r\n</div>"
         }
     ],
     "modules": [
@@ -2894,10 +2864,10 @@
                 "defaultValue": "'[Sports] Add sport success'"
             },
             {
-                "name": "addSport",
+                "name": "AppTheme",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/sports/add-sports/addsport.stories.ts",
+                "file": "src/app/app.stories.ts",
                 "type": "",
                 "defaultValue": "Template.bind({})"
             },
@@ -2913,7 +2883,7 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/login/login.stories.ts",
+                "file": "src/app/header/header.stories.ts",
                 "type": "",
                 "defaultValue": "Template.bind({})"
             },
@@ -2921,7 +2891,7 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/header/header.stories.ts",
+                "file": "src/app/login/login.stories.ts",
                 "type": "",
                 "defaultValue": "Template.bind({})"
             },
@@ -2938,6 +2908,14 @@
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "src/app/register-module/register/register.stories.ts",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/sports/add-sports/addsport.stories.ts",
                 "type": "",
                 "defaultValue": "Template.bind({})"
             },
@@ -2972,6 +2950,22 @@
                 "file": "src/environments/environment.ts",
                 "type": "object",
                 "defaultValue": "{\n  production: false,\n  baseRefUrl : 'http://localhost:3000',\n  providers: []\n}"
+            },
+            {
+                "name": "footerTitle",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/lit-Elements/footer.element.stories.ts",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "headerTitle",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/lit-Elements/heading-element.stories.ts",
+                "type": "",
+                "defaultValue": "Template.bind({})"
             },
             {
                 "name": "initialState",
@@ -3014,14 +3008,6 @@
                 "defaultValue": "css`white`"
             },
             {
-                "name": "NotAuth",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "src/app/header/header.stories.ts",
-                "type": "",
-                "defaultValue": "Template.bind({})"
-            },
-            {
                 "name": "reducers",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -3057,9 +3043,17 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/login/login.stories.ts",
-                "type": "Story<LoginComponent>",
-                "defaultValue": "(args: LoginComponent) => ({\r\n  component: LoginComponent,\r\n  props: args,\r\n})"
+                "file": "src/app/lit-Elements/footer.element.stories.ts",
+                "type": "Story<FooterElement>",
+                "defaultValue": "(args: FooterElement) => ({\r\n  component: FooterElement,\r\n  props: args,\r\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/lit-Elements/heading-element.stories.ts",
+                "type": "Story<HeaderTitleElement>",
+                "defaultValue": "(args: HeaderTitleElement) => ({\r\n  component: HeaderTitleElement,\r\n  props: args,\r\n})"
             },
             {
                 "name": "Template",
@@ -3068,6 +3062,14 @@
                 "file": "src/app/header/header.stories.ts",
                 "type": "Story<HeaderComponent>",
                 "defaultValue": "(args: HeaderComponent) => ({\r\n  component: HeaderComponent,\r\n  props: args,\r\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/login/login.stories.ts",
+                "type": "Story<LoginComponent>",
+                "defaultValue": "(args: LoginComponent) => ({\r\n  component: LoginComponent,\r\n  props: args,\r\n})"
             },
             {
                 "name": "Template",
@@ -3302,25 +3304,15 @@
                     "defaultValue": "'[Sports] Update sport success'"
                 }
             ],
-            "src/app/sports/add-sports/addsport.stories.ts": [
+            "src/app/app.stories.ts": [
                 {
-                    "name": "addSport",
+                    "name": "AppTheme",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "src/app/sports/add-sports/addsport.stories.ts",
+                    "file": "src/app/app.stories.ts",
                     "type": "",
                     "defaultValue": "Template.bind({})"
                 },
-                {
-                    "name": "Template",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/app/sports/add-sports/addsport.stories.ts",
-                    "type": "Story<AddSportsComponent>",
-                    "defaultValue": "(args: AddSportsComponent) => ({\r\n  component: AddSportsComponent,\r\n  props: args,\r\n})"
-                }
-            ],
-            "src/app/app.stories.ts": [
                 {
                     "name": "Default",
                     "ctype": "miscellaneous",
@@ -3336,6 +3328,24 @@
                     "file": "src/app/app.stories.ts",
                     "type": "Story<AppComponent>",
                     "defaultValue": "(args: AppComponent) => ({\r\n  component: AppComponent,\r\n  props: args,\r\n})"
+                }
+            ],
+            "src/app/header/header.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/header/header.stories.ts",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/header/header.stories.ts",
+                    "type": "Story<HeaderComponent>",
+                    "defaultValue": "(args: HeaderComponent) => ({\r\n  component: HeaderComponent,\r\n  props: args,\r\n})"
                 }
             ],
             "src/app/login/login.stories.ts": [
@@ -3354,32 +3364,6 @@
                     "file": "src/app/login/login.stories.ts",
                     "type": "Story<LoginComponent>",
                     "defaultValue": "(args: LoginComponent) => ({\r\n  component: LoginComponent,\r\n  props: args,\r\n})"
-                }
-            ],
-            "src/app/header/header.stories.ts": [
-                {
-                    "name": "Default",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/app/header/header.stories.ts",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "NotAuth",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/app/header/header.stories.ts",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "Template",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/app/header/header.stories.ts",
-                    "type": "Story<HeaderComponent>",
-                    "defaultValue": "(args: HeaderComponent) => ({\r\n  component: HeaderComponent,\r\n  props: args,\r\n})"
                 }
             ],
             "src/app/sports/sports.stories.ts": [
@@ -3418,6 +3402,24 @@
                     "defaultValue": "(args: RegisterComponent) => ({\r\n  component: RegisterComponent,\r\n  props: args,\r\n})"
                 }
             ],
+            "src/app/sports/add-sports/addsport.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/sports/add-sports/addsport.stories.ts",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/sports/add-sports/addsport.stories.ts",
+                    "type": "Story<AddSportsComponent>",
+                    "defaultValue": "(args: AddSportsComponent) => ({\r\n  component: AddSportsComponent,\r\n  props: args,\r\n})"
+                }
+            ],
             "src/environments/environment.prod.ts": [
                 {
                     "name": "environment",
@@ -3436,6 +3438,42 @@
                     "file": "src/environments/environment.ts",
                     "type": "object",
                     "defaultValue": "{\n  production: false,\n  baseRefUrl : 'http://localhost:3000',\n  providers: []\n}"
+                }
+            ],
+            "src/app/lit-Elements/footer.element.stories.ts": [
+                {
+                    "name": "footerTitle",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/lit-Elements/footer.element.stories.ts",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/lit-Elements/footer.element.stories.ts",
+                    "type": "Story<FooterElement>",
+                    "defaultValue": "(args: FooterElement) => ({\r\n  component: FooterElement,\r\n  props: args,\r\n})"
+                }
+            ],
+            "src/app/lit-Elements/heading-element.stories.ts": [
+                {
+                    "name": "headerTitle",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/lit-Elements/heading-element.stories.ts",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/lit-Elements/heading-element.stories.ts",
+                    "type": "Story<HeaderTitleElement>",
+                    "defaultValue": "(args: HeaderTitleElement) => ({\r\n  component: HeaderTitleElement,\r\n  props: args,\r\n})"
                 }
             ],
             "src/app/store/reducers/auth.reducers.ts": [
@@ -3725,6 +3763,16 @@
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
+                "name": "AppTheme",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/app.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
                 "name": "Default",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
@@ -3764,13 +3812,23 @@
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
-                "name": "NotAuth",
+                "name": "Template",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
             },
             {
-                "filePath": "src/app/header/header.stories.ts",
+                "filePath": "src/app/lit-Elements/footer.element.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "footerTitle",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/lit-Elements/footer.element.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
@@ -3786,6 +3844,26 @@
                 "name": "FooterElement",
                 "coveragePercent": 0,
                 "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/lit-Elements/heading-element.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "headerTitle",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/lit-Elements/heading-element.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
                 "status": "low"
             },
             {
@@ -3906,7 +3984,7 @@
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
-                "name": "addSport",
+                "name": "Default",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
@@ -3927,7 +4005,7 @@
                 "linktype": "component",
                 "name": "AddSportsComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/15",
+                "coverageCount": "0/14",
                 "status": "low"
             },
             {
@@ -3936,7 +4014,7 @@
                 "linktype": "component",
                 "name": "SportsComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/10",
+                "coverageCount": "0/9",
                 "status": "low"
             },
             {

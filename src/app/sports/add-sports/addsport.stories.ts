@@ -1,6 +1,6 @@
 import { moduleMetadata } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 // also exported from '@storybook/angular' if you can deal with breaking changes in 6.1
 import { Story, Meta } from '@storybook/angular/types-6-0';
@@ -18,15 +18,15 @@ export default {
     moduleMetadata({
       declarations: [],
       imports: [
-          CommonModule,
-          FormsModule,
-          ReactiveFormsModule,
-          RouterTestingModule,
-          HttpClientModule,
-          StoreModule.forRoot(reducers, {})
-        ],
-     schemas: [CUSTOM_ELEMENTS_SCHEMA],
-     providers: []
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        RouterTestingModule,
+        HttpClientModule,
+        StoreModule.forRoot(reducers, {})
+      ],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
+      providers: []
     }),
   ],
 } as Meta;
@@ -36,8 +36,8 @@ const Template: Story<AddSportsComponent> = (args: AddSportsComponent) => ({
   props: args,
 });
 
-export const addSport = Template.bind({});
-addSport.args = {
+export const add = Template.bind({});
+add.args = {
   user: {},
+  showUpdateForm: false,
 };
-
